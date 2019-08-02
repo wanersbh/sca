@@ -34,8 +34,7 @@ public class CategoriaController {
 
 	@Autowired
 	private ApplicationEventPublisher publisher;
-	
-	
+
 	@GetMapping
 	public List<Categoria> listar() {
 		return categoriaRepository.findAll();
@@ -47,28 +46,29 @@ public class CategoriaController {
 		publisher.publishEvent(new RecursoCriadoEvent(this, response, categoriaSalva.getCodigo()));
 
 		return ResponseEntity.status(HttpStatus.CREATED).body(categoriaSalva);
+		
 	}
 
 	@GetMapping("/{codigo}")
 	public ResponseEntity<Categoria> buscaPorCodigo(@PathVariable Long codigo) {
 		Categoria categoriaRetornada = categoriaRepository.findById(codigo).orElse(null);
 
-		return categoriaRetornada != null ? ResponseEntity.ok(categoriaRetornada) : 
-			ResponseEntity.notFound().build();
+		return categoriaRetornada != null ? ResponseEntity.ok(categoriaRetornada) : ResponseEntity.notFound().build();
 	}
-	
+
 	@PutMapping("/{codigo}")
-	public ResponseEntity<Categoria> atualizar(@PathVariable Long codigo, @Valid @RequestBody Categoria categoria){
-		Categoria categoriaRetornada = categoriaRepository
-				.findById(codigo).orElseThrow(() -> new EmptyResultDataAccessException(1));
+	public ResponseEntity<Categoria> atualizar(@PathVariable Long codigo,
+			@Valid @RequestBody Categoria categoriaAlterada) {
+
+		Categoria categoriaBase = categoriaRepository.findById(codigo)
+				.orElseThrow(() -> new EmptyResultDataAccessException(1));
+		BeanUtils.copyProperties(categoriaAlterada, categoriaBase, "codigo");
+		categoriaRepository.save(categoriaBase);
+
+		return ResponseEntity.ok(categoriaBase);
 		
-		BeanUtils.copyProperties(categoria, categoriaRetornada, "codigo");
-		
-		categoriaRepository.save(categoriaRetornada);
-		
-		return ResponseEntity.ok(categoriaRetornada);
 	}
-	
+
 	@DeleteMapping("/{codigo}")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	public void remover(@PathVariable Long codigo) {
