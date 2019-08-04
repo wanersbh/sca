@@ -10,6 +10,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
@@ -21,21 +23,27 @@ public class Ativo {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long codigo;
 	
+	@NotNull
+	@Size(min=2, max = 50)
 	private String descricao;
 	
+	@NotNull
 	@Column(name = "data_aquisicao")
 	@JsonFormat(pattern = "dd/MM/yyyy")
 	private LocalDate dataAquisicao;
 	
+	@NotNull
 	@Column(name = "ano_fabricacao")
 	private Integer anoFabricacao;
 	
+	@Size(max = 300)
 	private String observacao;
 	
 	@Column(name = "data_exclusao")
 	@JsonFormat(pattern = "dd/MM/yyyy")
 	private LocalDate dataExclusao;
 	
+	@NotNull
 	@ManyToOne
 	@JoinColumn(name = "codigo_categoria")
 	private Categoria categoria;

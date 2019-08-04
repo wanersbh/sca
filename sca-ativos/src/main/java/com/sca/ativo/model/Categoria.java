@@ -1,12 +1,18 @@
 package com.sca.ativo.model;
 
+import java.time.LocalDate;
+
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "categoria")
@@ -19,6 +25,9 @@ public class Categoria {
 	@NotNull
 	@Size(min=3, max=50)
 	private String nome;
+	
+	@Column(name = "data_exclusao")
+	private LocalDate dataExclusao;
 
 	public Long getCodigo() {
 		return codigo;
@@ -34,6 +43,20 @@ public class Categoria {
 
 	public void setNome(String nome) {
 		this.nome = nome;
+	}
+	
+	public LocalDate getDataExclusao() {
+		return dataExclusao;
+	}
+
+	public void setDataExclusao(LocalDate dataExclusao) {
+		this.dataExclusao = dataExclusao;
+	}
+	
+	@JsonIgnore
+	@Transient
+	public boolean isInativo() {
+		return dataExclusao !=null;
 	}
 
 	@Override
