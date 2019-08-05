@@ -17,6 +17,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -53,11 +54,13 @@ public class AtivoController {
 	private MessageSource messageSource;
 
 	@GetMapping
+	@PreAuthorize("hasAuthority('ROLE_PESQUISAR_ATIVO') and #oauth2.hasScope('read')")
 	public Page<Ativo> pesquisar(AtivoFilter ativoFilter, Pageable pageable) {
 		return ativoRepository.filtrar(ativoFilter, pageable);
 	}
 
 	@GetMapping("/{codigo}")
+	@PreAuthorize("hasAuthority('ROLE_PESQUISAR_ATIVO') and #oauth2.hasScope('read')")
 	public ResponseEntity<Ativo> buscarPorCodigo(@PathVariable Long codigo) {
 		Ativo ativoRetornado = ativoRepository.findById(codigo).orElse(null);
 
@@ -65,6 +68,7 @@ public class AtivoController {
 	}
 
 	@PutMapping("/{codigo}")
+	@PreAuthorize("hasAuthority('ROLE_CADASTRAR_ATIVO') and #oauth2.hasScope('write')")
 	public ResponseEntity<Ativo> atualizar(@PathVariable Long codigo, @Valid @RequestBody Ativo ativoAlterado) {
 
 		Ativo ativoBase = ativoRepository.findById(codigo).orElseThrow(() -> new EmptyResultDataAccessException(1));
@@ -76,6 +80,7 @@ public class AtivoController {
 	}
 
 	@PostMapping
+	@PreAuthorize("hasAuthority('ROLE_CADASTRAR_ATIVO') and #oauth2.hasScope('write')")
 	public ResponseEntity<Ativo> criar(@Valid @RequestBody Ativo ativo, HttpServletResponse response) {
 		Ativo ativoSalvo = ativoService.salvar(ativo);
 		publisher.publishEvent(new RecursoCriadoEvent(this, response, ativoSalvo.getCodigo()));
@@ -84,6 +89,7 @@ public class AtivoController {
 	
 	@DeleteMapping("/{codigo}")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
+	@PreAuthorize("hasAuthority('ROLE_REMOVER_ATIVO') and #oauth2.hasScope('write')")
 	public void remover(@PathVariable Long codigo) {
 		ativoRepository.deleteById(codigo);
 	}
