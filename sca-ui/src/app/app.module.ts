@@ -9,11 +9,18 @@ import {TooltipModule} from 'primeng/tooltip';
 
 import { AppComponent } from './app.component';
 import { AtivosPesquisaComponent } from './ativos-pesquisa/ativos-pesquisa.component';
+import { NavbarComponent } from './navbar/navbar.component';
+import { CategoriasPesquisaComponent } from './categorias-pesquisa/categorias-pesquisa.component';
+import { ManutencoesPesquisaComponent } from './manutencoes-pesquisa/manutencoes-pesquisa.component';
+
 
 @NgModule({
   declarations: [
     AppComponent,
-    AtivosPesquisaComponent
+    AtivosPesquisaComponent,
+    NavbarComponent,
+    CategoriasPesquisaComponent,
+    ManutencoesPesquisaComponent
   ],
   imports: [
     BrowserModule,

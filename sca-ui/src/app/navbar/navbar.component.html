@@ -1,0 +1,20 @@
+<nav class="navbar">
+
+  <div class="container">
+    <div class="ui-g">
+      <div class="ui-g-12">
+        <a href="javascript:;" class="navbar-toggle" (click)="exibindoMenu = !exibindoMenu"><i class="pi pi-bars">
+          </i></a>
+      </div>
+    </div>
+  </div>
+
+  <ul class="navbar-menu" [hidden]="!exibindoMenu">
+    <li class="navbar-usuario">Waner Andrade</li>
+    <li class="navbar-menuitem"><a href="#">Ativos</a></li>
+    <li class="navbar-menuitem"><a href="#">Manutenções</a></li>
+    <li class="navbar-menuitem"><a href="#">Categorias</a></li>
+    <li class="navbar-menuitem"><a href="#">Logout</a></li>
+  </ul>
+
+</nav>

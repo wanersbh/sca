@@ -2,20 +2,12 @@
   <div class="ui-g">
 
     <div class="ui-g-12">
-      <h1>Ativos</h1>
+      <h1>Categorias</h1>
     </div>
 
     <div class="ui-g-12 ui-fluid">
-      <label>Descrição</label>
+      <label>nome</label>
       <input pInputText type="text">
-    </div>
-
-    <div class="ui-g-12">
-      <label style="display: block">Data Aquisição</label>
-      <input pInputText type="text" style="width: 95px">
-
-      <label>até</label>
-      <input pInputText type="text" style="width: 95px">
     </div>
 
     <div class="ui-g-12">
@@ -26,22 +18,16 @@
 
   <div class="ui-g">
     <div class="ui-g-12">
-      <p-table [value]="ativos" [paginator]="true" [rows]="2" [responsive]="true">
+      <p-table [value]="categorias" [paginator]="true" [rows]="2" [responsive]="true">
         <ng-template pTemplate="header">
           <tr>
-            <th>Descrição</th>
-            <th>Categoria</th>
-            <th>Ano Fabricação</th>
-            <th>Data Aquisição</th>
+            <th>Nome</th>
             <th class="col-acoes"></th>
           </tr>
         </ng-template>
-        <ng-template pTemplate="body" let-ativo>
+        <ng-template pTemplate="body" let-categoria>
           <tr>
-            <td>{{ativo.descricao}}</td>
-            <td>{{ativo.categoria}}</td>
-            <td>{{ativo.anoFabricacao}}</td>
-            <td>{{ativo.dataAquisicao}}</td>
+            <td>{{categoria.nome}}</td>
             <td class="col-acoes">
               <a pButton icon="pi pi-pencil" pTooltip="Editar" tooltipPosition="top"></a>
               <button pButton icon="pi pi-trash" pTooltip="Excluir" tooltipPosition="top"></button>
@@ -51,5 +37,4 @@
       </p-table>
     </div>
   </div>
-
 </div>
