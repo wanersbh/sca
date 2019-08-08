@@ -73,7 +73,7 @@ public class AtivoRepositoryImpl implements AtivoRepositoryQuery {
 
 	private Predicate[] criarRestricoes(AtivoFilter ativoFilter, CriteriaBuilder builder, Root<Ativo> root) {
 		
-		List<Predicate> predicates = new ArrayList<Predicate>();
+		List<Predicate> predicates = new ArrayList<>();
 		
 
 		if (StringUtils.isNotEmpty(ativoFilter.getDescricao())) {

@@ -7,24 +7,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AtivosPesquisaComponent {
 
-  // TODO: Converter dataAquisição em new Date(2017,6,30) e depois configurar o PIPE no html
-  // https://angular.io/api/common/DatePipe
   ativos = [
     {
       descricao: 'Perfuratrize', categoria: 'Perfuração e desmonte',
-      anoFabricacao: 2017, dataAquisicao: '30/06/2017'
+      anoFabricacao: 2017, dataAquisicao: new Date(2017, 6, 30)
     },
     {
       descricao: 'Pá carregadeira', categoria: 'Carregamento',
-      anoFabricacao: 2018, dataAquisicao: '26/04/2018'
+      anoFabricacao: 2018, dataAquisicao: new Date(2018, 4, 26)
     },
     {
       descricao: 'Correia transportadora', categoria: 'Transporte',
-      anoFabricacao: 2017, dataAquisicao: '30/06/2019'
+      anoFabricacao: 2017, dataAquisicao: new Date(2019, 6, 30)
     },
     {
       descricao: 'Trem', categoria: 'Transporte',
-      anoFabricacao: 2019, dataAquisicao: '30/06/2019'
+      anoFabricacao: 2019, dataAquisicao: new Date(2019, 6, 30)
     },
     {
       descricao: 'Carregadeira', categoria: 'Apoio',

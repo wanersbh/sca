@@ -7,28 +7,26 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ManutencoesPesquisaComponent  {
 
-  // TODO Converter data string em new Date(2017,6,30) e depois configurar o PIPE no html
-  // https://angular.io/api/common/DatePipe
   manutencoes = [
     {
       ativo: 'Perfuratrize', tipo: 'Corretiva',
-      dataAgendada: '30/06/2017', dataRealizada: '30/06/2017', observacao: ''
+      dataAgendada: new Date(2017, 6, 30, 9, 0), dataRealizada: new Date(2017, 6, 30, 9, 0), observacao: ''
     },
     {
-      ativo: 'Perfuratrize', tipo: 'Corretiva',
-      dataAgendada: '30/06/2017', dataRealizada: '30/06/2017', observacao: ''
+      ativo: 'Escavadeira para desmonte', tipo: 'Corretiva',
+      dataAgendada: new Date(2018, 6, 26, 14, 15), dataRealizada: new Date(2018, 6, 26, 14, 15), observacao: 'Nenhuma'
     },
     {
-      ativo: 'Perfuratrize', tipo: 'Corretiva',
-      dataAgendada: '30/06/2017', dataRealizada: '30/06/2017', observacao: ''
+      ativo: 'Escavadeira elétrica', tipo: 'Preventiva',
+      dataAgendada: new Date(2019, 6, 26, 16, 25), dataRealizada: new Date(2019, 6, 27, 11, 22), observacao: ''
     },
     {
-      ativo: 'Perfuratrize', tipo: 'Corretiva',
-      dataAgendada: '30/06/2017', dataRealizada: '30/06/2017', observacao: ''
+      ativo: 'Motoniveladora', tipo: 'Corretiva',
+      dataAgendada: new Date(2019, 7, 30, 8, 15), dataRealizada: new Date(2019, 7, 30, 8, 15), observacao: 'Trocar oleo e filtro'
     },
     {
-      ativo: 'Perfuratrize', tipo: 'Corretiva',
-      dataAgendada: '30/06/2017', dataRealizada: '30/06/2017', observacao: ''
+      ativo: 'Correia transportadora', tipo: 'Preventiva',
+      dataAgendada: new Date(2019, 10, 8, 10, 25), dataRealizada: '', observacao: ''
     }
   ];
 
