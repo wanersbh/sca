@@ -7,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AtivosPesquisaComponent {
 
+  // TODO: Converter dataAquisição em new Date(2017,6,30) e depois configurar o PIPE no html
+  // https://angular.io/api/common/DatePipe
   ativos = [
     {
       descricao: 'Perfuratrize', categoria: 'Perfuração e desmonte',

@@ -7,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ManutencoesPesquisaComponent  {
 
+  // TODO Converter data string em new Date(2017,6,30) e depois configurar o PIPE no html
+  // https://angular.io/api/common/DatePipe
   manutencoes = [
     {
       ativo: 'Perfuratrize', tipo: 'Corretiva',
