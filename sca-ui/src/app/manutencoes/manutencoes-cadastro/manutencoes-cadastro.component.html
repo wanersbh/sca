@@ -1,0 +1,55 @@
+<div class="container">
+  <form #f="ngForm" autocomplete="off">
+
+    <div class="ui-g">
+      <div class="ui-g-12">
+        <h1>Agendar Manutenção</h1>
+      </div>
+
+      <div class="ui-g-12  ui-fluid">
+        <label>Ativo</label>
+        <input pInputText type="text" name="ativo">
+      </div>
+
+      <div class="ui-g-12 ui-md-6 ui-fluid">
+        <label>Tipo</label>
+        <p-dropdown [options]="tipos" placeholder="Selecione" [filter]="true" ngModel name="tipo"
+         #tipo=ngModel required></p-dropdown>
+
+         <app-message [control]="tipo" error="required"
+         text="Informe um tipo"></app-message>
+      </div>
+
+      <div class="ui-g-6 ui-md-3 ui-fluid">
+        <label>Data Agendada</label>
+        <p-calendar dateFormat="dd/mm/yy"
+        [inline]="false" [readonlyInput]="true"
+        [showIcon]="false" [locale]="br" name="dataAgendada" ngModel #dataAgendada="ngModel" required></p-calendar>
+
+        <app-message [control]="dataAgendada" error="required"
+        text="Informe a data agendada"></app-message>
+      </div>
+
+      <div class="ui-g-6 ui-md-3 ui-fluid">
+        <label>Data Realizada</label>
+        <p-calendar dateFormat="dd/mm/yy"
+        [inline]="false" [readonlyInput]="true"
+        [showIcon]="false" [locale]="br" name="dataAgendada"></p-calendar>
+      </div>
+
+      <div class="ui-g-12 ui-fluid">
+        <label style="display: block">Observação</label>
+        <textarea pInputTextarea [rows]="6" ></textarea>
+      </div>
+
+      <div class="ui-g-12">
+        <button pButton type="submit" label="Salvar" [disabled]="f.invalid"></button>
+        <button pButton type="button" label="Novo" class="ui-button-info"></button>
+        <a href="javascript:;">Voltar para a pesquisa</a>
+      </div>
+    </div>
+
+  </form>
+</div>
+
+

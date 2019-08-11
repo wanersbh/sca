@@ -8,20 +8,22 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 @ConfigurationProperties("sca-ativos")
 public class ScaAtivosProperty {
 
-	private List<String> originsPermitida =  Arrays.asList("http://localhost:4200", "http://localhost:4100");;
+	private List<String> originsPermitida =  Arrays.asList("http://localhost:4200", "http://localhost:4100");
+	
+	private String originDefault = "http://localhost:4200";
 
 	private final Seguranca seguranca = new Seguranca();
-
-	public Seguranca getSeguranca() {
-		return seguranca;
-	}
 
 	public List<String> getOriginsPermitida() {
 		return originsPermitida;
 	}
-
-	public void setOriginsPermitida(List<String> originPermitida) {
-		this.originsPermitida = originPermitida;
+	
+	public String getOriginDefault() {
+		return originDefault;
+	}
+	
+	public Seguranca getSeguranca() {
+		return seguranca;
 	}
 
 	public static class Seguranca {

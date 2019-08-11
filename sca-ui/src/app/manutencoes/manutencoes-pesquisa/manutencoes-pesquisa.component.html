@@ -39,7 +39,7 @@
           </ng-template>
           <ng-template pTemplate="body" let-manutencao>
             <tr>
-              <td>{{manutencao.ativo}}</td>
+              <td>{{manutencao.ativo.descricao}}</td>
               <td>{{manutencao.tipo}}</td>
               <td>{{manutencao.dataAgendada  | date:'dd/MM/y HH:mm' }}</td>
               <td>{{manutencao.dataRealizada | date:'dd/MM/y HH:mm' }}</td>

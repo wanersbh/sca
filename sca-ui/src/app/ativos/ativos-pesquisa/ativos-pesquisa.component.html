@@ -39,9 +39,9 @@
         <ng-template pTemplate="body" let-ativo>
           <tr>
             <td>{{ativo.descricao}}</td>
-            <td>{{ativo.categoria}}</td>
+            <td>{{ativo.categoria.nome}}</td>
             <td>{{ativo.anoFabricacao}}</td>
-            <td>{{ativo.dataAquisicao | date:'dd/MM/y'}}</td>
+            <td>{{ativo.dataAquisicao | date:'dd/MM/yyyy'}}</td>
             <td class="col-acoes">
               <a pButton icon="pi pi-pencil" pTooltip="Editar" tooltipPosition="top"></a>
               <button pButton icon="pi pi-trash" pTooltip="Excluir" tooltipPosition="top"></button>
