@@ -1,32 +1,37 @@
 <div class="container">
   <div class="ui-g">
 
-    <div class="ui-g-12">
-      <h1>Ativos</h1>
-    </div>
+    <form autocomplete="off" (ngSubmit)="pesquisar()">
 
-    <div class="ui-g-12 ui-fluid">
-      <label>Descrição</label>
-      <input pInputText type="text">
-    </div>
+      <div class="ui-g-12">
+        <h1>Ativos</h1>
+      </div>
 
-    <div class="ui-g-12">
-      <label style="display: block">Data Aquisição</label>
-      <input pInputText type="text" style="width: 95px">
+      <div class="ui-g-12 ui-fluid">
+        <label>Descrição</label>
+        <input pInputText type="text" name="descricao" [(ngModel)]="filtro.descricao">
+      </div>
 
-      <label>até</label>
-      <input pInputText type="text" style="width: 95px">
-    </div>
+      <div class="ui-g-12">
+        <label style="display: block">Data Aquisição</label>
+        <p-calendar dateFormat="dd/mm/yy" [inputStyle]="{ width: '95px' }" name="aquisicaoInicio"
+          [(ngModel)]="filtro.dataAquisicaoInicio"></p-calendar>
 
-    <div class="ui-g-12">
-      <button pButton type="submit" label="Pesquisar"></button>
-    </div>
+        <label>até</label>
+        <p-calendar dateFormat="dd/mm/yy" [inputStyle]="{ width: '95px' }" name="aquisicaoFim"
+          [(ngModel)]="filtro.dataAquisicaoFim"></p-calendar>
+      </div>
+
+      <div class="ui-g-12">
+        <button pButton type="submit" label="Pesquisar"></button>
+      </div>
+    </form>
 
   </div>
 
   <div class="ui-g">
     <div class="ui-g-12">
-      <p-table [value]="ativos" [paginator]="true" [rows]="2" [responsive]="true">
+      <p-table [value]="ativos" [paginator]="true" [rows]="4" [responsive]="true">
         <ng-template pTemplate="header">
           <tr>
             <th>Descrição</th>
@@ -47,6 +52,9 @@
               <button pButton icon="pi pi-trash" pTooltip="Excluir" tooltipPosition="top"></button>
             </td>
           </tr>
+        </ng-template>
+        <ng-template pTemplate="emptymessage">
+          Nenhum ativo encontrado
         </ng-template>
       </p-table>
     </div>

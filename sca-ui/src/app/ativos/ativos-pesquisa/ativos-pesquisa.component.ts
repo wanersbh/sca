@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AtivosService } from '../ativos.service';
+import { AtivosService, AtivoFiltro } from '../ativos.service';
 
 @Component({
   selector: 'app-ativos-pesquisa',
@@ -9,6 +9,7 @@ import { AtivosService } from '../ativos.service';
 export class AtivosPesquisaComponent implements OnInit {
 
   ativos = [ ];
+  filtro = new AtivoFiltro();
 
   constructor(private ativosService: AtivosService) { }
 
@@ -17,8 +18,9 @@ export class AtivosPesquisaComponent implements OnInit {
   }
 
   pesquisar() {
-    this.ativosService.pesquisar().then(ativos => {
-      this.ativos = ativos;
+
+    this.ativosService.pesquisar(this.filtro).then(resultado => {
+      this.ativos = resultado.ativos;
     } );
   }
 }
