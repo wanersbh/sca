@@ -31,7 +31,8 @@
 
   <div class="ui-g">
     <div class="ui-g-12">
-      <p-table [value]="ativos" [paginator]="true" [rows]="4" [responsive]="true">
+      <p-table [value]="ativos" [paginator]="true" [rows]="filtro.itensPorPagina" [totalRecords]="totalRegistros"
+      (onLazyLoad)="aoMudarPagina($event)" [lazy]="true" [responsive]="true">
         <ng-template pTemplate="header">
           <tr>
             <th>Descrição</th>

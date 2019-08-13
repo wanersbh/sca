@@ -43,7 +43,7 @@ export class AtivosService {
     return this.http.get(this.ativosUrl, { headers, params })
       .toPromise()
       .then(response => {
-        const ativos = response['content']
+        const ativos = response['content'];
         const resultado = {
           ativos,
           total: response['totalElements']
