@@ -11,7 +11,7 @@ CREATE TABLE ativo (
 
 INSERT INTO ativo(descricao, data_aquisicao, ano_fabricacao, codigo_categoria) VALUES ('Perfuratrize', '2019-08-01', 2016, 1);
 INSERT INTO ativo(descricao, data_aquisicao, ano_fabricacao, codigo_categoria) VALUES ('Escavadeira para desmonte', '2019-08-01', 2010, 1);
-INSERT INTO ativo(descricao, data_aquisicao, ano_fabricacao, codigo_categoria) VALUES ('Pá carregadeira', '2019-07-30', 2013, 2);
+INSERT INTO ativo(descricao, data_aquisicao, ano_fabricacao, codigo_categoria) VALUES ('Pá carregadeira', '2019-07-01', 2013, 2);
 INSERT INTO ativo(descricao, data_aquisicao, ano_fabricacao, codigo_categoria) VALUES ('Escavadeira elétrica', '2019-05-01', 2012, 2);
 INSERT INTO ativo(descricao, data_aquisicao, ano_fabricacao, codigo_categoria) VALUES ('Correia tranportadora', '2019-03-01', 2015, 3);
 INSERT INTO ativo(descricao, data_aquisicao, ano_fabricacao, codigo_categoria) VALUES ('Trem', '2019-04-01', 2013, 3);

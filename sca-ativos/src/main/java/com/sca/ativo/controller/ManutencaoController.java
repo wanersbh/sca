@@ -1,7 +1,5 @@
 package com.sca.ativo.controller;
 
-import java.util.List;
-
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
@@ -9,6 +7,8 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.sca.ativo.controller.repository.filter.ManutencaoFilter;
 import com.sca.ativo.event.RecursoCriadoEvent;
 import com.sca.ativo.model.Manutencao;
 import com.sca.ativo.repository.ManutencaoRepository;
@@ -36,17 +37,17 @@ public class ManutencaoController {
 	@Autowired
 	private ApplicationEventPublisher publisher;
 	
-//	@GetMapping
-//	@PreAuthorize("hasAuthority('ROLE_PESQUISAR_MANUTENCAO') and #oauth2.hasScope('read')")
-//	public Page<Manutencao> pesquisar(AtivoFilter ativoFilter, Pageable pageable) {
-//		return manutencaoRepository.filtrar(ativoFilter, pageable);
-//	}
-
 	@GetMapping
 	@PreAuthorize("hasAuthority('ROLE_PESQUISAR_MANUTENCAO') and #oauth2.hasScope('read')")
-	public List<Manutencao> listar() {
-		return manutencaoRepository.findAll();
+	public Page<Manutencao> pesquisar(ManutencaoFilter manutencaoFilter, Pageable pageable) {
+		return manutencaoRepository.filtrar(manutencaoFilter, pageable);
 	}
+
+//	@GetMapping
+//	@PreAuthorize("hasAuthority('ROLE_PESQUISAR_MANUTENCAO') and #oauth2.hasScope('read')")
+//	public List<Manutencao> listar() {
+//		return manutencaoRepository.findAll();
+//	}
 
 	@PostMapping
 	@PreAuthorize("hasAuthority('ROLE_CADASTRAR_MANUTENCAO') and #oauth2.hasScope('write')")

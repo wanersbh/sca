@@ -2,11 +2,17 @@ package com.sca.ativo.controller.repository.filter;
 
 import java.time.LocalDate;
 
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+
 import org.springframework.format.annotation.DateTimeFormat;
+
+import com.sca.ativo.enumerator.TipoManutencaoEnum;
 
 public class ManutencaoFilter {
 
-	private String tipo;
+	@Enumerated(EnumType.STRING)
+	private TipoManutencaoEnum tipo;
 
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private LocalDate dataAgendadaDe;
@@ -14,11 +20,11 @@ public class ManutencaoFilter {
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private LocalDate dataAgendadaAte;
 
-	public String getTipo() {
+	public TipoManutencaoEnum getTipo() {
 		return tipo;
 	}
 
-	public void setTipo(String tipo) {
+	public void setTipo(TipoManutencaoEnum tipo) {
 		this.tipo = tipo;
 	}
 
