@@ -1,5 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 
+import { ToastrService } from 'ngx-toastr';
+
 import { ManutencoesService, ManutencaoFiltro } from '../manutencoes.service';
 import { LazyLoadEvent } from 'primeng/components/common/api';
 import { Table } from 'primeng/components/table/table';
@@ -17,7 +19,10 @@ export class ManutencoesPesquisaComponent implements OnInit {
   totalRegistros = 0;
   @ViewChild('tabela', { static: true }) grid: Table;
 
-  constructor(private manutencoesService: ManutencoesService) {
+  constructor(
+    private manutencoesService: ManutencoesService,
+    private toastr: ToastrService
+    ) {
     this.tipos = [
       { label: 'Corretiva', value: 'CORRETIVA' },
       { label: 'Preventiva', value: 'PREVENTIVA' }
@@ -47,6 +52,7 @@ export class ManutencoesPesquisaComponent implements OnInit {
     this.manutencoesService.excluir(manutencao.codigo)
       .then(() => {
         this.grid.reset();
+        this.toastr.success('Registro excluido com sucesso!');
       });
   }
 

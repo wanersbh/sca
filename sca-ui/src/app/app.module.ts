@@ -4,6 +4,8 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
+import { ToastrModule } from 'ngx-toastr';
+
 import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
 import { CategoriasModule } from './categorias/categorias.module';
@@ -20,6 +22,10 @@ import { AtivosModule } from './ativos/ativos.module';
     BrowserAnimationsModule,
     FormsModule,
     HttpClientModule,
+
+    // Documentação do toastr exibição de mensagens.
+    // https://www.npmjs.com/package/ngx-toastr
+    ToastrModule.forRoot(),
 
     CoreModule,
 
