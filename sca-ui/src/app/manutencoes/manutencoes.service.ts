@@ -49,4 +49,10 @@ export class ManutencoesService {
         return resultado;
       });
   }
+
+  excluir(codigo: number): Promise<void> {
+    const headers = new HttpHeaders().append('Authorization', 'Basic d2FuZXJzYmhAZ21haWwuY29tOmFkbWlu');
+
+    return this.http.delete(`${this.manutencoesUrl}/${codigo}`, { headers }).toPromise().then(() => null);
+  }
 }

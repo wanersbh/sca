@@ -31,9 +31,10 @@
   <div class="ui-g">
     <div class="ui-g-12">
       <p-table [value]="manutencoes" [paginator]="true" [rows]="filtro.itensPorPagina" [totalRecords]="totalRegistros"
-        (onLazyLoad)="aoMudarPagina($event)" [lazy]="true" [responsive]="true">
+        (onLazyLoad)="aoMudarPagina($event)" [lazy]="true" [responsive]="true" #tabela>
         <ng-template pTemplate="header">
           <tr>
+            <th>Codigo</th>
             <th>Ativo</th>
             <th>Tipo</th>
             <th>Data Agendada</th>
@@ -44,6 +45,7 @@
         </ng-template>
         <ng-template pTemplate="body" let-manutencao>
           <tr>
+            <td>{{manutencao.codigo}}</td>
             <td>{{manutencao.ativo.descricao}}</td>
             <td>{{manutencao.tipo}}</td>
             <td>{{manutencao.dataAgendada  | date:'dd/MM/y HH:mm' }}</td>
@@ -51,7 +53,8 @@
             <td>{{manutencao.observacao}}</td>
             <td class="col-acoes">
               <a pButton icon="pi pi-pencil" pTooltip="Editar" tooltipPosition="top"></a>
-              <button pButton icon="pi pi-trash" pTooltip="Excluir" tooltipPosition="top"></button>
+              <button pButton icon="pi pi-trash" pTooltip="Excluir" tooltipPosition="top"
+                (click)="excluir(manutencao)"></button>
             </td>
           </tr>
         </ng-template>
