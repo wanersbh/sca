@@ -5,6 +5,8 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
 import { ToastrModule } from 'ngx-toastr';
+import {ConfirmDialogModule} from 'primeng/components/confirmdialog/confirmdialog';
+import {ConfirmationService} from 'primeng/api';
 
 import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
@@ -26,6 +28,7 @@ import { AtivosModule } from './ativos/ativos.module';
     // Documentação do toastr exibição de mensagens.
     // https://www.npmjs.com/package/ngx-toastr
     ToastrModule.forRoot(),
+    ConfirmDialogModule,
 
     CoreModule,
 
@@ -33,7 +36,7 @@ import { AtivosModule } from './ativos/ativos.module';
     ManutencoesModule,
     CategoriasModule
   ],
-  providers: [],
+  providers: [ConfirmationService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

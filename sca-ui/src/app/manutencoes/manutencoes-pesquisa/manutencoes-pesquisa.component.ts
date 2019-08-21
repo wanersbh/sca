@@ -3,7 +3,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 
 import { ManutencoesService, ManutencaoFiltro } from '../manutencoes.service';
-import { LazyLoadEvent } from 'primeng/components/common/api';
+import { LazyLoadEvent, ConfirmationService } from 'primeng/components/common/api';
 import { Table } from 'primeng/components/table/table';
 
 @Component({
@@ -21,8 +21,9 @@ export class ManutencoesPesquisaComponent implements OnInit {
 
   constructor(
     private manutencoesService: ManutencoesService,
-    private toastr: ToastrService
-    ) {
+    private toastr: ToastrService,
+    private confirmationService: ConfirmationService
+  ) {
     this.tipos = [
       { label: 'Corretiva', value: 'CORRETIVA' },
       { label: 'Preventiva', value: 'PREVENTIVA' }
@@ -47,8 +48,17 @@ export class ManutencoesPesquisaComponent implements OnInit {
     this.pesquisar(pagina);
   }
 
+  confirmarExclusao(manutencao: any) {
+    this.confirmationService.confirm({
+      message: 'Tem certeza que deseja excluir?',
+      accept: () => {
+        this.excluir(manutencao);
+      }
+    }
+    );
+  }
+
   excluir(manutencao: any) {
-    console.log(manutencao);
     this.manutencoesService.excluir(manutencao.codigo)
       .then(() => {
         this.grid.reset();
