@@ -2,6 +2,8 @@ import { ErrorHandlerService } from './../../core/error-handler.service';
 import { Component, OnInit } from '@angular/core';
 
 import { CategoriasService } from './../../categorias/categorias.service';
+import { Ativo } from 'src/app/core/model';
+import { FormControl } from '@angular/forms';
 @Component({
   selector: 'app-ativos-cadastro',
   templateUrl: './ativos-cadastro.component.html',
@@ -18,6 +20,7 @@ export class AtivosCadastroComponent implements OnInit {
   br: any;
   categorias: any;
   listaAnoFabricacao: any;
+  ativo = new Ativo();
 
   ngOnInit() {
     this.carregarCategorias();
@@ -53,9 +56,13 @@ export class AtivosCadastroComponent implements OnInit {
     ];
   }
 
+  salvar(form: FormControl) {
+    console.log(this.ativo);
+  }
+
   carregarCategorias() {
     this.categoriaService.pesquisar().then(categorias => {
-      this.categorias = categorias.map((c: { nome: string; codigo: number; }) => ({label: c.nome, value: c.codigo }) );
+      this.categorias = categorias.map((c: { nome: string; codigo: number; }) => ({ label: c.nome, value: c.codigo }));
     }).catch(erro => this.errorHandlerService.handle(erro));
   }
 
