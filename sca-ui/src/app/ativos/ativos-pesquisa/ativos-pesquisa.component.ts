@@ -34,4 +34,6 @@ export class AtivosPesquisaComponent implements OnInit {
     const pagina = event.first / event.rows;
     this.pesquisar(pagina);
   }
+
+  //TODO Implementar a exclusão de ativos seguindo como modelo a pesquisa de manutencao.
 }
