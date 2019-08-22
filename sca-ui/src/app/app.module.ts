@@ -4,9 +4,8 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
-import { ToastrModule } from 'ngx-toastr';
-import {ConfirmDialogModule} from 'primeng/components/confirmdialog/confirmdialog';
-import {ConfirmationService} from 'primeng/api';
+import { registerLocaleData } from '@angular/common';
+import localePt from '@angular/common/locales/pt';
 
 import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
@@ -14,7 +13,7 @@ import { CategoriasModule } from './categorias/categorias.module';
 import { ManutencoesModule } from './manutencoes/manutencoes.module';
 import { AtivosModule } from './ativos/ativos.module';
 
-
+registerLocaleData(localePt);
 @NgModule({
   declarations: [
     AppComponent
@@ -25,18 +24,15 @@ import { AtivosModule } from './ativos/ativos.module';
     FormsModule,
     HttpClientModule,
 
-    // Documentação do toastr exibição de mensagens.
-    // https://www.npmjs.com/package/ngx-toastr
-    ToastrModule.forRoot(),
-    ConfirmDialogModule,
-
     CoreModule,
 
     AtivosModule,
     ManutencoesModule,
     CategoriasModule
   ],
-  providers: [ConfirmationService],
+  providers: [
+
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

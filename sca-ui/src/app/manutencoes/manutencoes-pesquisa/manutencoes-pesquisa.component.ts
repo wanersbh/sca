@@ -1,10 +1,12 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 
 import { ToastrService } from 'ngx-toastr';
-
-import { ManutencoesService, ManutencaoFiltro } from '../manutencoes.service';
 import { LazyLoadEvent, ConfirmationService } from 'primeng/components/common/api';
 import { Table } from 'primeng/components/table/table';
+
+import { ManutencoesService, ManutencaoFiltro } from '../manutencoes.service';
+import { ErrorHandlerService } from './../../core/error-handler.service';
+
 
 @Component({
   selector: 'app-manutencoes-pesquisa',
@@ -22,7 +24,8 @@ export class ManutencoesPesquisaComponent implements OnInit {
   constructor(
     private manutencoesService: ManutencoesService,
     private toastr: ToastrService,
-    private confirmationService: ConfirmationService
+    private confirmationService: ConfirmationService,
+    private errorHandler: ErrorHandlerService
   ) {
     this.tipos = [
       { label: 'Corretiva', value: 'CORRETIVA' },
@@ -40,7 +43,8 @@ export class ManutencoesPesquisaComponent implements OnInit {
     this.manutencoesService.pesquisar(this.filtro).then(resultado => {
       this.totalRegistros = resultado.total;
       this.manutencoes = resultado.ativos;
-    });
+    })
+    .catch(erro => this.errorHandler.handle(erro));
   }
 
   aoMudarPagina(event: LazyLoadEvent) {
@@ -63,7 +67,8 @@ export class ManutencoesPesquisaComponent implements OnInit {
       .then(() => {
         this.grid.reset();
         this.toastr.success('Registro excluido com sucesso!');
-      });
+      })
+      .catch(erro => this.errorHandler.handle(erro));
   }
 
 }
