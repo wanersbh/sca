@@ -1,6 +1,6 @@
-import { FormControl, FormsModule } from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule,} from '@angular/common';
 
 import { InputTextModule } from 'primeng/components/inputtext/inputtext';
 import { ButtonModule } from 'primeng/components/button/button';
@@ -13,7 +13,6 @@ import { DropdownModule } from 'primeng/components/dropdown/dropdown';
 import { ManutencoesPesquisaComponent } from './manutencoes-pesquisa/manutencoes-pesquisa.component';
 import { ManutencoesCadastroComponent } from './manutencoes-cadastro/manutencoes-cadastro.component';
 import { SharedModule } from './../shared/shared.module';
-
 
 
 @NgModule({

@@ -8,20 +8,23 @@
 
       <div class="ui-g-12 ui-fluid">
         <label>Tipo</label>
-        <p-dropdown [options]="tipos" placeholder="Selecione" [(ngModel)]="filtro.tipo" name="tipo" required>
+        <p-dropdown [options]="tipos" placeholder="Selecione" [(ngModel)]="filtro.tipo" name="tipo">
         </p-dropdown>
       </div>
 
       <div class="ui-g-12">
         <label style="display: block">Data Agendada</label>
-        <input pInputText type="text" style="width: 95px" name="dataAgendadaDe" [(ngModel)]="filtro.dataAgendadaInicio">
+        <p-calendar dateFormat="dd/mm/yy" [inputStyle]="{ width: '95px' }" name="dataAgendadaDe"
+          [(ngModel)]="filtro.dataAgendadaInicio" [showTime]="true" [locale]="br"></p-calendar>
 
         <label>até</label>
-        <input pInputText type="text" style="width: 95px" name="dataAgendadaAte" [(ngModel)]="filtro.dataAgendadaFim">
+        <p-calendar dateFormat="dd/mm/yy" [inputStyle]="{ width: '95px' }" name="dataAgendadaAte"
+          [(ngModel)]="filtro.dataAgendadaFim" [showTime]="true" [locale]="br"></p-calendar>
       </div>
 
       <div class="ui-g-12">
-        <button pButton type="submit" label="Pesquisar"></button>
+        <button pButton type="submit" label="Pesquisar" style="margin: 2px"></button>
+        <button pButton  label="Limpar Filtros" (click)="limparFiltro()" style="margin: 2px"></button>
       </div>
 
     </form>
@@ -52,9 +55,9 @@
             <td>{{manutencao.dataRealizada | date:'dd/MM/y HH:mm' }}</td>
             <td>{{manutencao.observacao}}</td>
             <td class="col-acoes">
-              <a pButton icon="pi pi-pencil" pTooltip="Editar" tooltipPosition="top"></a>
+              <a pButton icon="pi pi-pencil" pTooltip="Editar" tooltipPosition="top" style="margin: 2px"></a>
               <button pButton icon="pi pi-trash" pTooltip="Excluir" tooltipPosition="top"
-                (click)="confirmarExclusao(manutencao)"></button>
+                (click)="confirmarExclusao(manutencao)" style="margin: 2px"></button>
             </td>
           </tr>
         </ng-template>

@@ -31,11 +31,11 @@ export class ManutencoesService {
     }
 
     if (filtro.dataAgendadaInicio) {
-      params = params.set('dataAgendadaDe', moment(filtro.dataAgendadaInicio).format('YYYY-MM-DD'));
+      params = params.set('dataAgendadaDe', moment(filtro.dataAgendadaInicio).format('YYYY-MM-DD HH:mm'));
     }
 
     if (filtro.dataAgendadaFim) {
-      params = params.set('dataAquisicaoAte', moment(filtro.dataAgendadaFim).format('YYYY-MM-DD'));
+      params = params.set('dataAgendadaAte', moment(filtro.dataAgendadaFim).format('YYYY-MM-DD HH:mm'));
     }
 
     return this.http.get(this.manutencoesUrl, { headers, params })

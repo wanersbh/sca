@@ -15,11 +15,12 @@ import { ErrorHandlerService } from './../../core/error-handler.service';
 })
 export class ManutencoesPesquisaComponent implements OnInit {
 
+  @ViewChild('tabela', { static: true }) grid: Table;
   manutencoes = [];
   tipos: any;
   filtro = new ManutencaoFiltro();
   totalRegistros = 0;
-  @ViewChild('tabela', { static: true }) grid: Table;
+  br: any;
 
   constructor(
     private manutencoesService: ManutencoesService,
@@ -34,7 +35,19 @@ export class ManutencoesPesquisaComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    // this.pesquisar();
+    this.br = {
+      firstDayOfWeek: 0,
+      dayNames: ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sabado'],
+      dayNamesShort: ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sab'],
+      dayNamesMin: ['D', 'S', 'T', 'Q', 'Q', 'S', 'S'],
+      monthNames: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio',
+        'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'],
+      monthNamesShort: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Aug', 'Set', 'Out', 'Nov', 'Dez'],
+      today: 'Hoje',
+      clear: 'Limpar',
+      dateFormat: 'dd/mm/y',
+      weekHeader: 'Wk'
+    };
   }
 
   pesquisar(pagina = 0) {
@@ -69,6 +82,11 @@ export class ManutencoesPesquisaComponent implements OnInit {
         this.toastr.success('Registro excluido com sucesso!');
       })
       .catch(erro => this.errorHandler.handle(erro));
+  }
+
+  limparFiltro() {
+    this.filtro = new ManutencaoFiltro();
+    this.pesquisar();
   }
 
 }

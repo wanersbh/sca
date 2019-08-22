@@ -1,18 +1,14 @@
 <app-navbar></app-navbar>
-<app-ativos-cadastro></app-ativos-cadastro>
+<app-manutencoes-pesquisa></app-manutencoes-pesquisa>
 
 <p-confirmDialog header="Confirmação" icon="pi pi-question-circle" #confirmacao>
   <p-footer>
-    <button type="button" pButton icon="pi pi-check" label="Sim"
-    (click)="confirmacao.accept()"></button>
-    <button type="button" pButton icon="pi pi-times" label="Não"
-    (click)="confirmacao.reject()"></button>
+    <button type="button" pButton icon="pi pi-check" label="Sim" (click)="confirmacao.accept()"></button>
+    <button type="button" pButton icon="pi pi-times" label="Não" (click)="confirmacao.reject()"></button>
   </p-footer>
 </p-confirmDialog>
 
-
 <!--
-  <app-manutencoes-pesquisa></app-manutencoes-pesquisa>
+<app-ativos-cadastro></app-ativos-cadastro>
 <app-categorias-pesquisa></app-categorias-pesquisa>
-<app-ativos-pesquisa></app-ativos-pesquisa>
 <app-manutencoes-cadastro></app-manutencoes-cadastro> -->

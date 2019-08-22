@@ -51,4 +51,10 @@ export class AtivosService {
         return resultado;
       });
   }
+
+  excluir(codigo: number): Promise<void> {
+    const headers = new HttpHeaders().append('Authorization', 'Basic d2FuZXJzYmhAZ21haWwuY29tOmFkbWlu');
+
+    return this.http.delete(`${this.ativosUrl}/${codigo}`, { headers }).toPromise().then(() => null);
+  }
 }

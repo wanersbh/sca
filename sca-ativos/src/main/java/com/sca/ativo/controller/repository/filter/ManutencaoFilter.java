@@ -1,6 +1,6 @@
 package com.sca.ativo.controller.repository.filter;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -14,11 +14,11 @@ public class ManutencaoFilter {
 	@Enumerated(EnumType.STRING)
 	private TipoManutencaoEnum tipo;
 
-	@DateTimeFormat(pattern = "yyyy-MM-dd")
-	private LocalDate dataAgendadaDe;
+	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm")
+	private LocalDateTime dataAgendadaDe;
 	
-	@DateTimeFormat(pattern = "yyyy-MM-dd")
-	private LocalDate dataAgendadaAte;
+	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm")
+	private LocalDateTime dataAgendadaAte;
 
 	public TipoManutencaoEnum getTipo() {
 		return tipo;
@@ -28,19 +28,19 @@ public class ManutencaoFilter {
 		this.tipo = tipo;
 	}
 
-	public LocalDate getDataAgendadaDe() {
+	public LocalDateTime getDataAgendadaDe() {
 		return dataAgendadaDe;
 	}
 
-	public void setDataAgendadaDe(LocalDate dataAgendadaDe) {
+	public void setDataAgendadaDe(LocalDateTime dataAgendadaDe) {
 		this.dataAgendadaDe = dataAgendadaDe;
 	}
 
-	public LocalDate getDataAgendadaAte() {
+	public LocalDateTime getDataAgendadaAte() {
 		return dataAgendadaAte;
 	}
 
-	public void setDataAgendadaAte(LocalDate dataAgendadaAte) {
+	public void setDataAgendadaAte(LocalDateTime dataAgendadaAte) {
 		this.dataAgendadaAte = dataAgendadaAte;
 	}
 	

@@ -11,7 +11,6 @@ import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
@@ -77,13 +76,13 @@ public class ManutencaoRepositoryImpl implements ManutencaoRepositoryQuery  {
 		}
 
 		if (manutencaoFilter.getDataAgendadaDe() != null) {
-//			predicates.add(
-//					builder.greaterThanOrEqualTo(root.get(Manutencao_.dataAgendada), manutencaoFilter.getDataAgendadaDe()));
+			predicates.add(
+					builder.greaterThanOrEqualTo(root.get(Manutencao_.dataAgendada), manutencaoFilter.getDataAgendadaDe()));
 		}
 
 		if (manutencaoFilter.getDataAgendadaAte() != null) {
-//			predicates.add(
-//					builder.lessThanOrEqualTo(root.get(Manutencao_.dataAgendada), manutencaoFilter.getDataAgendadaAte()));
+			predicates.add(
+					builder.lessThanOrEqualTo(root.get(Manutencao_.dataAgendada), manutencaoFilter.getDataAgendadaAte()));
 		}
 
 		return predicates.toArray(new Predicate[predicates.size()]);
