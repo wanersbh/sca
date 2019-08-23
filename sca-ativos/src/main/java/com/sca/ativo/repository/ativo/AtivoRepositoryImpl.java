@@ -36,6 +36,7 @@ public class AtivoRepositoryImpl implements AtivoRepositoryQuery {
 		// criar as restrições
 		Predicate[] predicates = criarRestricoes(ativoFilter, builder, root);
 		criteria.where(predicates);
+		criteria.orderBy(builder.asc(root.get(Ativo_.descricao)));
 
 		TypedQuery<Ativo> query = manager.createQuery(criteria);
 		adicionarRestricoesDepaginacao(query, pageable);

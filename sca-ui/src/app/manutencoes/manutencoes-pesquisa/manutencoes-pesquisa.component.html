@@ -14,17 +14,21 @@
 
       <div class="ui-g-12">
         <label style="display: block">Data Agendada</label>
-        <p-calendar dateFormat="dd/mm/yy" [inputStyle]="{ width: '95px' }" name="dataAgendadaDe"
+        <p-calendar dateFormat="dd/mm/yy" [inputStyle]="{ width: '120px' }" name="dataAgendadaDe"
           [(ngModel)]="filtro.dataAgendadaInicio" [showTime]="true" [locale]="br"></p-calendar>
-
+      </div>
+      <div class="ui-g-12">
         <label>até</label>
-        <p-calendar dateFormat="dd/mm/yy" [inputStyle]="{ width: '95px' }" name="dataAgendadaAte"
+      </div>
+
+      <div class="ui-g-12">
+        <p-calendar dateFormat="dd/mm/yy" [inputStyle]="{ width: '120px' }" name="dataAgendadaAte"
           [(ngModel)]="filtro.dataAgendadaFim" [showTime]="true" [locale]="br"></p-calendar>
       </div>
 
       <div class="ui-g-12">
         <button pButton type="submit" label="Pesquisar" style="margin: 2px"></button>
-        <button pButton  label="Limpar Filtros" (click)="limparFiltro()" style="margin: 2px"></button>
+        <button pButton label="Limpar Filtros" (click)="limparFiltro()" style="margin: 2px"></button>
       </div>
 
     </form>
@@ -51,8 +55,8 @@
             <td>{{manutencao.codigo}}</td>
             <td>{{manutencao.ativo.descricao}}</td>
             <td>{{manutencao.tipo}}</td>
-            <td>{{manutencao.dataAgendada  | date:'dd/MM/y HH:mm' }}</td>
-            <td>{{manutencao.dataRealizada | date:'dd/MM/y HH:mm' }}</td>
+            <td>{{manutencao.dataAgendada  }}</td>
+            <td>{{manutencao.dataRealizada }}</td>
             <td>{{manutencao.observacao}}</td>
             <td class="col-acoes">
               <a pButton icon="pi pi-pencil" pTooltip="Editar" tooltipPosition="top" style="margin: 2px"></a>

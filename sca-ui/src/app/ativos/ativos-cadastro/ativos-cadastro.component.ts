@@ -57,7 +57,7 @@ export class AtivosCadastroComponent implements OnInit {
   }
 
   salvar(form: FormControl) {
-    console.log(this.ativo);
+    console.log(JSON.stringify(this.ativo));
   }
 
   carregarCategorias() {

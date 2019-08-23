@@ -1,5 +1,5 @@
 <div class="container">
-  <form #f="ngForm" autocomplete="off">
+  <form #f="ngForm" autocomplete="off" (ngSubmit)="salvar(f)">
 
     <div class="ui-g">
       <div class="ui-g-12">
@@ -8,13 +8,14 @@
 
       <div class="ui-g-12  ui-fluid">
         <label>Ativo</label>
-        <input pInputText type="text" name="ativo">
+        <input pInputText type="text" name="ativo" [(ngModel)]="manutencao.ativo.descricao">
       </div>
 
       <div class="ui-g-12 ui-md-6 ui-fluid">
         <label>Tipo</label>
+
         <p-dropdown [options]="tipos" placeholder="Selecione" [filter]="true" ngModel name="tipo"
-         #tipo=ngModel required></p-dropdown>
+         #tipo=ngModel required [(ngModel)]="manutencao.tipo"></p-dropdown>
 
          <app-message [control]="tipo" error="required"
          text="Informe um tipo"></app-message>
@@ -24,7 +25,8 @@
         <label>Data Agendada</label>
         <p-calendar dateFormat="dd/mm/yy"
         [inline]="false" [readonlyInput]="true"
-        [showIcon]="false" [locale]="br" name="dataAgendada" ngModel #dataAgendada="ngModel" required></p-calendar>
+        [showIcon]="false" [locale]="br" name="dataAgendada" ngModel #dataAgendada="ngModel" required
+        [(ngModel)]="manutencao.dataAgendada"></p-calendar>
 
         <app-message [control]="dataAgendada" error="required"
         text="Informe a data agendada"></app-message>
@@ -34,17 +36,18 @@
         <label>Data Realizada</label>
         <p-calendar dateFormat="dd/mm/yy"
         [inline]="false" [readonlyInput]="true"
-        [showIcon]="false" [locale]="br" name="dataAgendada"></p-calendar>
+        [showIcon]="false" [locale]="br" name="dataRealizada"
+        [(ngModel)]="manutencao.dataRealizada"></p-calendar>
       </div>
 
       <div class="ui-g-12 ui-fluid">
         <label style="display: block">Observação</label>
-        <textarea pInputTextarea [rows]="6" ></textarea>
+        <textarea pInputTextarea [rows]="6" name="observacao" [(ngModel)]="manutencao.observacao" ></textarea>
       </div>
 
       <div class="ui-g-12">
-        <button pButton type="submit" label="Salvar" [disabled]="f.invalid"></button>
-        <button pButton type="button" label="Novo" class="ui-button-info"></button>
+        <button pButton type="submit" label="Salvar" [disabled]="f.invalid" style="margin: 2px"></button>
+        <button pButton type="button" label="Novo" class="ui-button-info" style="margin: 2px"></button>
         <a href="javascript:;">Voltar para a pesquisa</a>
       </div>
     </div>

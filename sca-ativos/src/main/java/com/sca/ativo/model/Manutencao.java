@@ -31,11 +31,11 @@ public class Manutencao {
 	
 	@NotNull
 	@Column(name = "data_agendada")
-	@JsonFormat(pattern = "dd/MM/yyyy@HH:mm")
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/y HH:mm", locale = "pt-BR", timezone = "Brazil/East" )
 	private LocalDateTime dataAgendada;
 	
 	@Column(name = "data_realizada")
-	@JsonFormat(pattern = "dd/MM/yyyy@HH:mm")
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/y HH:mm", locale = "pt-BR", timezone = "Brazil/East")
 	private LocalDateTime dataRealizada;
 	
 	private String observacao;

@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Manutencao } from 'src/app/core/model';
+import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-manutencoes-cadastro',
@@ -9,6 +11,7 @@ export class ManutencoesCadastroComponent implements OnInit {
 
   tipos: any;
   br: any;
+  manutencao = new Manutencao();
 
   constructor() { }
 
@@ -34,6 +37,10 @@ export class ManutencoesCadastroComponent implements OnInit {
       weekHeader: 'Wk'
     };
 
+  }
+
+  salvar(form: FormControl) {
+    console.log(JSON.stringify(this.manutencao));
   }
 
 }

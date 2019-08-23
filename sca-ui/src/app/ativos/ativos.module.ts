@@ -9,6 +9,8 @@ import { TooltipModule } from 'primeng/components/tooltip/tooltip';
 import { InputTextareaModule } from 'primeng/components/inputtextarea/inputtextarea';
 import { CalendarModule } from 'primeng/components/calendar/calendar';
 import { DropdownModule } from 'primeng/components/dropdown/dropdown';
+import {FieldsetModule} from 'primeng/components/fieldset/fieldset';
+import {RadioButtonModule} from 'primeng/components/radiobutton/radiobutton';
 
 import { AtivosPesquisaComponent } from './ativos-pesquisa/ativos-pesquisa.component';
 import { AtivosCadastroComponent } from './ativos-cadastro/ativos-cadastro.component';
@@ -26,6 +28,8 @@ import { SharedModule } from '../shared/shared.module';
     CalendarModule,
     DropdownModule,
     SharedModule,
+    FieldsetModule,
+    RadioButtonModule
   ],
   declarations: [
     AtivosPesquisaComponent,

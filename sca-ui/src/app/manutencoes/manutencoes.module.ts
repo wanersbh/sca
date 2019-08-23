@@ -9,6 +9,8 @@ import { TooltipModule } from 'primeng/components/tooltip/tooltip';
 import { InputTextareaModule } from 'primeng/components/inputtextarea/inputtextarea';
 import { CalendarModule } from 'primeng/components/calendar/calendar';
 import { DropdownModule } from 'primeng/components/dropdown/dropdown';
+import {FieldsetModule} from 'primeng/components/fieldset/fieldset';
+import {RadioButtonModule} from 'primeng/components/radiobutton/radiobutton';
 
 import { ManutencoesPesquisaComponent } from './manutencoes-pesquisa/manutencoes-pesquisa.component';
 import { ManutencoesCadastroComponent } from './manutencoes-cadastro/manutencoes-cadastro.component';
@@ -26,7 +28,9 @@ import { SharedModule } from './../shared/shared.module';
     InputTextareaModule,
     CalendarModule,
     DropdownModule,
-    SharedModule
+    SharedModule,
+    FieldsetModule,
+    RadioButtonModule
   ],
   declarations: [
     ManutencoesCadastroComponent,

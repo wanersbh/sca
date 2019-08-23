@@ -33,6 +33,7 @@ public class ManutencaoRepositoryImpl implements ManutencaoRepositoryQuery  {
 		// criar as restrições
 		Predicate[] predicates = criarRestricoes(manutencaoFilter, builder, root);
 		criteria.where(predicates);
+		criteria.orderBy(builder.asc(root.get(Manutencao_.dataAgendada)));
 
 		TypedQuery<Manutencao> query = manager.createQuery(criteria);
 		adicionarRestricoesDepaginacao(query, pageable);

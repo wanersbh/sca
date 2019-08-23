@@ -12,18 +12,28 @@
         <input pInputText type="text" name="descricao" [(ngModel)]="filtro.descricao">
       </div>
 
-      <div class="ui-g-12">
-        <label style="display: block">Data Aquisição</label>
-        <p-calendar dateFormat="dd/mm/yy" [inputStyle]="{ width: '95px' }" name="aquisicaoInicio"
-          [(ngModel)]="filtro.dataAquisicaoInicio" [locale]="br"></p-calendar>
+      <p-fieldset legend="Data Aquisição">
+        <div class="ui-g-12">
+          <label>De:</label>
+        </div>
+        <div class="ui-g-12">
+          <p-calendar dateFormat="dd/mm/yy" [inputStyle]="{ width: '95px' }" name="aquisicaoInicio"
+            [(ngModel)]="filtro.dataAquisicaoInicio" [locale]="br"></p-calendar>
+        </div>
 
-        <label>até</label>
-        <p-calendar dateFormat="dd/mm/yy" [inputStyle]="{ width: '95px' }" name="aquisicaoFim"
-          [(ngModel)]="filtro.dataAquisicaoFim" [locale]="br"></p-calendar>
-      </div>
+        <div class="ui-g-12">
+          <label>Até</label>
+        </div>
+
+        <div class="ui-g-12">
+          <p-calendar dateFormat="dd/mm/yy" [inputStyle]="{ width: '95px' }" name="aquisicaoFim"
+            [(ngModel)]="filtro.dataAquisicaoFim" [locale]="br"></p-calendar>
+        </div>
+      </p-fieldset>
 
       <div class="ui-g-12">
-        <button pButton type="submit" label="Pesquisar"></button>
+        <button pButton type="submit" label="Pesquisar" style="margin: 2px"></button>
+        <button pButton label="Limpar Filtros" (click)="limparFiltro()" style="margin: 2px"></button>
       </div>
     </form>
 
@@ -32,7 +42,7 @@
   <div class="ui-g">
     <div class="ui-g-12">
       <p-table [value]="ativos" [paginator]="true" [rows]="filtro.itensPorPagina" [totalRecords]="totalRegistros"
-      (onLazyLoad)="aoMudarPagina($event)" [lazy]="true" [responsive]="true" #tabela>
+        (onLazyLoad)="aoMudarPagina($event)" [lazy]="true" [responsive]="true" #tabela>
         <ng-template pTemplate="header">
           <tr>
             <th>Descrição</th>
@@ -47,10 +57,11 @@
             <td>{{ativo.descricao}}</td>
             <td>{{ativo.categoria.nome}}</td>
             <td>{{ativo.anoFabricacao}}</td>
-            <td>{{ativo.dataAquisicao | date:'dd/MM/yyyy'}}</td>
+            <td>{{ativo.dataAquisicao}}</td>
             <td class="col-acoes">
-              <a pButton icon="pi pi-pencil" pTooltip="Editar" tooltipPosition="top"></a>
-              <button pButton icon="pi pi-trash" pTooltip="Excluir" tooltipPosition="top" (click)="confirmarExclusao(ativo)"></button>
+              <a pButton icon="pi pi-pencil" pTooltip="Editar" tooltipPosition="top" style="margin: 2px"></a>
+              <button pButton icon="pi pi-trash" pTooltip="Excluir" tooltipPosition="top"
+                (click)="confirmarExclusao(ativo)" style="margin: 2px"></button>
             </td>
           </tr>
         </ng-template>

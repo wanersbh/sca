@@ -76,4 +76,9 @@ export class AtivosPesquisaComponent implements OnInit {
       })
       .catch(erro => this.errorHandler.handle(erro));
   }
+
+  limparFiltro() {
+    this.filtro = new AtivoFiltro();
+    this.pesquisar();
+  }
 }
