@@ -29,7 +29,6 @@ public class Ativo {
 	
 	@NotNull
 	@Column(name = "data_aquisicao")
-	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/y", locale = "pt-BR", timezone = "Brazil/East")
 	private LocalDate dataAquisicao;
 	
 	@NotNull
@@ -40,7 +39,6 @@ public class Ativo {
 	private String observacao;
 	
 	@Column(name = "data_exclusao")
-	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/y", locale = "pt-BR", timezone = "Brazil/East")
 	private LocalDate dataExclusao;
 	
 	@NotNull

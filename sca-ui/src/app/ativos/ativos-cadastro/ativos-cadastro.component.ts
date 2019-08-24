@@ -1,9 +1,11 @@
 import { ErrorHandlerService } from './../../core/error-handler.service';
+import { ToastrService } from 'ngx-toastr';
 import { Component, OnInit } from '@angular/core';
 
 import { CategoriasService } from './../../categorias/categorias.service';
 import { Ativo } from 'src/app/core/model';
 import { FormControl } from '@angular/forms';
+import { AtivosService } from '../ativos.service';
 @Component({
   selector: 'app-ativos-cadastro',
   templateUrl: './ativos-cadastro.component.html',
@@ -13,8 +15,9 @@ export class AtivosCadastroComponent implements OnInit {
 
   constructor(
     private categoriaService: CategoriasService,
+    private ativoService: AtivosService,
+    private toastr: ToastrService,
     private errorHandlerService: ErrorHandlerService
-
   ) { }
 
   br: any;
@@ -57,7 +60,12 @@ export class AtivosCadastroComponent implements OnInit {
   }
 
   salvar(form: FormControl) {
-    console.log(JSON.stringify(this.ativo));
+    this.ativoService.adicionar(this.ativo)
+      .then(() => {
+        this.toastr.success('Registro salvo com sucesso.');
+        form.reset();
+        this.ativo = new Ativo();
+      }).catch(erro => this.errorHandlerService.handle(erro));
   }
 
   carregarCategorias() {

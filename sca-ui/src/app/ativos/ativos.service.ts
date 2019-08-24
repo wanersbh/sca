@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 
 import * as moment from 'moment';
+import { Ativo } from '../core/model';
 
 export class AtivoFiltro {
   descricao: string;
@@ -52,9 +53,32 @@ export class AtivosService {
       });
   }
 
+  obterTodos(): Promise<any> {
+    const headers = new HttpHeaders().append('Authorization', 'Basic d2FuZXJzYmhAZ21haWwuY29tOmFkbWlu');
+    return this.http.get(this.ativosUrl, { headers })
+      .toPromise()
+      .then(response => {
+        const ativos = response['content'];
+        const resultado = {
+          ativos,
+          total: response['totalElements']
+        };
+        return resultado;
+      });
+  }
+
   excluir(codigo: number): Promise<void> {
     const headers = new HttpHeaders().append('Authorization', 'Basic d2FuZXJzYmhAZ21haWwuY29tOmFkbWlu');
 
     return this.http.delete(`${this.ativosUrl}/${codigo}`, { headers }).toPromise().then(() => null);
+  }
+
+  adicionar(ativo: Ativo): Promise<Ativo> {
+    const headers = new HttpHeaders()
+    .append('Authorization', 'Basic d2FuZXJzYmhAZ21haWwuY29tOmFkbWlu')
+    .append('Content-Type', 'application/json');
+
+    return this.http.post<Ativo>(this.ativosUrl, JSON.stringify(ativo), {headers})
+    .toPromise();
   }
 }

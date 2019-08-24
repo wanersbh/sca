@@ -8,13 +8,16 @@
 
       <div class="ui-g-12  ui-fluid">
         <label>Ativo</label>
-        <input pInputText type="text" name="ativo" [(ngModel)]="manutencao.ativo.descricao">
+
+        <p-dropdown [options]="ativos" placeholder="Selecione" [filter]="true"  ngModel name="ativo"
+         #ativo=ngModel required [(ngModel)]="manutencao.ativo.codigo"></p-dropdown>
+
       </div>
 
       <div class="ui-g-12 ui-md-6 ui-fluid">
         <label>Tipo</label>
 
-        <p-dropdown [options]="tipos" placeholder="Selecione" [filter]="true" ngModel name="tipo"
+        <p-dropdown [options]="tipos" placeholder="Selecione"  ngModel name="tipo"
          #tipo=ngModel required [(ngModel)]="manutencao.tipo"></p-dropdown>
 
          <app-message [control]="tipo" error="required"

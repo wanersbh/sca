@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import * as moment from 'moment';
+import { Manutencao } from '../core/model';
 
 export class ManutencaoFiltro {
   tipo: string;
@@ -54,5 +55,14 @@ export class ManutencoesService {
     const headers = new HttpHeaders().append('Authorization', 'Basic d2FuZXJzYmhAZ21haWwuY29tOmFkbWlu');
 
     return this.http.delete(`${this.manutencoesUrl}/${codigo}`, { headers }).toPromise().then(() => null);
+  }
+
+  adicionar(manutencao: Manutencao): Promise<Manutencao> {
+    const headers = new HttpHeaders()
+      .append('Authorization', 'Basic d2FuZXJzYmhAZ21haWwuY29tOmFkbWlu')
+      .append('Content-Type', 'application/json');
+
+    return this.http.post<Manutencao>(this.manutencoesUrl, JSON.stringify(manutencao), { headers })
+      .toPromise();
   }
 }
