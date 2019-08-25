@@ -3,61 +3,58 @@
 
     <div class="ui-g">
       <div class="ui-g-12">
-        <h1>Novo Ativo</h1>
+        <h1>{{ editando ? 'Editar' : 'Novo' }} Ativo</h1>
       </div>
 
       <div class="ui-g-12  ui-fluid">
         <label>Descrição</label>
-        <input pInputText type="text" name="descricao" ngModel #descricao="ngModel" [(ngModel)]="ativo.descricao" required minlength="3" >
+        <input pInputText type="text" name="descricao" ngModel #descricao="ngModel" [(ngModel)]="ativo.descricao"
+          required minlength="3">
 
-        <app-message [control]="descricao" error="required"
-          text="Informe uma descrição"></app-message>
+        <app-message [control]="descricao" error="required" text="Informe uma descrição"></app-message>
 
         <app-message [control]="descricao" error="minlength"
-          text="Mínimo de {{ descricao.errors?.minlength?.requiredLength }} caracteres. Você digitou apenas {{ descricao.errors?.minlength?.actualLength }}"></app-message>
+          text="Mínimo de {{ descricao.errors?.minlength?.requiredLength }} caracteres. Você digitou apenas {{ descricao.errors?.minlength?.actualLength }}">
+        </app-message>
 
       </div>
 
       <div class="ui-g-12 ui-md-6 ui-fluid">
         <label>Categoria</label>
         <p-dropdown [options]="categorias" placeholder="Selecione" [filter]="true" ngModel name="categoria"
-         #categoria=ngModel required [(ngModel)]="ativo.categoria.codigo"></p-dropdown>
+          #categoria=ngModel required [(ngModel)]="ativo.categoria.codigo"></p-dropdown>
 
-         <app-message [control]="categoria" error="required"
-         text="Informe uma categoria"></app-message>
+        <app-message [control]="categoria" error="required" text="Informe uma categoria"></app-message>
       </div>
 
       <div class="ui-g-6 ui-md-3 ui-fluid">
         <label>Data Aquisição</label>
-        <p-calendar dateFormat="dd/mm/yy"
-        [inline]="false" [readonlyInput]="true"
-        [showIcon]="false" [locale]="br" name="dataAquisicao" ngModel #dataAquisicao="ngModel" required [(ngModel)]="ativo.dataAquisicao"></p-calendar>
+        <p-calendar dateFormat="dd/mm/yy" [inline]="false" [readonlyInput]="true" [showIcon]="false" [locale]="br"
+          name="dataAquisicao" ngModel #dataAquisicao="ngModel" required [(ngModel)]="ativo.dataAquisicao"></p-calendar>
 
-        <app-message [control]="dataAquisicao" error="required"
-        text="Informe a data de aquisição"></app-message>
+        <app-message [control]="dataAquisicao" error="required" text="Informe a data de aquisição"></app-message>
       </div>
 
       <div class="ui-g-6 ui-md-3 ui-fluid">
         <label>Ano Fabricação</label>
         <p-dropdown [options]="listaAnoFabricacao" placeholder="Selecione" [filter]="true" ngModel
-         #anoFabricacao="ngModel" name="anoFabricacao" required [(ngModel)]="ativo.anoFabricacao"></p-dropdown>
+          #anoFabricacao="ngModel" name="anoFabricacao" required [(ngModel)]="ativo.anoFabricacao"></p-dropdown>
 
-         <app-message [control]="anoFabricacao" error="required"
-         text="Informe o ano de fabricação"></app-message>
+        <app-message [control]="anoFabricacao" error="required" text="Informe o ano de fabricação"></app-message>
       </div>
 
       <div class="ui-g-12 ui-fluid">
         <label style="display: block">Observação</label>
-        <textarea pInputTextarea [rows]="6" name="observacao" [(ngModel)]="ativo.observacao" ></textarea>
+        <textarea pInputTextarea [rows]="6" name="observacao" [(ngModel)]="ativo.observacao"></textarea>
       </div>
 
       <div class="ui-g-12">
         <button pButton type="submit" label="Salvar" [disabled]="f.invalid" style="margin: 2px"></button>
-        <button pButton type="button" label="Novo" class="ui-button-info" style="margin: 2px"></button>
-        <a href="javascript:;">Voltar para a pesquisa</a>
+        <button pButton type="button" label="Novo" class="ui-button-info" style="margin: 2px"
+        (click)="novo(f)"></button>
+        <a routerLink="/ativos">Voltar para a pesquisa</a>
       </div>
     </div>
 
   </form>
 </div>
-

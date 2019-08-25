@@ -1,6 +1,7 @@
+import { ManutencoesRoutingModule } from './manutencoes-routing.module';
 import { FormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
-import { CommonModule,} from '@angular/common';
+import { CommonModule } from '@angular/common';
 
 import { InputTextModule } from 'primeng/components/inputtext/inputtext';
 import { ButtonModule } from 'primeng/components/button/button';
@@ -15,8 +16,6 @@ import {RadioButtonModule} from 'primeng/components/radiobutton/radiobutton';
 import { ManutencoesPesquisaComponent } from './manutencoes-pesquisa/manutencoes-pesquisa.component';
 import { ManutencoesCadastroComponent } from './manutencoes-cadastro/manutencoes-cadastro.component';
 import { SharedModule } from './../shared/shared.module';
-
-
 @NgModule({
   imports: [
     CommonModule,
@@ -30,15 +29,13 @@ import { SharedModule } from './../shared/shared.module';
     DropdownModule,
     SharedModule,
     FieldsetModule,
-    RadioButtonModule
+    RadioButtonModule,
+    ManutencoesRoutingModule
   ],
   declarations: [
     ManutencoesCadastroComponent,
     ManutencoesPesquisaComponent
   ],
-  exports: [
-    ManutencoesCadastroComponent,
-    ManutencoesPesquisaComponent
-  ]
+  exports: []
 })
 export class ManutencoesModule { }

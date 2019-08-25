@@ -1,11 +1,14 @@
-import { ErrorHandlerService } from './../../core/error-handler.service';
-import { ToastrService } from 'ngx-toastr';
+import { Title } from '@angular/platform-browser';
 import { Component, OnInit } from '@angular/core';
-
-import { CategoriasService } from './../../categorias/categorias.service';
-import { Ativo } from 'src/app/core/model';
 import { FormControl } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
+
+import { ToastrService } from 'ngx-toastr';
+
+import { Ativo } from 'src/app/core/model';
+import { CategoriasService } from './../../categorias/categorias.service';
 import { AtivosService } from '../ativos.service';
+import { ErrorHandlerService } from './../../core/error-handler.service';
 @Component({
   selector: 'app-ativos-cadastro',
   templateUrl: './ativos-cadastro.component.html',
@@ -17,7 +20,10 @@ export class AtivosCadastroComponent implements OnInit {
     private categoriaService: CategoriasService,
     private ativoService: AtivosService,
     private toastr: ToastrService,
-    private errorHandlerService: ErrorHandlerService
+    private errorHandlerService: ErrorHandlerService,
+    private activatedRoute: ActivatedRoute,
+    private router: Router,
+    private title: Title
   ) { }
 
   br: any;
@@ -25,8 +31,19 @@ export class AtivosCadastroComponent implements OnInit {
   listaAnoFabricacao: any;
   ativo = new Ativo();
 
+
   ngOnInit() {
+
     this.carregarCategorias();
+    const codigo = 'codigo';
+    const codigoAtivo = this.activatedRoute.snapshot.params[codigo];
+
+    if (codigoAtivo) {
+      this.carregarAtivo(codigoAtivo);
+      this.title.setTitle('Editar ativo');
+    } else {
+      this.title.setTitle('Novo ativo');
+    }
 
     this.br = {
       firstDayOfWeek: 0,
@@ -59,19 +76,60 @@ export class AtivosCadastroComponent implements OnInit {
     ];
   }
 
+  carregarAtivo(codigo: number) {
+    this.ativoService.buscarPorCodigo(codigo)
+      .then(ativo => {
+        this.ativo = ativo;
+      })
+      .catch(erro => this.errorHandlerService.handle(erro));
+  }
+
   salvar(form: FormControl) {
+    if (this.editando) {
+      this.atualizarAtivo(form);
+    } else {
+      this.adicionarAtivo(form);
+    }
+  }
+
+  adicionarAtivo(form: FormControl) {
     this.ativoService.adicionar(this.ativo)
-      .then(() => {
+      .then(ativoAdicionado => {
         this.toastr.success('Registro salvo com sucesso.');
-        form.reset();
-        this.ativo = new Ativo();
+
+        this.router.navigate(['/ativos', ativoAdicionado.codigo]);
+
+
       }).catch(erro => this.errorHandlerService.handle(erro));
+  }
+
+  atualizarAtivo(form: FormControl) {
+    this.ativoService.atualizar(this.ativo)
+      .then(ativo => {
+        this.ativo = ativo;
+        this.toastr.success('Registro alterado com sucesso!');
+      })
+      .catch(error => this.errorHandlerService.handle(error));
   }
 
   carregarCategorias() {
     this.categoriaService.pesquisar().then(categorias => {
       this.categorias = categorias.map((c: { nome: string; codigo: number; }) => ({ label: c.nome, value: c.codigo }));
     }).catch(erro => this.errorHandlerService.handle(erro));
+  }
+
+  novo(form: FormControl) {
+    form.reset();
+
+    setTimeout(function() {
+      this.ativo = new Ativo();
+    }.bind(this), 1);
+
+    this.router.navigate(['/ativos/novo']);
+  }
+
+  get editando() {
+    return Boolean(this.ativo.codigo);
   }
 
 }

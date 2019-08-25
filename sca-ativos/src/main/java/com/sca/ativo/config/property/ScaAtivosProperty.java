@@ -8,7 +8,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 @ConfigurationProperties("sca-ativos")
 public class ScaAtivosProperty {
 
-	private List<String> originsPermitida =  Arrays.asList("http://localhost:4200", "http://localhost:4100");
+	private List<String> originsPermitida =  Arrays.asList("*", "http://localhost:4200", "http://localhost:4100");
 	
 	private String originDefault = "http://localhost:4200";
 

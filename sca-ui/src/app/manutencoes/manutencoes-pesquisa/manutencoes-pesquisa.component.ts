@@ -6,6 +6,7 @@ import { Table } from 'primeng/components/table/table';
 
 import { ManutencoesService, ManutencaoFiltro } from '../manutencoes.service';
 import { ErrorHandlerService } from './../../core/error-handler.service';
+import { Title } from '@angular/platform-browser';
 
 
 @Component({
@@ -26,7 +27,8 @@ export class ManutencoesPesquisaComponent implements OnInit {
     private manutencoesService: ManutencoesService,
     private toastr: ToastrService,
     private confirmationService: ConfirmationService,
-    private errorHandler: ErrorHandlerService
+    private errorHandler: ErrorHandlerService,
+    private title: Title
   ) {
     this.tipos = [
       { label: 'Corretiva', value: 'CORRETIVA' },
@@ -35,6 +37,9 @@ export class ManutencoesPesquisaComponent implements OnInit {
   }
 
   ngOnInit(): void {
+
+    this.title.setTitle('Pesquisa Manutenção');
+
     this.br = {
       firstDayOfWeek: 0,
       dayNames: ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sabado'],

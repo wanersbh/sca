@@ -1,4 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 
 import { LazyLoadEvent } from 'primeng/components/common/api';
 import { Table } from 'primeng/components/table/table';
@@ -25,10 +26,14 @@ export class AtivosPesquisaComponent implements OnInit {
     private ativosService: AtivosService,
     private toastr: ToastrService,
     private errorHandler: ErrorHandlerService,
-    private confirmationService: ConfirmationService
+    private confirmationService: ConfirmationService,
+    private title: Title
   ) { }
 
   ngOnInit(): void {
+
+    this.title.setTitle('Pesquisa ativo');
+
     this.br = {
       firstDayOfWeek: 0,
       dayNames: ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sabado'],

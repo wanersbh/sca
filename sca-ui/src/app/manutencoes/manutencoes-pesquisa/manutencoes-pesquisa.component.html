@@ -59,7 +59,9 @@
             <td>{{manutencao.dataRealizada }}</td>
             <td>{{manutencao.observacao}}</td>
             <td class="col-acoes">
-              <a pButton icon="pi pi-pencil" pTooltip="Editar" tooltipPosition="top" style="margin: 2px"></a>
+              <a pButton icon="pi pi-pencil" pTooltip="Editar" tooltipPosition="top" style="margin: 2px"
+              [routerLink]="['/manutencoes', manutencao.codigo]"
+              ></a>
               <button pButton icon="pi pi-trash" pTooltip="Excluir" tooltipPosition="top"
                 (click)="confirmarExclusao(manutencao)" style="margin: 2px"></button>
             </td>
@@ -69,7 +71,11 @@
           Nenhum registro encontrado
         </ng-template>
       </p-table>
+      <div class="u-g-12">
+          <a pButton label="Nova Manutenção" routerLink="/manutencoes/novo" style="margin-top: 6px"></a>
+      </div>
     </div>
+
   </div>
 
 </div>

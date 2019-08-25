@@ -5,6 +5,8 @@ import { AtivosService } from './../../ativos/ativos.service';
 import { Component, OnInit } from '@angular/core';
 import { Manutencao } from 'src/app/core/model';
 import { FormControl } from '@angular/forms';
+import { Title } from '@angular/platform-browser';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-manutencoes-cadastro',
@@ -22,10 +24,24 @@ export class ManutencoesCadastroComponent implements OnInit {
     private ativosService: AtivosService,
     private manutencaoService: ManutencoesService,
     private errorHandlerService: ErrorHandlerService,
-    private toastr: ToastrService
-    ) { }
+    private toastr: ToastrService,
+    private title: Title,
+    private activatedRoute: ActivatedRoute,
+    private router: Router
+  ) { }
 
   ngOnInit() {
+
+    const codigo = 'codigo';
+    const codigoManutencao = this.activatedRoute.snapshot.params[codigo];
+
+    if (codigoManutencao) {
+      this.carregarManutencao(codigoManutencao);
+      this.title.setTitle('Editar manutenção');
+    } else {
+      this.title.setTitle('Nova manutenção');
+    }
+
     this.tipos = [
       { label: 'Corretiva', value: 'CORRETIVA' },
       { label: 'Preventiva', value: 'PREVENTIVA' },
@@ -40,9 +56,9 @@ export class ManutencoesCadastroComponent implements OnInit {
       dayNames: ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sabado'],
       dayNamesShort: ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sab'],
       dayNamesMin: ['D', 'S', 'T', 'Q', 'Q', 'S', 'S'],
-      monthNames: [ 'Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio',
-      'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'],
-      monthNamesShort: [ 'Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Aug', 'Set', 'Out', 'Nov', 'Dez' ],
+      monthNames: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio',
+        'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'],
+      monthNamesShort: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Aug', 'Set', 'Out', 'Nov', 'Dez'],
       today: 'Hoje',
       clear: 'Limpar',
       dateFormat: 'dd/mm/y',
@@ -52,6 +68,23 @@ export class ManutencoesCadastroComponent implements OnInit {
   }
 
   salvar(form: FormControl) {
+    if (this.editando) {
+      this.atualizarManutencao(form);
+    } else {
+      this.adicionarManutencao(form);
+    }
+  }
+
+  atualizarManutencao(form: FormControl){
+    this.manutencaoService.atualizar(this.manutencao)
+      .then(manutencao => {
+        this.manutencao = manutencao;
+        this.toastr.success('Registro alterado com sucesso!');
+      })
+      .catch(error => this.errorHandlerService.handle(error));
+  }
+
+  adicionarManutencao(form: FormControl) {
     this.manutencaoService.adicionar(this.manutencao)
       .then(() => {
         this.toastr.success('Registro salvo com sucesso.');
@@ -64,6 +97,28 @@ export class ManutencoesCadastroComponent implements OnInit {
     this.ativosService.obterTodos().then(resultado => {
       this.ativos = resultado.ativos.map((a: { descricao: string; codigo: number; }) => ({ label: a.descricao, value: a.codigo }));
     }).catch(erro => this.errorHandlerService.handle(erro));
+  }
+
+  carregarManutencao(codigo: number) {
+    this.manutencaoService.buscarPorCodigo(codigo)
+      .then(manutencao => {
+        this.manutencao = manutencao;
+      })
+      .catch(erro => this.errorHandlerService.handle(erro));
+  }
+
+  novo(form: FormControl) {
+    form.reset();
+
+    setTimeout(function() {
+      this.manutencao = new Manutencao();
+    }.bind(this), 1);
+
+    this.router.navigate(['/manutencoes/novo']);
+  }
+
+  get editando() {
+    return Boolean(this.manutencao.codigo);
   }
 
 }

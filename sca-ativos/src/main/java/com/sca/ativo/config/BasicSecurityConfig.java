@@ -39,10 +39,10 @@ public class BasicSecurityConfig extends WebSecurityConfigurerAdapter {
 	
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		http.cors()
+		http
+		.cors()
 		.and()
 		.authorizeRequests()
-			
 			.anyRequest()
 			.authenticated()
 			.and()

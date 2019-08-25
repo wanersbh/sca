@@ -75,10 +75,51 @@ export class AtivosService {
 
   adicionar(ativo: Ativo): Promise<Ativo> {
     const headers = new HttpHeaders()
-    .append('Authorization', 'Basic d2FuZXJzYmhAZ21haWwuY29tOmFkbWlu')
-    .append('Content-Type', 'application/json');
+      .append('Authorization', 'Basic d2FuZXJzYmhAZ21haWwuY29tOmFkbWlu')
+      .append('Content-Type', 'application/json');
 
-    return this.http.post<Ativo>(this.ativosUrl, JSON.stringify(ativo), {headers})
-    .toPromise();
+    return this.http.post<Ativo>(this.ativosUrl, JSON.stringify(ativo), { headers })
+      .toPromise();
   }
+
+  atualizar(ativo: Ativo): Promise<Ativo> {
+    const headers = new HttpHeaders()
+      .append('Authorization', 'Basic d2FuZXJzYmhAZ21haWwuY29tOmFkbWlu')
+      .append('Content-Type', 'application/json');
+
+    return this.http.put<Ativo>(`${this.ativosUrl}/${ativo.codigo}`, JSON.stringify(ativo), { headers })
+      .toPromise()
+      .then(
+        response => {
+          this.converterStringsParaDatas([response]);
+          return response;
+        }
+      );
+  }
+
+  buscarPorCodigo(codigo: number): Promise<Ativo> {
+    const headers = new HttpHeaders().append('Authorization', 'Basic d2FuZXJzYmhAZ21haWwuY29tOmFkbWlu');
+
+    return this.http.get<Ativo>(`${this.ativosUrl}/${codigo}`, { headers })
+      .toPromise()
+      .then(
+        ativo => {
+          this.converterStringsParaDatas([ativo]);
+          return ativo;
+        }
+      );
+  }
+
+  private converterStringsParaDatas(ativos: Ativo[]) {
+    for (const ativo of ativos) {
+      ativo.dataAquisicao = moment(ativo.dataAquisicao,
+        'YYYY-MM-DD').toDate();
+
+      if (ativo.dataExclusao) {
+        ativo.dataExclusao = moment(ativo.dataExclusao,
+          'YYYY-MM-DD').toDate();
+      }
+    }
+  }
+
 }

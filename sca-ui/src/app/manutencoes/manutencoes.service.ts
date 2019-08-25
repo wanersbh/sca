@@ -65,4 +65,45 @@ export class ManutencoesService {
     return this.http.post<Manutencao>(this.manutencoesUrl, JSON.stringify(manutencao), { headers })
       .toPromise();
   }
+
+  atualizar(manutencao: Manutencao): Promise<Manutencao> {
+    const headers = new HttpHeaders()
+      .append('Authorization', 'Basic d2FuZXJzYmhAZ21haWwuY29tOmFkbWlu')
+      .append('Content-Type', 'application/json');
+
+    return this.http.put<Manutencao>(`${this.manutencoesUrl}/${manutencao.codigo}`, JSON.stringify(manutencao), { headers })
+      .toPromise()
+      .then(
+        response => {
+          this.converterStringsParaDatas([response]);
+          return response;
+        }
+      );
+  }
+
+  buscarPorCodigo(codigo: number): Promise<Manutencao> {
+    const headers = new HttpHeaders().append('Authorization', 'Basic d2FuZXJzYmhAZ21haWwuY29tOmFkbWlu');
+
+    return this.http.get<Manutencao>(`${this.manutencoesUrl}/${codigo}`, { headers })
+      .toPromise()
+      .then(
+        manutencao => {
+          this.converterStringsParaDatas([manutencao]);
+          return manutencao;
+        }
+      );
+  }
+
+  private converterStringsParaDatas(manutencoes: Manutencao[]) {
+    for (const manutencao of manutencoes) {
+      manutencao.dataAgendada = moment(manutencao.dataAgendada,
+        'YYYY-MM-DD').toDate();
+
+      if (manutencao.dataRealizada) {
+        manutencao.dataRealizada = moment(manutencao.dataRealizada,
+          'YYYY-MM-DD').toDate();
+      }
+    }
+  }
+
 }

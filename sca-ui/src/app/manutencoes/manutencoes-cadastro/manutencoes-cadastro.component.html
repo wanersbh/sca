@@ -3,7 +3,7 @@
 
     <div class="ui-g">
       <div class="ui-g-12">
-        <h1>Agendar Manutenção</h1>
+          <h1>{{ editando ? 'Editar' : 'Nova' }} Manutenção</h1>
       </div>
 
       <div class="ui-g-12  ui-fluid">
@@ -50,8 +50,9 @@
 
       <div class="ui-g-12">
         <button pButton type="submit" label="Salvar" [disabled]="f.invalid" style="margin: 2px"></button>
-        <button pButton type="button" label="Novo" class="ui-button-info" style="margin: 2px"></button>
-        <a href="javascript:;">Voltar para a pesquisa</a>
+        <button pButton type="button" label="Novo" class="ui-button-info" style="margin: 2px"
+        (click)="novo(f)"></button>
+        <a routerLink="/manutencoes">Voltar para a pesquisa</a>
       </div>
     </div>
 

@@ -30,8 +30,8 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
 	@Override
 	public void configure(HttpSecurity http) throws Exception {
 		http
-//		.cors()
-//		.and()
+		.cors()
+		.and()
 		.authorizeRequests()
 		.anyRequest().authenticated()
 		.and()
@@ -50,7 +50,7 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
 		return new OAuth2MethodSecurityExpressionHandler();
 	}
 	
-//	@Bean
+	@Bean
 	public CorsFilter corsFilter() {
 		
 		CorsConfiguration config = new CorsConfiguration();

@@ -1,3 +1,4 @@
+import { AtivosRoutingModule } from './ativos-routing.module';
 import { FormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -9,8 +10,8 @@ import { TooltipModule } from 'primeng/components/tooltip/tooltip';
 import { InputTextareaModule } from 'primeng/components/inputtextarea/inputtextarea';
 import { CalendarModule } from 'primeng/components/calendar/calendar';
 import { DropdownModule } from 'primeng/components/dropdown/dropdown';
-import {FieldsetModule} from 'primeng/components/fieldset/fieldset';
-import {RadioButtonModule} from 'primeng/components/radiobutton/radiobutton';
+import { FieldsetModule } from 'primeng/components/fieldset/fieldset';
+import { RadioButtonModule } from 'primeng/components/radiobutton/radiobutton';
 
 import { AtivosPesquisaComponent } from './ativos-pesquisa/ativos-pesquisa.component';
 import { AtivosCadastroComponent } from './ativos-cadastro/ativos-cadastro.component';
@@ -29,16 +30,14 @@ import { SharedModule } from '../shared/shared.module';
     DropdownModule,
     SharedModule,
     FieldsetModule,
-    RadioButtonModule
+    RadioButtonModule,
+    AtivosRoutingModule
   ],
   declarations: [
     AtivosPesquisaComponent,
     AtivosCadastroComponent
 
   ],
-  exports: [
-    AtivosPesquisaComponent,
-    AtivosCadastroComponent
-  ]
+  exports: []
 })
 export class AtivosModule { }
