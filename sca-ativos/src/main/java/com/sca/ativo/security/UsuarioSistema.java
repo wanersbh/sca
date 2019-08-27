@@ -7,6 +7,7 @@ import org.springframework.security.core.userdetails.User;
 
 import com.sca.ativo.model.Usuario;
 
+
 public class UsuarioSistema extends User {
 
 	private static final long serialVersionUID = 1L;

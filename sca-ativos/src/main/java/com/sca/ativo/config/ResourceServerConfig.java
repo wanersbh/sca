@@ -1,6 +1,7 @@
 package com.sca.ativo.config;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import java.util.Arrays;
+
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
@@ -16,28 +17,23 @@ import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.filter.CorsFilter;
 
-import com.sca.ativo.config.property.ScaAtivosProperty;
-
 @Profile("oauth-security")
 @Configuration
 @EnableResourceServer
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
 	
-	@Autowired
-	private ScaAtivosProperty scaAtivosProperty;
-
 	@Override
 	public void configure(HttpSecurity http) throws Exception {
 		http
 		.cors()
 		.and()
 		.authorizeRequests()
-		.anyRequest().authenticated()
-		.and()
-		.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-		.and()
-		.csrf().disable();
+				.antMatchers("/categorias").permitAll()
+				.anyRequest().authenticated()
+				.and()
+			.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
+			.csrf().disable();
 	}
 	
 	@Override
@@ -45,29 +41,34 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
 		resources.stateless(true);
 	}
 	
-	@Bean
-	public MethodSecurityExpressionHandler createExpressionHandler() {
-		return new OAuth2MethodSecurityExpressionHandler();
-	}
-	
+	/**
+	 * Configuração do Cors
+	 * 
+	 * @return
+	 */
 	@Bean
 	public CorsFilter corsFilter() {
-		
 		CorsConfiguration config = new CorsConfiguration();
 		config.setAllowCredentials(true);
 		config.addAllowedHeader("*");
 		config.addAllowedMethod("*");
 		config.setMaxAge(3600L);
-		config.setAllowedOrigins(scaAtivosProperty.getOriginsPermitida());
-		
+		config.setAllowedOrigins(Arrays.asList("http://localhost:4200", "http://localhost:4100"));
 		UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
 		source.registerCorsConfiguration("/**", config);
-		
 		return new CorsFilter(source);
+
 	}
-	
-	
-	
+
+	/**
+	 * Para fazer a segurança nos métodos do controller
+	 * 
+	 * @return
+	 */
+	@Bean
+	public MethodSecurityExpressionHandler createExpressionHandler() {
+		return new OAuth2MethodSecurityExpressionHandler();
+	}
 	
 	
 }

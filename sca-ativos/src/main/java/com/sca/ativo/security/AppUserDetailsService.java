@@ -17,6 +17,7 @@ import org.springframework.stereotype.Service;
 import com.sca.ativo.model.Usuario;
 import com.sca.ativo.repository.UsuarioRepository;
 
+
 @Service
 public class AppUserDetailsService implements UserDetailsService {
 

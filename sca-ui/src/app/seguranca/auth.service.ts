@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { JwtHelperService } from '@auth0/angular-jwt';
 
 
 @Injectable({
@@ -9,12 +10,14 @@ export class AuthService {
 
   oauthTokenUrl = 'http://localhost:8080/oauth/token';
 
-  constructor(private http: HttpClient) { }
+  constructor(
+    private http: HttpClient,
+    private jwtHelperService: JwtHelperService
+    ) { }
 
   login(usuario: string, senha: string): Promise<void> {
-    const headers =  new HttpHeaders();
-    headers.append('Content-Type', 'application/x-www-form-urlencoded');
-    headers.append('Authorization', 'Basic dGNjOlB1Y00xbkBz');
+    const headers =  new HttpHeaders().append('Content-Type', 'application/x-www-form-urlencoded')
+    .append('Authorization', 'Basic cHVjbWluYXM6cHVjbTFuQHM=');
 
     const body = `username=${usuario}&password=${senha}&grant_type=password`;
 
