@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+
 import * as moment from 'moment';
+
 import { Manutencao } from '../core/model';
 
 export class ManutencaoFiltro {
@@ -21,7 +23,7 @@ export class ManutencoesService {
 
   pesquisar(filtro: ManutencaoFiltro): Promise<any> {
 
-    const headers = new HttpHeaders().append('Authorization', 'Basic d2FuZXJzYmhAZ21haWwuY29tOmFkbWlu');
+    // const headers = new HttpHeaders().append('Authorization', 'Basic d2FuZXJzYmhAZ21haWwuY29tOmFkbWlu');
     let params = new HttpParams();
 
     params = params.set('page', filtro.pagina.toString());
@@ -39,7 +41,7 @@ export class ManutencoesService {
       params = params.set('dataAgendadaAte', moment(filtro.dataAgendadaFim).format('YYYY-MM-DD HH:mm'));
     }
 
-    return this.http.get(this.manutencoesUrl, { headers, params })
+    return this.http.get(this.manutencoesUrl, {  params }) // headers,
       .toPromise()
       .then(response => {
         const ativos = response['content'];
@@ -52,14 +54,14 @@ export class ManutencoesService {
   }
 
   excluir(codigo: number): Promise<void> {
-    const headers = new HttpHeaders().append('Authorization', 'Basic d2FuZXJzYmhAZ21haWwuY29tOmFkbWlu');
+    // const headers = new HttpHeaders().append('Authorization', 'Basic d2FuZXJzYmhAZ21haWwuY29tOmFkbWlu');
 
-    return this.http.delete(`${this.manutencoesUrl}/${codigo}`, { headers }).toPromise().then(() => null);
+    return this.http.delete(`${this.manutencoesUrl}/${codigo}`).toPromise().then(() => null); // , { headers }
   }
 
   adicionar(manutencao: Manutencao): Promise<Manutencao> {
     const headers = new HttpHeaders()
-      .append('Authorization', 'Basic d2FuZXJzYmhAZ21haWwuY29tOmFkbWlu')
+      // .append('Authorization', 'Basic d2FuZXJzYmhAZ21haWwuY29tOmFkbWlu')
       .append('Content-Type', 'application/json');
 
     return this.http.post<Manutencao>(this.manutencoesUrl, JSON.stringify(manutencao), { headers })
@@ -68,7 +70,7 @@ export class ManutencoesService {
 
   atualizar(manutencao: Manutencao): Promise<Manutencao> {
     const headers = new HttpHeaders()
-      .append('Authorization', 'Basic d2FuZXJzYmhAZ21haWwuY29tOmFkbWlu')
+      // .append('Authorization', 'Basic d2FuZXJzYmhAZ21haWwuY29tOmFkbWlu')
       .append('Content-Type', 'application/json');
 
     return this.http.put<Manutencao>(`${this.manutencoesUrl}/${manutencao.codigo}`, JSON.stringify(manutencao), { headers })
@@ -82,9 +84,9 @@ export class ManutencoesService {
   }
 
   buscarPorCodigo(codigo: number): Promise<Manutencao> {
-    const headers = new HttpHeaders().append('Authorization', 'Basic d2FuZXJzYmhAZ21haWwuY29tOmFkbWlu');
+    // const headers = new HttpHeaders().append('Authorization', 'Basic d2FuZXJzYmhAZ21haWwuY29tOmFkbWlu');
 
-    return this.http.get<Manutencao>(`${this.manutencoesUrl}/${codigo}`, { headers })
+    return this.http.get<Manutencao>(`${this.manutencoesUrl}/${codigo}`) // , { headers }
       .toPromise()
       .then(
         manutencao => {

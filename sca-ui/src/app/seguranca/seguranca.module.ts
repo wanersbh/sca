@@ -9,6 +9,9 @@ import { ButtonModule } from 'primeng/components/button/button';
 import { LoginFormComponent } from './login-form/login-form.component';
 import { SegurancaRoutingModule } from './seguranca-routing.module';
 
+export function tokenGetter(): string {
+  return localStorage.getItem('token');
+}
 @NgModule({
   imports: [
     CommonModule,
@@ -19,11 +22,12 @@ import { SegurancaRoutingModule } from './seguranca-routing.module';
 
     SegurancaRoutingModule,
 
+    // TODO Pesquisar como colocar o Content-Type: 'application/json' de forma global
     JwtModule.forRoot({
       config: {
-        tokenGetter: () => {
-          return '';
-        }
+        tokenGetter: tokenGetter,
+        whitelistedDomains: ['localhost:8080'],
+        blacklistedRoutes: ['http://localhost:8080/oauth/token']
       }
     })
   ],

@@ -23,7 +23,7 @@ export class AtivosService {
 
   pesquisar(filtro: AtivoFiltro): Promise<any> {
 
-    const headers = new HttpHeaders().append('Authorization', 'Basic d2FuZXJzYmhAZ21haWwuY29tOmFkbWlu');
+    // const headers = new HttpHeaders().append('Authorization', 'Basic d2FuZXJzYmhAZ21haWwuY29tOmFkbWlu');
     let params = new HttpParams();
 
     params = params.set('page', filtro.pagina.toString());
@@ -41,7 +41,7 @@ export class AtivosService {
       params = params.set('dataAquisicaoAte', moment(filtro.dataAquisicaoFim).format('YYYY-MM-DD'));
     }
 
-    return this.http.get(this.ativosUrl, { headers, params })
+    return this.http.get(this.ativosUrl, {  params }) // headers,
       .toPromise()
       .then(response => {
         const ativos = response['content'];
@@ -68,14 +68,14 @@ export class AtivosService {
   }
 
   excluir(codigo: number): Promise<void> {
-    const headers = new HttpHeaders().append('Authorization', 'Basic d2FuZXJzYmhAZ21haWwuY29tOmFkbWlu');
+    // const headers = new HttpHeaders().append('Authorization', 'Basic d2FuZXJzYmhAZ21haWwuY29tOmFkbWlu');
 
-    return this.http.delete(`${this.ativosUrl}/${codigo}`, { headers }).toPromise().then(() => null);
+    return this.http.delete(`${this.ativosUrl}/${codigo}`).toPromise().then(() => null); // , { headers }
   }
 
   adicionar(ativo: Ativo): Promise<Ativo> {
     const headers = new HttpHeaders()
-      .append('Authorization', 'Basic d2FuZXJzYmhAZ21haWwuY29tOmFkbWlu')
+      // .append('Authorization', 'Basic d2FuZXJzYmhAZ21haWwuY29tOmFkbWlu')
       .append('Content-Type', 'application/json');
 
     return this.http.post<Ativo>(this.ativosUrl, JSON.stringify(ativo), { headers })
@@ -84,7 +84,7 @@ export class AtivosService {
 
   atualizar(ativo: Ativo): Promise<Ativo> {
     const headers = new HttpHeaders()
-      .append('Authorization', 'Basic d2FuZXJzYmhAZ21haWwuY29tOmFkbWlu')
+      // .append('Authorization', 'Basic d2FuZXJzYmhAZ21haWwuY29tOmFkbWlu')
       .append('Content-Type', 'application/json');
 
     return this.http.put<Ativo>(`${this.ativosUrl}/${ativo.codigo}`, JSON.stringify(ativo), { headers })
@@ -98,9 +98,9 @@ export class AtivosService {
   }
 
   buscarPorCodigo(codigo: number): Promise<Ativo> {
-    const headers = new HttpHeaders().append('Authorization', 'Basic d2FuZXJzYmhAZ21haWwuY29tOmFkbWlu');
+    // const headers = new HttpHeaders().append('Authorization', 'Basic d2FuZXJzYmhAZ21haWwuY29tOmFkbWlu');
 
-    return this.http.get<Ativo>(`${this.ativosUrl}/${codigo}`, { headers })
+    return this.http.get<Ativo>(`${this.ativosUrl}/${codigo}`) // , { headers }
       .toPromise()
       .then(
         ativo => {

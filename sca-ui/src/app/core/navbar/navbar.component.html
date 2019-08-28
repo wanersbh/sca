@@ -10,7 +10,7 @@
   </div>
 
   <ul class="navbar-menu" [hidden]="!exibindoMenu">
-    <li class="navbar-usuario">Waner Andrade</li>
+    <li class="navbar-usuario">{{authService.jwtPayload?.nome}}</li>
     <li class="navbar-menuitem" routerLinkActive="selecionado"><a routerLink="/ativos">Ativos</a></li>
     <li class="navbar-menuitem" routerLinkActive="selecionado"><a routerLink="/manutencoes">Manutenções</a></li>
     <li class="navbar-menuitem" routerLinkActive="selecionado"><a routerLink="/categorias">Categorias</a></li>
