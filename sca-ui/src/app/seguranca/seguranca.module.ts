@@ -8,6 +8,8 @@ import { ButtonModule } from 'primeng/components/button/button';
 
 import { LoginFormComponent } from './login-form/login-form.component';
 import { SegurancaRoutingModule } from './seguranca-routing.module';
+import { ScaHttpInterceptor } from './sca-http-interceptor';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
 
 export function tokenGetter(): string {
   return localStorage.getItem('token');
@@ -32,6 +34,12 @@ export function tokenGetter(): string {
     })
   ],
   declarations: [LoginFormComponent],
-  providers: [JwtHelperService]
+  providers: [JwtHelperService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: ScaHttpInterceptor,
+      multi: true
+    }
+  ]
 })
 export class SegurancaModule { }
