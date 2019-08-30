@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { JwtHelperService, JwtModule } from '@auth0/angular-jwt';
 
 import { InputTextModule } from 'primeng/components/inputtext/inputtext';
@@ -9,7 +10,7 @@ import { ButtonModule } from 'primeng/components/button/button';
 import { LoginFormComponent } from './login-form/login-form.component';
 import { SegurancaRoutingModule } from './seguranca-routing.module';
 import { ScaHttpInterceptor } from './sca-http-interceptor';
-import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AuthGuard } from './auth.guard';
 
 export function tokenGetter(): string {
   return localStorage.getItem('token');
@@ -39,7 +40,8 @@ export function tokenGetter(): string {
       provide: HTTP_INTERCEPTORS,
       useClass: ScaHttpInterceptor,
       multi: true
-    }
+    },
+    AuthGuard
   ]
 })
 export class SegurancaModule { }

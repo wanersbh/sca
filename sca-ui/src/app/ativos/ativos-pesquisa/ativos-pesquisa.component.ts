@@ -1,3 +1,4 @@
+import { AuthService } from './../../seguranca/auth.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 
@@ -27,7 +28,8 @@ export class AtivosPesquisaComponent implements OnInit {
     private toastr: ToastrService,
     private errorHandler: ErrorHandlerService,
     private confirmationService: ConfirmationService,
-    private title: Title
+    private title: Title,
+    private auth: AuthService
   ) { }
 
   ngOnInit(): void {

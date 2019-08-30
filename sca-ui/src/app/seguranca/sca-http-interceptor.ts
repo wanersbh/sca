@@ -42,6 +42,10 @@ export class ScaHttpInterceptor implements HttpInterceptor {
       return from(this.auth.obterNovoAccessToken())
         .pipe(
           mergeMap(() => {
+            if (this.auth.isAccessTokenInvalido) {
+              // TODO CONTINUAR 19.14
+              // throw new NotAuthenticatedError();
+            }
             req = req.clone({
               setHeaders: {
                 Authorization: `Bearer ${localStorage.getItem('token')}`

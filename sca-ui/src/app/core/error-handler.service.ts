@@ -19,6 +19,10 @@ export class ErrorHandlerService {
       let errors;
       msg = 'Ocorreu um erro ao processar a sua solicitação';
 
+      if (errorResponse.status === 403) {
+        msg = 'Você não tem permissão para realizar essa operação.'
+      }
+
       try {
         errors = errorResponse.json();
 

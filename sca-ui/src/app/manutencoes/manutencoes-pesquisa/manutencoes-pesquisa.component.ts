@@ -7,6 +7,7 @@ import { Table } from 'primeng/components/table/table';
 import { ManutencoesService, ManutencaoFiltro } from '../manutencoes.service';
 import { ErrorHandlerService } from './../../core/error-handler.service';
 import { Title } from '@angular/platform-browser';
+import { AuthService } from 'src/app/seguranca/auth.service';
 
 
 @Component({
@@ -28,7 +29,8 @@ export class ManutencoesPesquisaComponent implements OnInit {
     private toastr: ToastrService,
     private confirmationService: ConfirmationService,
     private errorHandler: ErrorHandlerService,
-    private title: Title
+    private title: Title,
+    private auth: AuthService
   ) {
     this.tipos = [
       { label: 'Corretiva', value: 'CORRETIVA' },

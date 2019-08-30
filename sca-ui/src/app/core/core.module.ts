@@ -12,6 +12,7 @@ import { ErrorHandlerService } from './error-handler.service';
 import { AtivosService } from '../ativos/ativos.service';
 import { ManutencoesService } from '../manutencoes/manutencoes.service';
 import { PaginaNaoEncontradaComponent } from './pagina-nao-encontrada.component';
+import { NaoAutorizadoComponent } from './nao-autorizado.component';
 
 
 @NgModule({
@@ -26,7 +27,8 @@ import { PaginaNaoEncontradaComponent } from './pagina-nao-encontrada.component'
   ],
   declarations: [
     NavbarComponent,
-    PaginaNaoEncontradaComponent
+    PaginaNaoEncontradaComponent,
+    NaoAutorizadoComponent
   ],
   exports: [
     NavbarComponent,
