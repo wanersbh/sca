@@ -1,12 +1,18 @@
 import { ToastrService } from 'ngx-toastr';
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
+
+import { NotAuthenticatedError } from '../seguranca/sca-http-interceptor';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ErrorHandlerService {
 
-  constructor(private toastr: ToastrService) { }
+  constructor(
+    private toastr: ToastrService,
+    private router: Router
+    ) { }
 
   handle(errorResponse: any) {
     let msg: string;
@@ -15,12 +21,12 @@ export class ErrorHandlerService {
       msg = errorResponse;
 
     } else if (errorResponse instanceof Response
-        && errorResponse.status >= 400 && errorResponse.status <= 499) {
+      && errorResponse.status >= 400 && errorResponse.status <= 499) {
       let errors;
       msg = 'Ocorreu um erro ao processar a sua solicitação';
 
       if (errorResponse.status === 403) {
-        msg = 'Você não tem permissão para realizar essa operação.'
+        msg = 'Você não tem permissão para realizar essa operação.';
       }
 
       try {

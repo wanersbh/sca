@@ -4,6 +4,7 @@ import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import * as moment from 'moment';
 
 import { Manutencao } from '../core/model';
+import { environment } from 'src/environments/environment';
 
 export class ManutencaoFiltro {
   tipo: string;
@@ -17,9 +18,11 @@ export class ManutencaoFiltro {
 })
 export class ManutencoesService {
 
-  manutencoesUrl = 'http://localhost:8080/manutencoes';
+  manutencoesUrl: string;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+    this.manutencoesUrl = `${environment.apiUrl}/manutencoes`;
+  }
 
   pesquisar(filtro: ManutencaoFiltro): Promise<any> {
 
@@ -41,7 +44,7 @@ export class ManutencoesService {
       params = params.set('dataAgendadaAte', moment(filtro.dataAgendadaFim).format('YYYY-MM-DD HH:mm'));
     }
 
-    return this.http.get(this.manutencoesUrl, {  params }) // headers,
+    return this.http.get(this.manutencoesUrl, { params }) // headers,
       .toPromise()
       .then(response => {
         const ativos = response['content'];

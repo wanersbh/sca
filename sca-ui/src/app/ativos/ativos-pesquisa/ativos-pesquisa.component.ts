@@ -29,7 +29,7 @@ export class AtivosPesquisaComponent implements OnInit {
     private errorHandler: ErrorHandlerService,
     private confirmationService: ConfirmationService,
     private title: Title,
-    private auth: AuthService
+    public auth: AuthService
   ) { }
 
   ngOnInit(): void {

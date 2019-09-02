@@ -30,7 +30,7 @@ export class ManutencoesPesquisaComponent implements OnInit {
     private confirmationService: ConfirmationService,
     private errorHandler: ErrorHandlerService,
     private title: Title,
-    private auth: AuthService
+    public auth: AuthService
   ) {
     this.tipos = [
       { label: 'Corretiva', value: 'CORRETIVA' },

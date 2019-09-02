@@ -3,6 +3,8 @@ import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 
 import * as moment from 'moment';
 import { Ativo } from '../core/model';
+import { environment } from 'src/environments/environment';
+
 
 export class AtivoFiltro {
   descricao: string;
@@ -17,9 +19,11 @@ export class AtivoFiltro {
 })
 export class AtivosService {
 
-  ativosUrl = 'http://localhost:8080/ativos';
+  ativosUrl: string;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+    this.ativosUrl = `${environment.apiUrl}/ativos`;
+  }
 
   pesquisar(filtro: AtivoFiltro): Promise<any> {
 

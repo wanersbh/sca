@@ -8,7 +8,7 @@ import { PaginaNaoEncontradaComponent } from './core/pagina-nao-encontrada.compo
 import { NaoAutorizadoComponent } from './core/nao-autorizado.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'ativos', pathMatch: 'full' },
+  { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: 'categorias', component: CategoriasPesquisaComponent },
 
   { path: 'nao-autorizado', component: NaoAutorizadoComponent },

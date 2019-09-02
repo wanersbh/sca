@@ -1,6 +1,6 @@
 import { Title } from '@angular/platform-browser';
 import { Component, OnInit } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { FormControl, NgForm } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 
 import { ToastrService } from 'ngx-toastr';
@@ -84,7 +84,7 @@ export class AtivosCadastroComponent implements OnInit {
       .catch(erro => this.errorHandlerService.handle(erro));
   }
 
-  salvar(form: FormControl) {
+  salvar(form: NgForm) {
     if (this.editando) {
       this.atualizarAtivo(form);
     } else {
@@ -92,7 +92,7 @@ export class AtivosCadastroComponent implements OnInit {
     }
   }
 
-  adicionarAtivo(form: FormControl) {
+  adicionarAtivo(form: NgForm) {
     this.ativoService.adicionar(this.ativo)
       .then(ativoAdicionado => {
         this.toastr.success('Registro salvo com sucesso.');
@@ -103,7 +103,7 @@ export class AtivosCadastroComponent implements OnInit {
       }).catch(erro => this.errorHandlerService.handle(erro));
   }
 
-  atualizarAtivo(form: FormControl) {
+  atualizarAtivo(form: NgForm) {
     this.ativoService.atualizar(this.ativo)
       .then(ativo => {
         this.ativo = ativo;
@@ -118,7 +118,7 @@ export class AtivosCadastroComponent implements OnInit {
     }).catch(erro => this.errorHandlerService.handle(erro));
   }
 
-  novo(form: FormControl) {
+  novo(form: NgForm) {
     form.reset();
 
     setTimeout(function() {

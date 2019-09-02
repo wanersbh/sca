@@ -1,13 +1,21 @@
+import { ToastrService } from 'ngx-toastr';
+import { ErrorHandlerService } from './../core/error-handler.service';
 import { Injectable } from '@angular/core';
 import { HttpInterceptor, HttpRequest } from '@angular/common/http';
 import { Observable, from } from 'rxjs';
 import { mergeMap } from 'rxjs/operators';
 
 import { AuthService } from './auth.service';
+import { Router } from '@angular/router';
 
+export class NotAuthenticatedError { }
 @Injectable()
 export class ScaHttpInterceptor implements HttpInterceptor {
-  constructor(private auth: AuthService) { }
+  constructor(
+    private auth: AuthService,
+    private router: Router,
+    private toastr: ToastrService
+    ) { }
 
   /*
   Primeiramente fazemos duas validações, uma pra saber se não estamos nos referindo ao path "/oauth/token" e
@@ -43,8 +51,8 @@ export class ScaHttpInterceptor implements HttpInterceptor {
         .pipe(
           mergeMap(() => {
             if (this.auth.isAccessTokenInvalido) {
-              // TODO CONTINUAR 19.14
-              // throw new NotAuthenticatedError();
+              this.router.navigate(['/login']);
+              this.toastr.error('Sua sessão expirou!');
             }
             req = req.clone({
               setHeaders: {
@@ -59,11 +67,4 @@ export class ScaHttpInterceptor implements HttpInterceptor {
     return next.handle(req);
 
   }
-
-
-
-
-
-
-
 }

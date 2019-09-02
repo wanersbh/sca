@@ -4,7 +4,7 @@ import { ManutencoesService } from './../manutencoes.service';
 import { AtivosService } from './../../ativos/ativos.service';
 import { Component, OnInit } from '@angular/core';
 import { Manutencao } from 'src/app/core/model';
-import { FormControl } from '@angular/forms';
+import { FormControl, NgForm } from '@angular/forms';
 import { Title } from '@angular/platform-browser';
 import { Router, ActivatedRoute } from '@angular/router';
 
@@ -67,7 +67,7 @@ export class ManutencoesCadastroComponent implements OnInit {
 
   }
 
-  salvar(form: FormControl) {
+  salvar(form: NgForm) {
     if (this.editando) {
       this.atualizarManutencao(form);
     } else {
@@ -75,7 +75,7 @@ export class ManutencoesCadastroComponent implements OnInit {
     }
   }
 
-  atualizarManutencao(form: FormControl){
+  atualizarManutencao(form: NgForm){
     this.manutencaoService.atualizar(this.manutencao)
       .then(manutencao => {
         this.manutencao = manutencao;
@@ -84,7 +84,7 @@ export class ManutencoesCadastroComponent implements OnInit {
       .catch(error => this.errorHandlerService.handle(error));
   }
 
-  adicionarManutencao(form: FormControl) {
+  adicionarManutencao(form: NgForm) {
     this.manutencaoService.adicionar(this.manutencao)
       .then(() => {
         this.toastr.success('Registro salvo com sucesso.');
@@ -107,7 +107,7 @@ export class ManutencoesCadastroComponent implements OnInit {
       .catch(erro => this.errorHandlerService.handle(erro));
   }
 
-  novo(form: FormControl) {
+  novo(form: NgForm) {
     form.reset();
 
     setTimeout(function() {
