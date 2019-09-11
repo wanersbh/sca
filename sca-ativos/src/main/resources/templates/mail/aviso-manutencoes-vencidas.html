@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+
+<body style="font-family: Arial; font-size: 14px;">
+
+	<p>Olá, Gestor!</p>
+
+	<p>Existem manutenções de ativos vencidas. Veja:</p>
+
+
+		<table style="width: 100%; border-collapse: collapse; margin: 20px 0">
+			<thead>
+				<tr>
+					<th>Codigo</th>
+					<th>Ativo</th>
+					<th>Tipo</th>
+					<th>Data Agendada</th>
+					<th>Observação</th>
+				</tr>
+			</thead>
+	
+			<tbody>
+				<tr
+					style="border-bottom: 1px solid #ccc; border-top: 1px solid #ccc;"
+					th:each="manutencao: ${manutencoes}">
+					<td th:text="${manutencao.codigo}">1</td>
+					<td th:text="${manutencao.ativo.descricao}">Escavadeira</td>
+					<td th:text="${manutencao.tipo}">CORRETIVA</td>
+					<td
+						th:text="${#temporals.format(manutencao.dataAgendada, 'dd/MM/yyyy')}"
+						style="text-align: center">10/06/2017</td>
+					<td th:text="${manutencao.observacao}">Troca oleo</td>
+				</tr>
+			</tbody>
+		</table>
+	
+
+	<p>Obrigado.</p>
+	<p>Sistema Controle Ambiental</p>
+
+</body>
+</html>

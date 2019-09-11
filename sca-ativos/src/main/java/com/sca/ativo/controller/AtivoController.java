@@ -1,5 +1,9 @@
 package com.sca.ativo.controller;
 
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStream;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
@@ -26,8 +30,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.sca.ativo.controller.repository.filter.AtivoFilter;
 import com.sca.ativo.event.RecursoCriadoEvent;
@@ -52,6 +58,22 @@ public class AtivoController {
 	
 	@Autowired
 	private MessageSource messageSource;
+	
+	@PostMapping("/anexo")
+	@PreAuthorize("hasAuthority('ROLE_CADASTRAR_ATIVO') and #oauth2.hasScope('write')")
+	public String uploadAnexo(@RequestParam MultipartFile anexo) {
+		OutputStream out;
+		try {
+			out = new FileOutputStream("/home/was/upload/manual--"+anexo.getOriginalFilename());
+			out.write(anexo.getBytes());
+			out.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return "ok";
+	}
 
 	@GetMapping
 	@PreAuthorize("hasAuthority('ROLE_PESQUISAR_ATIVO') and #oauth2.hasScope('read')")
