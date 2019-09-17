@@ -11,7 +11,7 @@ export class CategoriasService {
   categoriasUrl: string;
 
   constructor(private http: HttpClient) {
-    this.categoriasUrl =  `${environment.apiUrl}/categorias`;
+    this.categoriasUrl =  `${environment.apiAtivoUrl}/categorias`;
    }
 
   pesquisar(): Promise<any> {

@@ -21,7 +21,7 @@ export class ManutencoesService {
   manutencoesUrl: string;
 
   constructor(private http: HttpClient) {
-    this.manutencoesUrl = `${environment.apiUrl}/manutencoes`;
+    this.manutencoesUrl = `${environment.apiAtivoUrl}/manutencoes`;
   }
 
   pesquisar(filtro: ManutencaoFiltro): Promise<any> {

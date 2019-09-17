@@ -18,8 +18,8 @@ export class AuthService {
     private jwtHelperService: JwtHelperService
   ) {
     this.carregarToken();
-    this.oauthTokenUrl = `${environment.apiUrl}/oauth/token`;
-    this.tokensRevokeUrl = `${environment.apiUrl}/tokens/revoke`;
+    this.oauthTokenUrl = `${environment.apiAtivoUrl}/oauth/token`;
+    this.tokensRevokeUrl = `${environment.apiAtivoUrl}/tokens/revoke`;
   }
 
   login(usuario: string, senha: string): Promise<void> {

@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  apiUrl: 'http://localhost:8080'
+  apiAtivoUrl: 'http://localhost:8080',
+  apiBarragemUrl: 'http://localhost:8180'
 };
 
 /*
