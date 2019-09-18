@@ -2,8 +2,8 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Routes, RouterModule } from '@angular/router';
 
-import { BarragensPesquisaComponent } from './barragens-pesquisa/barragens-pesquisa.component';
 import { AuthGuard } from '../seguranca/auth.guard';
+import { BarragensPesquisaComponent } from './barragens-pesquisa/barragens-pesquisa.component';
 import { BarragensCadastroComponent } from './barragens-cadastro/barragens-cadastro.component';
 
 const routes: Routes = [

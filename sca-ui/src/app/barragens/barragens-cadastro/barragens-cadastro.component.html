@@ -1,1 +1,49 @@
-<p>barragens-cadastro works!</p>
+<div class="container">
+  <form #f="ngForm" autocomplete="off" (ngSubmit)="salvar(f)">
+
+    <div class="ui-g">
+      <div class="ui-g-12">
+        <h1>{{ editando ? 'Editar' : 'Nova' }} Barragem</h1>
+      </div>
+
+      <div class="ui-g-12  ui-fluid">
+        <label>Nome</label>
+        <input pInputText type="text" name="nome" ngModel #nome="ngModel" [(ngModel)]="barragem.nome"
+          required minlength="3">
+
+        <app-message [control]="nome" error="required" text="Informe uma descrição"></app-message>
+
+        <app-message [control]="nome" error="minlength"
+          text="Mínimo de {{ nome.errors?.minlength?.requiredLength }} caracteres. Você digitou apenas {{ nome.errors?.minlength?.actualLength }}">
+        </app-message>
+
+      </div>
+
+      <div class="ui-g-12 ui-md-6 ui-fluid">
+        <label>Método</label>
+        <p-dropdown [options]="metodos" placeholder="Selecione" [filter]="true" ngModel name="metodo"
+          #metodo=ngModel required [(ngModel)]="barragem.metodo"></p-dropdown>
+
+        <app-message [control]="metodo" error="required" text="Informe o método"></app-message>
+      </div>
+
+      <div class="ui-g-6  ui-fluid">
+        <label>Latitude</label>
+        <input pInputText type="text" name="latitude" ngModel #latitude="ngModel" [(ngModel)]="barragem.lat"
+          required minlength="3">
+
+        <app-message [control]="latitude" error="required" text="Informe a latitude"></app-message>
+
+      </div>
+
+      <div class="ui-g-6  ui-fluid">
+        <label>Longitude</label>
+        <input pInputText type="text" name="longitude" ngModel #longitude="ngModel" [(ngModel)]="barragem.lng"
+          required minlength="3">
+
+        <app-message [control]="longitude" error="required" text="Informe a longitude"></app-message>
+
+      </div>
+
+  </form>
+</div>

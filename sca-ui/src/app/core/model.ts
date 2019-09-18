@@ -22,3 +22,11 @@ export class Manutencao {
   ativo = new Ativo();
 }
 
+export class Barragem {
+  codigo: number;
+  nome: string;
+  metodo: number;
+  lat: number;
+  lng: number;
+}
+
