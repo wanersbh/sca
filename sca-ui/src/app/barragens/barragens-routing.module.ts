@@ -9,21 +9,21 @@ import { BarragensCadastroComponent } from './barragens-cadastro/barragens-cadas
 const routes: Routes = [
   {
     path: 'barragens',
-    component: BarragensPesquisaComponent,
-    canActivate: [AuthGuard],
-    data: { roles: ['ROLE_PESQUISAR_BARRAGEM'] }
+    component: BarragensPesquisaComponent
+    // canActivate: [AuthGuard],
+    // data: { roles: ['ROLE_PESQUISAR_BARRAGEM'] }
   },
   {
     path: 'barragens/novo',
-    component: BarragensCadastroComponent,
-    canActivate: [AuthGuard],
-    data: { roles: ['ROLE_CADASTRAR_BARRAGEM'] }
+    component: BarragensCadastroComponent
+    // canActivate: [AuthGuard],
+    // data: { roles: ['ROLE_CADASTRAR_BARRAGEM'] }
   },
   {
     path: 'barragens/:codigo',
-    component: BarragensCadastroComponent,
-    canActivate: [AuthGuard],
-    data: { roles: ['ROLE_PESQUISAR_BARRAGEM'] }
+    component: BarragensCadastroComponent
+    // canActivate: [AuthGuard],
+    // data: { roles: ['ROLE_PESQUISAR_BARRAGEM'] }
   },
 ];
 @NgModule({

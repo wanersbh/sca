@@ -13,6 +13,7 @@ import { AtivosService } from '../ativos/ativos.service';
 import { ManutencoesService } from '../manutencoes/manutencoes.service';
 import { PaginaNaoEncontradaComponent } from './pagina-nao-encontrada.component';
 import { NaoAutorizadoComponent } from './nao-autorizado.component';
+import { BarragensService } from '../barragens/barragens.service';
 
 
 @NgModule({
@@ -38,6 +39,7 @@ import { NaoAutorizadoComponent } from './nao-autorizado.component';
   providers: [
     AtivosService,
     ManutencoesService,
+    BarragensService,
     ConfirmationService,
     ErrorHandlerService,
     AuthService

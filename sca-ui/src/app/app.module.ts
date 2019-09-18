@@ -14,6 +14,7 @@ import { AtivosModule } from './ativos/ativos.module';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
+import { BarragensModule } from './barragens/barragens.module';
 
 registerLocaleData(ptBr);
 
@@ -31,6 +32,7 @@ registerLocaleData(ptBr);
 
     AtivosModule,
     ManutencoesModule,
+    BarragensModule,
     CategoriasModule,
     SegurancaModule,
     AppRoutingModule

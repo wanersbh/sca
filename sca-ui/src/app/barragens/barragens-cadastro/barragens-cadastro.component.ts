@@ -1,13 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
+import { NgForm } from '@angular/forms';
 
 import { ToastrService } from 'ngx-toastr';
 
 import { Barragem } from 'src/app/core/model';
 import { BarragensService } from './../barragens.service';
 import { ErrorHandlerService } from 'src/app/core/error-handler.service';
-import { NgForm } from '@angular/forms';
+
 
 @Component({
   selector: 'app-barragens-cadastro',
@@ -15,6 +16,10 @@ import { NgForm } from '@angular/forms';
   styleUrls: ['./barragens-cadastro.component.css']
 })
 export class BarragensCadastroComponent implements OnInit {
+
+  options: any;
+
+  overlays: any[];
 
   constructor(
     private barragemService: BarragensService,
@@ -47,6 +52,12 @@ export class BarragensCadastroComponent implements OnInit {
       { label: 'Jusante', value: 1 },
       { label: 'Linha de Centro', value: 2 }
     ];
+
+    this.options = {
+      center: {lat: 36.890257, lng: 30.707417},
+      zoom: 12
+    };
+
 
   }
 
