@@ -1,9 +1,14 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 
 import { environment } from 'src/environments/environment';
 import { Barragem } from '../core/model';
 
+export class BarragemFiltro {
+  nome: string;
+  metodo: number;
+  uf: string;
+}
 @Injectable({
   providedIn: 'root'
 })
@@ -14,6 +19,30 @@ export class BarragensService {
   constructor(private http: HttpClient) {
     this.barragensUrl =  `${environment.apiBarragemUrl}/barragens`;
    }
+
+   pesquisar(filtro: BarragemFiltro): Promise<any> {
+
+    // const headers = new HttpHeaders().append('Authorization', 'Basic d2FuZXJzYmhAZ21haWwuY29tOmFkbWlu');
+    let params = new HttpParams();
+
+    if (filtro.nome) {
+      params = params.set('nome', filtro.nome);
+    }
+
+    if (filtro.metodo) {
+      params = params.set('metodo', filtro.metodo.toString());
+    }
+
+    if (filtro.uf) {
+      params = params.set('uf', filtro.uf );
+    }
+
+    return this.http.get(this.barragensUrl, {  params }) // headers,
+      .toPromise()
+      .then(response => {
+        return response;
+      });
+  }
 
    obterTodos(): Promise<any> {
     // const headers = new HttpHeaders().append('Authorization', 'Basic d2FuZXJzYmhAZ21haWwuY29tOmFkbWlu');

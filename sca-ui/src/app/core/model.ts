@@ -31,3 +31,13 @@ export class Barragem {
   longitude: number;
 }
 
+export class Inspecao {
+  codigo: number;
+  altura: number;
+  data: Date;
+  risco: number;
+  potencial: number;
+  observacao: string;
+  barragem = new Barragem();
+}
+

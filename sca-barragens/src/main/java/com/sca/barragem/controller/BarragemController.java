@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.sca.barragem.event.RecursoCriadoEvent;
+import com.sca.barragem.filter.BarragemFilter;
 import com.sca.barragem.model.Barragem;
 import com.sca.barragem.repository.BarragemRepository;
 
@@ -36,9 +37,15 @@ public class BarragemController {
 	private ApplicationEventPublisher publisher;
 	
 	@GetMapping
-	public List<Barragem> listar() {
-		return barragemRepository.findAll();
+//	@PreAuthorize("hasAuthority('ROLE_PESQUISAR_ATIVO') and #oauth2.hasScope('read')")
+	public List<Barragem> pesquisar(BarragemFilter barragemFilter) {
+		return barragemRepository.filtrar(barragemFilter);
 	}
+	
+//	@GetMapping
+//	public List<Barragem> listar() {
+//		return barragemRepository.findAll();
+//	}
 	
 	@GetMapping("/{codigo}")
 	public ResponseEntity<Barragem> buscarPorCodigo(@PathVariable Long codigo) {

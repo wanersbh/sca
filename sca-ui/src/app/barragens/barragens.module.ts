@@ -1,8 +1,9 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { BarragensCadastroComponent } from './barragens-cadastro/barragens-cadastro.component';
-import { BarragensPesquisaComponent } from './barragens-pesquisa/barragens-pesquisa.component';
 import { FormsModule } from '@angular/forms';
+
+import { AgmCoreModule } from '@agm/core';
+
 import { InputTextModule } from 'primeng/components/inputtext/inputtext';
 import { ButtonModule } from 'primeng/components/button/button';
 import { TableModule } from 'primeng/components/table/table';
@@ -14,8 +15,9 @@ import { SharedModule } from 'primeng/components/common/shared';
 import { FieldsetModule } from 'primeng/components/fieldset/fieldset';
 import { RadioButtonModule } from 'primeng/components/radiobutton/radiobutton';
 import { BarragensRoutingModule } from './barragens-routing.module';
-import { AgmCoreModule } from '@agm/core';
 
+import { BarragensCadastroComponent } from './barragens-cadastro/barragens-cadastro.component';
+import { BarragensPesquisaComponent } from './barragens-pesquisa/barragens-pesquisa.component';
 
 
 @NgModule({

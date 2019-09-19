@@ -1,58 +1,51 @@
 <div class="container">
   <div class="ui-g">
-
-    <form autocomplete="off" (ngSubmit)="pesquisar()">
-
-      <div class="ui-g-12">
-        <h1>Barragens</h1>
-      </div>
-
-      <!--
-      <div class="ui-g-12 ui-fluid">
-        <label>nome</label>
-        <input pInputText type="text" name="descricao" [(ngModel)]="filtro.descricao">
-      </div>
-
-      <p-fieldset legend="Data Aquisição">
-        <div class="ui-g-12">
-          <label>De:</label>
-        </div>
-        <div class="ui-g-12">
-          <p-calendar dateFormat="dd/mm/yy" [inputStyle]="{ width: '95px' }" name="aquisicaoInicio"
-            [(ngModel)]="filtro.dataAquisicaoInicio" [locale]="br"></p-calendar>
-        </div>
+    <div class="ui-g-12">
+      <form autocomplete="off" (ngSubmit)="pesquisar()">
 
         <div class="ui-g-12">
-          <label>Até</label>
+          <h1>Barragens</h1>
         </div>
 
-        <div class="ui-g-12">
-          <p-calendar dateFormat="dd/mm/yy" [inputStyle]="{ width: '95px' }" name="aquisicaoFim"
-            [(ngModel)]="filtro.dataAquisicaoFim" [locale]="br"></p-calendar>
-        </div>
-      </p-fieldset>
+        <p-fieldset legend="Filtro">
+          <div class="ui-g-6 ui-fluid">
+            <label>Nome</label>
+            <input pInputText type="text" name="nome" [(ngModel)]="filtro.nome">
+          </div>
 
-      <div class="ui-g-12">
-        <button pButton type="submit" label="Pesquisar" style="margin: 2px"></button>
-        <button pButton label="Limpar Filtros" (click)="limparFiltro()" style="margin: 2px"></button>
-      </div>
+          <div class="ui-g-4 ui-fluid">
+            <label>Método</label>
+            <p-dropdown [options]="metodos" placeholder="Selecione" ngModel name="metodo" #metodo=ngModel
+              [(ngModel)]="filtro.metodo"></p-dropdown>
+          </div>
 
-      -->
-    </form>
+          <div class="ui-g-2 ui-fluid">
+            <label>UF</label>
+            <p-dropdown [options]="ufs" placeholder="Selecione" ngModel name="uf" #metodo=ngModel
+              [(ngModel)]="filtro.uf" [filter]="true"></p-dropdown>
+
+          </div>
+
+          <div class="ui-g-12">
+            <button pButton type="submit" label="Pesquisar" style="margin: 2px"></button>
+            <button pButton label="Limpar Filtros" (click)="limparFiltro()" style="margin: 2px"></button>
+          </div>
+
+        </p-fieldset>
+      </form>
+    </div>
 
   </div>
 
   <div class="ui-g">
     <div class="ui-g-12">
-      <p-table [value]="barragens" [paginator]="true" [rows]="5" [totalRecords]="totalRegistros"
-          [responsive]="true" #tabela>
+      <p-table [value]="barragens" [paginator]="true" [rows]="5" [totalRecords]="totalRegistros" [responsive]="true"
+        #tabela>
         <ng-template pTemplate="header">
           <tr>
             <th>Nome</th>
             <th>Método</th>
             <th>UF</th>
-            <th>Latitude</th>
-            <th>Longitude</th>
             <th class="col-acoes"></th>
           </tr>
         </ng-template>
@@ -61,14 +54,12 @@
             <td>{{barragem.nome}}</td>
             <td>{{descricaoMetodo(barragem.metodo)}}</td>
             <td>{{barragem.uf}}</td>
-            <td>{{barragem.latitude}}</td>
-            <td>{{barragem.longitude}}</td>
             <td class="col-acoes">
               <a pButton icon="pi pi-pencil" pTooltip="Editar" tooltipPosition="top" style="margin: 2px"
                 [routerLink]="['/barragens', barragem.codigo]"></a>
               <button pButton icon="pi pi-trash" pTooltip="Excluir" tooltipPosition="top"
-                (click)="confirmarExclusao(barragem)" style="margin: 2px"
-                [disabled]="!auth.temPermissao('ROLE_REMOVER_BARRAGEM')"></button>
+                (click)="confirmarExclusao(barragem)" style="margin: 2px"></button>
+              <!--[disabled]="!auth.temPermissao('ROLE_REMOVER_BARRAGEM')"-->
             </td>
           </tr>
         </ng-template>

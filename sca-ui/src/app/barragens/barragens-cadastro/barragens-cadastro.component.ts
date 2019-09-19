@@ -50,9 +50,9 @@ export class BarragensCadastroComponent implements OnInit {
     }
 
     this.metodos = [
-      { label: 'Montante', value: 0 },
-      { label: 'Jusante', value: 1 },
-      { label: 'Linha de Centro', value: 2 }
+      { label: 'Montante', value: 1 },
+      { label: 'Jusante', value: 2 },
+      { label: 'Linha de Centro', value: 3 }
     ];
 
     this.latLonUfs = new Map([
@@ -175,7 +175,7 @@ export class BarragensCadastroComponent implements OnInit {
   novo(form: NgForm) {
     form.reset();
 
-    setTimeout(function () {
+    setTimeout(function() {
       this.barragem = new Barragem();
     }.bind(this), 1);
 
