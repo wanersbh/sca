@@ -17,6 +17,7 @@ export class BarragensPesquisaComponent implements OnInit {
   @ViewChild('tabela', { static: true }) grid: Table;
   barragens = [];
   totalRegistros = 0;
+  metodos: any;
 
   constructor(
     private barragensService: BarragensService,
@@ -30,6 +31,12 @@ export class BarragensPesquisaComponent implements OnInit {
   ngOnInit(): void {
     this.pesquisar();
     this.title.setTitle('Pesquisa barragem');
+
+    this.metodos = new Map([
+      [0, 'Montante'] ,
+      [1, 'Jusante'],
+      [2, 'Linha de Centro']
+  ]);
   }
 
   pesquisar() {
@@ -69,6 +76,10 @@ export class BarragensPesquisaComponent implements OnInit {
 
   limparFiltro() {
     this.pesquisar();
+  }
+
+  descricaoMetodo(codigo: number) {
+    return this.metodos.get(codigo);
   }
 
 }

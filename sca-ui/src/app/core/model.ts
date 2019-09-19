@@ -26,7 +26,8 @@ export class Barragem {
   codigo: number;
   nome: string;
   metodo: number;
-  lat: number;
-  lng: number;
+  uf: string;
+  latitude: number;
+  longitude: number;
 }
 

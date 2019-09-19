@@ -1,5 +1,11 @@
+<script type="text/javascript"
+  src="http://maps.google.com/maps/api/js?sensor=false"></script>
 <div class="container">
+<!--
 
+  // TODO: ESTUDAR
+  https://www.youtube.com/watch?v=lApggVS0icc
+-->
   <form #f="ngForm" autocomplete="off" (ngSubmit)="salvar(f)">
 
     <div class="ui-g">
@@ -21,21 +27,43 @@
 
       </div>
 
-      <div class="ui-g-6 ui-md-6  ui-fluid">
+      <div class="ui-g-4 ui-md-4 ui-fluid">
+        <label>UF</label>
+        <p-dropdown [options]="ufs" placeholder="Selecione" ngModel name="uf" #metodo=ngModel required
+          [(ngModel)]="barragem.uf" (onChange)="coordenadas()" [filter]="true"></p-dropdown>
+
+      </div>
+
+      <div class="ui-g-4 ui-md-4  ui-fluid">
         <label>Latitude</label>
         <input pInputText type="text" name="latitude" ngModel #latitude="ngModel" [(ngModel)]="barragem.latitude"
           required>
 
       </div>
 
-      <div class="ui-g-6 ui-md-6  ui-fluid">
+      <div class="ui-g-4 ui-md-4  ui-fluid">
         <label>Longitude</label>
         <input pInputText type="text" name="longitude" ngModel #longitude="ngModel" [(ngModel)]="barragem.longitude"
           required>
       </div>
 
-      <div class="ui-g-12  ui-fluid">
-        <p-gmap [options]="options" [overlays]="overlays" [style]="{'width':'100%','height':'320px'}"></p-gmap>
+      <!--
+        https://angular-maps.com/
+        Documentação.
+      -->
+      <div class="ui-g-12  ui-fluid" *ngIf="exibeMapa">
+        <agm-map [zoom]="8"  [(latitude)]="barragem.latitude"  [(longitude)]="barragem.longitude" (mapClick)="onChoseLocation($event)">
+            <agm-marker [latitude]="barragem.latitude" [longitude]="barragem.longitude">
+              <agm-info-window>{{barragem.nome}}</agm-info-window>
+            </agm-marker>
+        </agm-map>
+      </div>
+
+      <div class="ui-g-12">
+        <button pButton type="submit" label="Salvar" [disabled]="f.invalid" style="margin: 2px"></button>
+        <button pButton type="button" label="Novo" class="ui-button-info" style="margin: 2px"
+        (click)="novo(f)"></button>
+        <a routerLink="/barragens">Voltar para a pesquisa</a>
       </div>
 
     </div>

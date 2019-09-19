@@ -14,7 +14,7 @@ import { SharedModule } from 'primeng/components/common/shared';
 import { FieldsetModule } from 'primeng/components/fieldset/fieldset';
 import { RadioButtonModule } from 'primeng/components/radiobutton/radiobutton';
 import { BarragensRoutingModule } from './barragens-routing.module';
-import { GMapModule } from 'primeng/gmap';
+import { AgmCoreModule } from '@agm/core';
 
 
 
@@ -33,8 +33,11 @@ import { GMapModule } from 'primeng/gmap';
     SharedModule,
     FieldsetModule,
     RadioButtonModule,
-    GMapModule,
-    BarragensRoutingModule
+    BarragensRoutingModule,
+
+    AgmCoreModule.forRoot({
+      apiKey: ' '
+    })
   ]
 })
 export class BarragensModule { }

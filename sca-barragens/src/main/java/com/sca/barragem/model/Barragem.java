@@ -19,6 +19,8 @@ public class Barragem {
 	
 	private Integer metodo;
 	
+	private String uf;
+	
 	@Column(name = "lat", nullable = false)
 	private Double latitude;
 	
@@ -47,6 +49,14 @@ public class Barragem {
 
 	public void setMetodo(Integer metodo) {
 		this.metodo = metodo;
+	}
+	
+	public String getUf() {
+		return uf;
+	}
+
+	public void setUf(String uf) {
+		this.uf = uf;
 	}
 
 	public Double getLatitude() {
