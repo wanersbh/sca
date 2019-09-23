@@ -29,8 +29,8 @@ export function tokenGetter(): string {
     JwtModule.forRoot({
       config: {
         tokenGetter: tokenGetter,
-        whitelistedDomains: ['localhost:8080'],
-        blacklistedRoutes: ['http://localhost:8080/oauth/token']
+        whitelistedDomains: ['localhost:8180'],
+        blacklistedRoutes: ['http://localhost:8180/oauth/token']
       }
     })
   ],

@@ -46,7 +46,7 @@
             <th>Nome</th>
             <th>Método</th>
             <th>UF</th>
-            <th class="col-acoes"></th>
+            <th style="width: 100px"></th>
           </tr>
         </ng-template>
         <ng-template pTemplate="body" let-barragem>
@@ -54,7 +54,7 @@
             <td>{{barragem.nome}}</td>
             <td>{{descricaoMetodo(barragem.metodo)}}</td>
             <td>{{barragem.uf}}</td>
-            <td class="col-acoes">
+            <td>
               <a pButton icon="pi pi-pencil" pTooltip="Editar" tooltipPosition="top" style="margin: 2px"
                 [routerLink]="['/barragens', barragem.codigo]"></a>
               <button pButton icon="pi pi-trash" pTooltip="Excluir" tooltipPosition="top"

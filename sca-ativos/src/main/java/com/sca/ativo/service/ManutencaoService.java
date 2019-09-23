@@ -1,6 +1,8 @@
 package com.sca.ativo.service;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.Calendar;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -12,6 +14,7 @@ import org.springframework.stereotype.Service;
 import com.sca.ativo.mail.Mailer;
 import com.sca.ativo.model.Manutencao;
 import com.sca.ativo.model.Usuario;
+import com.sca.ativo.queue.ScaQueueSender;
 import com.sca.ativo.repository.ManutencaoRepository;
 import com.sca.ativo.repository.UsuarioRepository;
 
@@ -30,6 +33,9 @@ public class ManutencaoService {
 
 	@Autowired
 	private Mailer mailer;
+	
+	@Autowired
+	private ScaQueueSender scaQueueSender;
 
 //	@Scheduled(cron = "0 10 10 * * *")
 	@Scheduled(fixedDelay = 1000 * 60 * 30)
@@ -61,6 +67,11 @@ public class ManutencaoService {
 		
 		logger.info("E-mail de aviso de manutenções vencidas foi enviado com sucesso.");
 
+	}
+	
+	@Scheduled(fixedDelay = 1000 * 60 * 30)
+	public void enviarMensagemParaFila() {
+		scaQueueSender.send("Data e hora: "+ Calendar.getInstance().getTime());
 	}
 
 }
