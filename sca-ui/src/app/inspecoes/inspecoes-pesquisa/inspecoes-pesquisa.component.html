@@ -1,1 +1,76 @@
-<p>inspecoes-pesquisa works!</p>
+<div class="container">
+  <div class="ui-g">
+    <div class="ui-g-12">
+      <form autocomplete="off" (ngSubmit)="pesquisar()">
+
+        <div class="ui-g-12">
+          <h1>Inspeções</h1>
+        </div>
+
+        <p-fieldset legend="Filtro">
+
+          <div class="ui-g-4 ui-fluid">
+            <label>Risco</label>
+            <p-dropdown [options]="niveis" placeholder="Selecione" ngModel name="risco" #metodo=ngModel
+              [(ngModel)]="filtro.risco"></p-dropdown>
+          </div>
+
+          <div class="ui-g-4 ui-fluid">
+              <label>Potencial</label>
+              <p-dropdown [options]="niveis" placeholder="Selecione" ngModel name="potencial" #metodo=ngModel
+                [(ngModel)]="filtro.potencial"></p-dropdown>
+            </div>
+
+          <div class="ui-g-12">
+            <button pButton type="submit" label="Pesquisar" style="margin: 2px"></button>
+            <button pButton label="Limpar Filtros" (click)="limparFiltro()" style="margin: 2px"></button>
+          </div>
+
+        </p-fieldset>
+      </form>
+    </div>
+
+  </div>
+
+  <div class="ui-g">
+    <div class="ui-g-12">
+      <p-table [value]="inspecoes" [paginator]="true" [rows]="5" [totalRecords]="totalRegistros" [responsive]="true"
+        #tabela>
+        <ng-template pTemplate="header">
+          <tr>
+            <th>Barragem</th>
+            <th>Altura</th>
+            <th>Data</th>
+            <th>Risco</th>
+            <th>Potencial</th>
+            <th class="col-acoes"></th>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-inspecao>
+          <tr>
+            <td>{{inspecao.barragem.nome}}</td>
+            <td>{{inspecao.altura}}</td>
+            <td>{{inspecao.data}}</td>
+            <td>{{inspecao.risco}}</td>
+            <td>{{inspecao.potencial}}</td>
+            <td class="col-acoes">
+              <a pButton icon="pi pi-pencil" pTooltip="Editar" tooltipPosition="top" style="margin: 2px"
+                [routerLink]="['/inspecoes', inspecao.codigo]"></a>
+              <button pButton icon="pi pi-trash" pTooltip="Excluir" tooltipPosition="top"
+                (click)="confirmarExclusao(inspecao)" style="margin: 2px"></button>
+              <!--[disabled]="!auth.temPermissao('ROLE_REMOVER_BARRAGEM')"-->
+            </td>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="emptymessage">
+          Nenhum registro encontrado
+        </ng-template>
+      </p-table>
+      <div class="ui-g-12">
+        <a pButton label="Nova Inspeção" routerLink="/inspecoes/novo" style="margin-top: 6px"></a>
+      </div>
+    </div>
+
+  </div>
+</div>
+

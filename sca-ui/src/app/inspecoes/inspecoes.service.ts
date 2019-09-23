@@ -5,9 +5,10 @@ import { environment } from 'src/environments/environment';
 import { Inspecao } from '../core/model';
 
 export class InspecaoFiltro {
-  nome: string;
-  metodo: number;
-  uf: string;
+  risco: number;
+  potencial: number;
+  dataDe: Date;
+  dataAte: Date;
 }
 
 @Injectable({
@@ -26,17 +27,12 @@ export class InspecoesService {
     // const headers = new HttpHeaders().append('Authorization', 'Basic d2FuZXJzYmhAZ21haWwuY29tOmFkbWlu');
     let params = new HttpParams();
 
-    // TODO: Alterar os filtros
-    if (filtro.nome) {
-      params = params.set('nome', filtro.nome);
+    if (filtro.risco) {
+      params = params.set('risco', filtro.risco.toString());
     }
 
-    if (filtro.metodo) {
-      params = params.set('metodo', filtro.metodo.toString());
-    }
-
-    if (filtro.uf) {
-      params = params.set('uf', filtro.uf );
+    if (filtro.potencial) {
+      params = params.set('potencial', filtro.potencial.toString());
     }
 
     return this.http.get(this.inspecoesUrl, {  params }) // headers,

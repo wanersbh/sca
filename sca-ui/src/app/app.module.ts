@@ -1,4 +1,3 @@
-import { SegurancaModule } from './seguranca/seguranca.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule, LOCALE_ID } from '@angular/core';
@@ -11,10 +10,12 @@ import { CoreModule } from './core/core.module';
 import { CategoriasModule } from './categorias/categorias.module';
 import { ManutencoesModule } from './manutencoes/manutencoes.module';
 import { AtivosModule } from './ativos/ativos.module';
+import { SegurancaModule } from './seguranca/seguranca.module';
 
-import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
+import { AppComponent } from './app.component';
 import { BarragensModule } from './barragens/barragens.module';
+import { InspecoesModule } from './inspecoes/inspecoes.module';
 
 
 
@@ -37,6 +38,7 @@ registerLocaleData(ptBr);
     BarragensModule,
     CategoriasModule,
     SegurancaModule,
+    InspecoesModule,
     AppRoutingModule
   ],
   providers: [
