@@ -1,1 +1,58 @@
-<p>inspecoes-cadastro works!</p>
+<div class="container">
+
+  <form #f="ngForm" autocomplete="off" (ngSubmit)="salvar(f)">
+
+    <div class="ui-g">
+
+      <div class="ui-g-12">
+        <h1>{{ editando ? 'Editar' : 'Nova' }} Inspeção</h1>
+      </div>
+
+      <div class="ui-g-12 ui-md-6 ui-fluid">
+        <label>Barragem</label>
+        <p-dropdown [options]="barragens" placeholder="Selecione" ngModel name="barragem" #barragem=ngModel required
+          [(ngModel)]="inspecao.barragem.codigo" [filter]="true"></p-dropdown>
+      </div>
+
+      <div class="ui-g-6 ui-md-6  ui-fluid">
+        <label>Altura</label>
+        <input pInputText type="text" name="altura" ngModel #nome="ngModel" [(ngModel)]="inspecao.altura" required>
+      </div>
+
+      <div class="ui-g-6 ui-md-3 ui-fluid">
+        <label>Data</label>
+        <p-calendar dateFormat="dd/mm/yy" [inline]="false" [readonlyInput]="true" [showIcon]="false" [locale]="br"
+          name="data" ngModel #data="ngModel" required [(ngModel)]="inspecao.data"></p-calendar>
+
+      </div>
+
+      <div class="ui-g-4 ui-fluid">
+        <label>Risco</label>
+        <p-dropdown [options]="niveis" placeholder="Selecione" ngModel name="risco" #risco=ngModel
+          [(ngModel)]="inspecao.risco"></p-dropdown>
+      </div>
+
+      <div class="ui-g-4 ui-fluid">
+        <label>Potencial</label>
+        <p-dropdown [options]="niveis" placeholder="Selecione" ngModel name="potencial" #potencial=ngModel
+          [(ngModel)]="inspecao.potencial"></p-dropdown>
+      </div>
+
+
+      <div class="ui-g-12 ui-fluid">
+        <label style="display: block">Observação</label>
+        <textarea pInputTextarea [rows]="6" name="observacao" [(ngModel)]="inspecao.observacao"></textarea>
+      </div>
+
+      <div class="ui-g-12">
+        <button pButton type="submit" label="Salvar" [disabled]="f.invalid" style="margin: 2px"></button>
+        <button pButton type="button" label="Novo" class="ui-button-info" style="margin: 2px"
+          (click)="novo(f)"></button>
+        <a routerLink="/inspecoes">Voltar para a pesquisa</a>
+      </div>
+
+    </div>
+
+  </form>
+
+</div>

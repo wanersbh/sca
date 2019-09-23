@@ -24,10 +24,12 @@
          text="Informe um tipo"></app-message>
       </div>
 
-      <div class="ui-g-6 ui-md-3 ui-fluid">
+      <div class="ui-g-12 ui-md-6 ui-lg-4 ui-fluid">
         <label>Data Agendada</label>
         <p-calendar dateFormat="dd/mm/yy"
-        [inline]="false" [readonlyInput]="true"
+        [inline]="false"
+        [readonlyInput]="true"
+        [showTime]="true"
         [showIcon]="false" [locale]="br" name="dataAgendada" ngModel #dataAgendada="ngModel" required
         [(ngModel)]="manutencao.dataAgendada"></p-calendar>
 
@@ -35,10 +37,12 @@
         text="Informe a data agendada"></app-message>
       </div>
 
-      <div class="ui-g-6 ui-md-3 ui-fluid">
+      <div class="ui-g-12 ui-md-6 ui-lg-4 ui-fluid">
         <label>Data Realizada</label>
         <p-calendar dateFormat="dd/mm/yy"
-        [inline]="false" [readonlyInput]="true"
+        [inline]="false"
+        [readonlyInput]="true"
+        [showTime]="true"
         [showIcon]="false" [locale]="br" name="dataRealizada"
         [(ngModel)]="manutencao.dataRealizada"></p-calendar>
       </div>

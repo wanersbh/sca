@@ -1,12 +1,14 @@
-import { ToastrService } from 'ngx-toastr';
-import { ErrorHandlerService } from './../../core/error-handler.service';
-import { ManutencoesService } from './../manutencoes.service';
-import { AtivosService } from './../../ativos/ativos.service';
 import { Component, OnInit } from '@angular/core';
-import { Manutencao } from 'src/app/core/model';
 import { FormControl, NgForm } from '@angular/forms';
 import { Title } from '@angular/platform-browser';
 import { Router, ActivatedRoute } from '@angular/router';
+
+import { ToastrService } from 'ngx-toastr';
+
+import { ErrorHandlerService } from './../../core/error-handler.service';
+import { ManutencoesService } from './../manutencoes.service';
+import { AtivosService } from './../../ativos/ativos.service';
+import { Manutencao } from 'src/app/core/model';
 
 @Component({
   selector: 'app-manutencoes-cadastro',

@@ -1,3 +1,4 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { ToastrService } from 'ngx-toastr';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
@@ -12,37 +13,27 @@ export class ErrorHandlerService {
   constructor(
     private toastr: ToastrService,
     private router: Router
-    ) { }
+  ) { }
 
   handle(errorResponse: any) {
     let msg: string;
+    let errors;
 
-    console.log('Erro response: ');
-    console.log(errorResponse);
+    msg = 'Erro ao processar serviço remoto. Tente novamente.';
+    console.error('Ocorreu um erro', errorResponse);
 
     if (typeof errorResponse === 'string') {
       msg = errorResponse;
 
-    } else if (errorResponse instanceof Response
+    } else if (errorResponse instanceof HttpErrorResponse
       && errorResponse.status >= 400 && errorResponse.status <= 499) {
-      let errors;
-      msg = 'Ocorreu um erro ao processar a sua solicitação';
+      errors = errorResponse.error;
+      msg = errors[0].mensagemUsuario;
 
-      if (errorResponse.status === 403) {
-        msg = 'Você não tem permissão para realizar essa operação.';
-      }
-
-      try {
-        errors = errorResponse.json();
-
-        msg = errors[0].mensagemUsuario;
-      } catch (e) { }
-
-      console.error('Ocorreu um erro', errorResponse);
-
+    } else if (errorResponse.status === 403) {
+      msg = 'Você não tem permissão para realizar essa operação.';
     } else {
-      msg = 'Erro ao processar serviço remoto. Tente novamente.';
-      console.error('Ocorreu um erro', errorResponse);
+      msg = 'Ocorreu um erro ao processar a sua solicitação';
     }
 
     this.toastr.error(msg);

@@ -8,18 +8,18 @@
         </div>
 
         <p-fieldset legend="Filtro">
-          <div class="ui-g-6 ui-fluid">
+          <div class="ui-g-12 ui-md-6 ui-lg-4 ui-fluid">
             <label>Nome</label>
             <input pInputText type="text" name="nome" [(ngModel)]="filtro.nome">
           </div>
 
-          <div class="ui-g-4 ui-fluid">
+          <div class="ui-g-12 ui-md-6 ui-lg-4 ui-fluid">
             <label>Método</label>
             <p-dropdown [options]="metodos" placeholder="Selecione" ngModel name="metodo" #metodo=ngModel
               [(ngModel)]="filtro.metodo"></p-dropdown>
           </div>
 
-          <div class="ui-g-2 ui-fluid">
+          <div class="ui-g-12 ui-md-6 ui-lg-4 ui-fluid">
             <label>UF</label>
             <p-dropdown [options]="ufs" placeholder="Selecione" ngModel name="uf" #metodo=ngModel
               [(ngModel)]="filtro.uf" [filter]="true"></p-dropdown>
