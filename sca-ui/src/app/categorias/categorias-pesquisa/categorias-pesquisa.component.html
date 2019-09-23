@@ -22,13 +22,13 @@
         <ng-template pTemplate="header">
           <tr>
             <th>Nome</th>
-            <th class="col-acoes"></th>
+            <th style="width: 100px"></th>
           </tr>
         </ng-template>
         <ng-template pTemplate="body" let-categoria>
           <tr>
             <td>{{categoria.nome}}</td>
-            <td class="col-acoes">
+            <td >
               <a pButton icon="pi pi-pencil" pTooltip="Editar" tooltipPosition="top"></a>
               <button pButton icon="pi pi-trash" pTooltip="Excluir" tooltipPosition="top"></button>
             </td>

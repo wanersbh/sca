@@ -1,7 +1,6 @@
 import { InspecoesPesquisaComponent } from './inspecoes-pesquisa/inspecoes-pesquisa.component';
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { Routes } from '@angular/router';
+import { Routes, RouterModule } from '@angular/router';
 import { InspecoesCadastroComponent } from './inspecoes-cadastro/inspecoes-cadastro.component';
 
 

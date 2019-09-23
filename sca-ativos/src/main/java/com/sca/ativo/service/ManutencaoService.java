@@ -69,7 +69,7 @@ public class ManutencaoService {
 
 	}
 	
-	@Scheduled(fixedDelay = 10000)
+	@Scheduled(fixedDelay = 1000 * 60 * 30)
 	public void enviarMensagemParaFila() {
 		scaQueueSender.send("Data e hora: "+ Calendar.getInstance().getTime());
 	}
