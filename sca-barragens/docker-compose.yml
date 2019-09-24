@@ -1,0 +1,35 @@
+version: '3'
+services:
+
+    db:
+      image: mysql
+      command: --default-authentication-plugin=mysql_native_password
+      restart: always
+      environment:
+        MYSQL_ROOT_PASSWORD: L1v93@2048
+   
+    node1:
+        build:
+            dockerfile: ./Dockerfile
+            context: .
+        image: waner/sca-barragens
+        container_name: barragens-1
+        ports:
+            - "8280"
+        networks:
+            - production-network
+
+    node2:
+        build:
+            dockerfile: ./Dockerfile
+            context: .
+        image: tjmg/saldo-processual
+        container_name: barragens-2
+        ports:
+            - "8280"
+        networks:
+            - production-network
+
+networks:
+    production-network:
+        driver: bridge
