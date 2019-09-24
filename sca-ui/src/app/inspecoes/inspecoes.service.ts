@@ -19,7 +19,7 @@ export class InspecoesService {
   inspecoesUrl: string;
 
   constructor(private http: HttpClient) {
-    this.inspecoesUrl =  `${environment.apiBarragemUrl}/inspecoes`;
+    this.inspecoesUrl =  `${environment.apiUrl}/sca-barragens/inspecoes`;
    }
 
    pesquisar(filtro: InspecaoFiltro): Promise<any> {

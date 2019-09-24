@@ -22,7 +22,7 @@ export class AtivosService {
   ativosUrl: string;
 
   constructor(private http: HttpClient) {
-    this.ativosUrl = `${environment.apiAtivoUrl}/ativos`;
+    this.ativosUrl = `${environment.apiUrl}/sca-ativos/ativos`;
   }
 
   pesquisar(filtro: AtivoFiltro): Promise<any> {

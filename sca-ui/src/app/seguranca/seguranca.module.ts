@@ -11,6 +11,7 @@ import { LoginFormComponent } from './login-form/login-form.component';
 import { SegurancaRoutingModule } from './seguranca-routing.module';
 import { ScaHttpInterceptor } from './sca-http-interceptor';
 import { AuthGuard } from './auth.guard';
+import { environment } from 'src/environments/environment';
 
 export function tokenGetter(): string {
   return localStorage.getItem('token');
@@ -29,8 +30,8 @@ export function tokenGetter(): string {
     JwtModule.forRoot({
       config: {
         tokenGetter: tokenGetter,
-        whitelistedDomains: ['localhost:8180'],
-        blacklistedRoutes: ['http://localhost:8180/oauth/token']
+        whitelistedDomains: ['localhost:8080'],
+        blacklistedRoutes: ['http://localhost:8080/api/sca-ativos/oauth/token']
       }
     })
   ],

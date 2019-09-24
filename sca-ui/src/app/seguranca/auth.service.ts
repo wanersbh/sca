@@ -18,8 +18,8 @@ export class AuthService {
     private jwtHelperService: JwtHelperService
   ) {
     this.carregarToken();
-    this.oauthTokenUrl = `${environment.apiAtivoUrl}/oauth/token`;
-    this.tokensRevokeUrl = `${environment.apiAtivoUrl}/tokens/revoke`;
+    this.oauthTokenUrl = `${environment.apiUrl}/sca-ativos/oauth/token`;
+    this.tokensRevokeUrl = `${environment.apiUrl}/sca-ativos/tokens/revoke`;
   }
 
   login(usuario: string, senha: string): Promise<void> {

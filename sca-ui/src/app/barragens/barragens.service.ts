@@ -17,7 +17,7 @@ export class BarragensService {
   barragensUrl: string;
 
   constructor(private http: HttpClient) {
-    this.barragensUrl =  `${environment.apiBarragemUrl}/barragens`;
+    this.barragensUrl =  `${environment.apiUrl}/sca-barragens/barragens`;
    }
 
    pesquisar(filtro: BarragemFiltro): Promise<any> {

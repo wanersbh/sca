@@ -21,7 +21,7 @@ export class ManutencoesService {
   manutencoesUrl: string;
 
   constructor(private http: HttpClient) {
-    this.manutencoesUrl = `${environment.apiAtivoUrl}/manutencoes`;
+    this.manutencoesUrl = `${environment.apiUrl}/sca-ativos/manutencoes`;
   }
 
   pesquisar(filtro: ManutencaoFiltro): Promise<any> {
