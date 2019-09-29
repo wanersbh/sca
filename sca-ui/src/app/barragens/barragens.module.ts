@@ -18,10 +18,14 @@ import { BarragensRoutingModule } from './barragens-routing.module';
 
 import { BarragensCadastroComponent } from './barragens-cadastro/barragens-cadastro.component';
 import { BarragensPesquisaComponent } from './barragens-pesquisa/barragens-pesquisa.component';
+import { SensoresPesquisaComponent } from './sensores-pesquisa/sensores-pesquisa.component';
+import { SensoresCadastroComponent } from './sensores-cadastro/sensores-cadastro.component';
+import { MonitoramentosCadastroComponent } from './monitoramentos-cadastro/monitoramentos-cadastro.component';
+import { MonitoramentosPesquisaComponent } from './monitoramentos-pesquisa/monitoramentos-pesquisa.component';
 
 
 @NgModule({
-  declarations: [BarragensCadastroComponent, BarragensPesquisaComponent],
+  declarations: [BarragensCadastroComponent, BarragensPesquisaComponent, SensoresPesquisaComponent, SensoresCadastroComponent, MonitoramentosCadastroComponent, MonitoramentosPesquisaComponent],
   imports: [
     CommonModule,
     FormsModule,
