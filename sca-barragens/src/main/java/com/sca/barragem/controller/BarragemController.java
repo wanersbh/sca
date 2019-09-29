@@ -24,53 +24,93 @@ import org.springframework.web.bind.annotation.RestController;
 import com.sca.barragem.event.RecursoCriadoEvent;
 import com.sca.barragem.filter.BarragemFilter;
 import com.sca.barragem.model.Barragem;
+import com.sca.barragem.model.Monitoramento;
+import com.sca.barragem.model.Sensor;
 import com.sca.barragem.repository.BarragemRepository;
+import com.sca.barragem.repository.MonitoramentoRepository;
+import com.sca.barragem.repository.SensorRepository;
 
 @RestController
 @RequestMapping("/barragens")
 public class BarragemController {
-	
+
 	@Autowired
 	private BarragemRepository barragemRepository;
 	
 	@Autowired
-	private ApplicationEventPublisher publisher;
+	private SensorRepository sensorRepository;
 	
+	@Autowired
+	private MonitoramentoRepository monitoramentoRepository;
+
+	@Autowired
+	private ApplicationEventPublisher publisher;
+
 	@GetMapping
 //	@PreAuthorize("hasAuthority('ROLE_PESQUISAR_ATIVO') and #oauth2.hasScope('read')")
 	public List<Barragem> pesquisar(BarragemFilter barragemFilter) {
 		return barragemRepository.filtrar(barragemFilter);
 	}
+
+	@GetMapping("/{codigoBarragem}/sensores")
+	public List<Sensor> sensores(@PathVariable Long codigoBarragem) {
+		Barragem barragem = new Barragem(codigoBarragem);
+		return sensorRepository.sensores(barragem);
+	}
 	
-//	@GetMapping
-//	public List<Barragem> listar() {
-//		return barragemRepository.findAll();
-//	}
 	
+	@GetMapping("/{codigoBarragem}/monitoramentos")
+	public List<Monitoramento> monitoramentos(@PathVariable Long codigoBarragem) {
+		Barragem barragem = new Barragem(codigoBarragem); 
+		return monitoramentoRepository.monitoramentos(barragem);
+	}
+	
+
 	@GetMapping("/{codigo}")
 	public ResponseEntity<Barragem> buscarPorCodigo(@PathVariable Long codigo) {
 		Barragem barragemRetornada = barragemRepository.findById(codigo).orElse(null);
 
 		return barragemRetornada != null ? ResponseEntity.ok(barragemRetornada) : ResponseEntity.notFound().build();
 	}
-	
-	@PutMapping("/{codigo}")
-	public ResponseEntity<Barragem> atualizar(@PathVariable Long codigo, @Valid @RequestBody Barragem barragemAlterada) {
 
-		Barragem barragemBase = barragemRepository.findById(codigo).orElseThrow(() -> new EmptyResultDataAccessException(1));
+	@PutMapping("/{codigo}")
+	public ResponseEntity<Barragem> atualizar(@PathVariable Long codigo,
+			@Valid @RequestBody Barragem barragemAlterada) {
+
+		Barragem barragemBase = barragemRepository.findById(codigo)
+				.orElseThrow(() -> new EmptyResultDataAccessException(1));
 		BeanUtils.copyProperties(barragemAlterada, barragemBase, "codigo");
 		barragemRepository.save(barragemBase);
 
 		return ResponseEntity.ok(barragemBase);
 	}
 	
+	@PutMapping("/sensores/{codigo}")
+	public ResponseEntity<Sensor> atualizar(@PathVariable Long codigo,
+			@Valid @RequestBody Sensor sensorAlterada) {
+
+		Sensor sensorBase = sensorRepository.findById(codigo)
+				.orElseThrow(() -> new EmptyResultDataAccessException(1));
+		BeanUtils.copyProperties(sensorAlterada, sensorBase, "codigo");
+		sensorRepository.save(sensorBase);
+
+		return ResponseEntity.ok(sensorBase);
+	}
+
+
 	@PostMapping
 	public ResponseEntity<Barragem> criar(@Valid @RequestBody Barragem barragem, HttpServletResponse response) {
 		Barragem barragemSalva = barragemRepository.save(barragem);
 		publisher.publishEvent(new RecursoCriadoEvent(this, response, barragemSalva.getCodigo()));
 		return ResponseEntity.status(HttpStatus.CREATED).body(barragemSalva);
 	}
-	
+
+	@PostMapping("/sensores")
+	public ResponseEntity<Sensor> criarSensor(@Valid @RequestBody Sensor sensor, HttpServletResponse response) {
+		Sensor sensorSalvo = sensorRepository.save(sensor);
+		publisher.publishEvent(new RecursoCriadoEvent(this, response, sensorSalvo.getCodigo()));
+		return ResponseEntity.status(HttpStatus.CREATED).body(sensorSalvo);
+	}
 	@DeleteMapping("/{codigo}")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	public void remover(@PathVariable Long codigo) {

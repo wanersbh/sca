@@ -1,39 +1,42 @@
 package com.sca.barragem.model;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.sca.barragem.enumerator.TipoSensorEnum;
+
 @Entity
-@Table(name = "barragem")
-public class Barragem {
-	
+@Table(name = "sensor")
+public class Sensor {
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long codigo;
-	
-	private String nome;
-	
-	private Integer metodo;
-	
-	private String uf;
-	
-	@Column(name = "lat", nullable = false)
-	private Double latitude;
-	
-	@Column(name = "lng", nullable = false)
-	private Double longitude;
-	
-	public Barragem() {
-		super();
-	}
 
-	public Barragem(Long codigo) {
+	private String nome;
+
+	@Enumerated(EnumType.ORDINAL)
+	private TipoSensorEnum tipo;
+
+	
+	@ManyToOne(optional = false)
+	@JoinColumn(name = "codigo_barragem", nullable = false)
+	private Barragem barragem;
+	
+	public Sensor() { }
+
+	public Sensor(Long codigo, String nome, TipoSensorEnum tipo) {
 		super();
 		this.codigo = codigo;
+		this.nome = nome;
+		this.tipo = tipo;
 	}
 
 	public Long getCodigo() {
@@ -52,36 +55,20 @@ public class Barragem {
 		this.nome = nome;
 	}
 
-	public Integer getMetodo() {
-		return metodo;
+	public TipoSensorEnum getTipo() {
+		return tipo;
 	}
 
-	public void setMetodo(Integer metodo) {
-		this.metodo = metodo;
-	}
-	
-	public String getUf() {
-		return uf;
+	public void setTipo(TipoSensorEnum tipo) {
+		this.tipo = tipo;
 	}
 
-	public void setUf(String uf) {
-		this.uf = uf;
+	public Barragem getBarragem() {
+		return barragem;
 	}
 
-	public Double getLatitude() {
-		return latitude;
-	}
-
-	public void setLatitude(Double latitude) {
-		this.latitude = latitude;
-	}
-
-	public Double getLongitude() {
-		return longitude;
-	}
-
-	public void setLongitude(Double longitude) {
-		this.longitude = longitude;
+	public void setBarragem(Barragem barragem) {
+		this.barragem = barragem;
 	}
 
 	@Override
@@ -100,7 +87,7 @@ public class Barragem {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Barragem other = (Barragem) obj;
+		Sensor other = (Sensor) obj;
 		if (codigo == null) {
 			if (other.codigo != null)
 				return false;
@@ -108,9 +95,5 @@ public class Barragem {
 			return false;
 		return true;
 	}
-	
-	
-	
-	
 
 }

@@ -57,4 +57,5 @@ public class BarragemRepositoryImpl implements BarragemRepositoryQuery {
 
 		return predicates.toArray(new Predicate[predicates.size()]);
 	}
+
 }

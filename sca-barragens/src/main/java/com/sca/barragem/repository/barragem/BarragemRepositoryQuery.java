@@ -10,4 +10,5 @@ public interface BarragemRepositoryQuery {
 
 	
 	public List<Barragem> filtrar(BarragemFilter barragemFilter);
+	
 }
