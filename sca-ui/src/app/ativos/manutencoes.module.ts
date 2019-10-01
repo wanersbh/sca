@@ -1,6 +1,7 @@
+import { ManutencoesRoutingModule } from './manutencoes-routing.module';
+import { FormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
 
 import { InputTextModule } from 'primeng/components/inputtext/inputtext';
 import { ButtonModule } from 'primeng/components/button/button';
@@ -9,17 +10,13 @@ import { TooltipModule } from 'primeng/components/tooltip/tooltip';
 import { InputTextareaModule } from 'primeng/components/inputtextarea/inputtextarea';
 import { CalendarModule } from 'primeng/components/calendar/calendar';
 import { DropdownModule } from 'primeng/components/dropdown/dropdown';
-import { SharedModule } from 'primeng/components/common/shared';
-import { FieldsetModule } from 'primeng/components/fieldset/fieldset';
-import { RadioButtonModule } from 'primeng/components/radiobutton/radiobutton';
-import { InspecoesRoutingModule } from './inspecoes-routing.module';
+import {FieldsetModule} from 'primeng/components/fieldset/fieldset';
+import {RadioButtonModule} from 'primeng/components/radiobutton/radiobutton';
 
-import { InspecoesPesquisaComponent } from './inspecoes-pesquisa/inspecoes-pesquisa.component';
-import { InspecoesCadastroComponent } from './inspecoes-cadastro/inspecoes-cadastro.component';
-
-
+import { ManutencoesPesquisaComponent } from './manutencoes-pesquisa/manutencoes-pesquisa.component';
+import { ManutencoesCadastroComponent } from './manutencoes-cadastro/manutencoes-cadastro.component';
+import { SharedModule } from '../shared/shared.module';
 @NgModule({
-  declarations: [InspecoesPesquisaComponent, InspecoesCadastroComponent],
   imports: [
     CommonModule,
     FormsModule,
@@ -33,7 +30,12 @@ import { InspecoesCadastroComponent } from './inspecoes-cadastro/inspecoes-cadas
     SharedModule,
     FieldsetModule,
     RadioButtonModule,
-    InspecoesRoutingModule,
-  ]
+    ManutencoesRoutingModule
+  ],
+  declarations: [
+    ManutencoesCadastroComponent,
+    ManutencoesPesquisaComponent
+  ],
+  exports: []
 })
-export class InspecoesModule { }
+export class ManutencoesModule { }

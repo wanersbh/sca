@@ -5,9 +5,9 @@ import { Router, ActivatedRoute } from '@angular/router';
 
 import { ToastrService } from 'ngx-toastr';
 
-import { ErrorHandlerService } from './../../core/error-handler.service';
+import { ErrorHandlerService } from '../../core/error-handler.service';
 import { ManutencoesService } from './../manutencoes.service';
-import { AtivosService } from './../../ativos/ativos.service';
+import { AtivosService } from '../ativos.service';
 import { Manutencao } from 'src/app/core/model';
 
 @Component({

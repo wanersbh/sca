@@ -6,9 +6,9 @@ import { FormControl, NgForm } from '@angular/forms';
 
 import { ToastrService } from 'ngx-toastr';
 
-import { Inspecao } from './../../core/model';
+import { Inspecao } from '../../core/model';
 import { InspecoesService } from '../inspecoes.service';
-import { BarragensService } from './../../barragens/barragens.service';
+import { BarragensService } from '../barragens.service';
 import { ErrorHandlerService } from 'src/app/core/error-handler.service';
 
 @Component({

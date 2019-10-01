@@ -3,7 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { ManutencoesPesquisaComponent } from './manutencoes-pesquisa/manutencoes-pesquisa.component';
 import { ManutencoesCadastroComponent } from './manutencoes-cadastro/manutencoes-cadastro.component';
-import { AuthGuard } from './../seguranca/auth.guard';
+import { AuthGuard } from '../seguranca/auth.guard';
 
 const routes: Routes = [
   {

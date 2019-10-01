@@ -3,7 +3,7 @@ import { LoginFormComponent } from './seguranca/login-form/login-form.component'
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { CategoriasPesquisaComponent } from './categorias/categorias-pesquisa/categorias-pesquisa.component';
+import { CategoriasPesquisaComponent } from './ativos/categorias-pesquisa/categorias-pesquisa.component';
 import { PaginaNaoEncontradaComponent } from './core/pagina-nao-encontrada.component';
 import { NaoAutorizadoComponent } from './core/nao-autorizado.component';
 

@@ -22,10 +22,22 @@ import { SensoresPesquisaComponent } from './sensores-pesquisa/sensores-pesquisa
 import { SensoresCadastroComponent } from './sensores-cadastro/sensores-cadastro.component';
 import { MonitoramentosCadastroComponent } from './monitoramentos-cadastro/monitoramentos-cadastro.component';
 import { MonitoramentosPesquisaComponent } from './monitoramentos-pesquisa/monitoramentos-pesquisa.component';
+import { InspecoesRoutingModule } from './inspecoes-routing.module';
+import { InspecoesCadastroComponent } from './inspecoes-cadastro/inspecoes-cadastro.component';
+import { InspecoesPesquisaComponent } from './inspecoes-pesquisa/inspecoes-pesquisa.component';
 
 
 @NgModule({
-  declarations: [BarragensCadastroComponent, BarragensPesquisaComponent, SensoresPesquisaComponent, SensoresCadastroComponent, MonitoramentosCadastroComponent, MonitoramentosPesquisaComponent],
+  declarations: [
+    BarragensCadastroComponent,
+    BarragensPesquisaComponent,
+    InspecoesCadastroComponent,
+    InspecoesPesquisaComponent,
+    SensoresPesquisaComponent,
+    SensoresCadastroComponent,
+    MonitoramentosCadastroComponent,
+    MonitoramentosPesquisaComponent
+  ],
   imports: [
     CommonModule,
     FormsModule,
@@ -39,7 +51,9 @@ import { MonitoramentosPesquisaComponent } from './monitoramentos-pesquisa/monit
     SharedModule,
     FieldsetModule,
     RadioButtonModule,
+
     BarragensRoutingModule,
+    InspecoesRoutingModule,
 
     AgmCoreModule.forRoot({
       apiKey: ' '

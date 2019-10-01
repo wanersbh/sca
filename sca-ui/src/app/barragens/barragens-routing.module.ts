@@ -4,6 +4,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { AuthGuard } from '../seguranca/auth.guard';
 import { BarragensPesquisaComponent } from './barragens-pesquisa/barragens-pesquisa.component';
 import { BarragensCadastroComponent } from './barragens-cadastro/barragens-cadastro.component';
+import { MonitoramentosPesquisaComponent } from './monitoramentos-pesquisa/monitoramentos-pesquisa.component';
 
 const routes: Routes = [
   {
@@ -21,6 +22,12 @@ const routes: Routes = [
   {
     path: 'barragens/:codigo',
     component: BarragensCadastroComponent
+    // canActivate: [AuthGuard],
+    // data: { roles: ['ROLE_PESQUISAR_BARRAGEM'] }
+  },
+  {
+    path: 'monitoramentos',
+    component: MonitoramentosPesquisaComponent
     // canActivate: [AuthGuard],
     // data: { roles: ['ROLE_PESQUISAR_BARRAGEM'] }
   },

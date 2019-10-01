@@ -6,7 +6,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 
 import { Ativo } from 'src/app/core/model';
-import { CategoriasService } from './../../categorias/categorias.service';
+import { CategoriasService } from '../categorias.service';
 import { AtivosService } from '../ativos.service';
 import { ErrorHandlerService } from './../../core/error-handler.service';
 @Component({

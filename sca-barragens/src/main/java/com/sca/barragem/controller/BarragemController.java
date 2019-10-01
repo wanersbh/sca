@@ -65,6 +65,11 @@ public class BarragemController {
 		return monitoramentoRepository.monitoramentos(barragem);
 	}
 	
+	@GetMapping("/monitoramentos")
+	public List<Monitoramento> buscaTodosMonitoramentos() {
+		return monitoramentoRepository.buscaTodos();
+	}
+	
 
 	@GetMapping("/{codigo}")
 	public ResponseEntity<Barragem> buscarPorCodigo(@PathVariable Long codigo) {

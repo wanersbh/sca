@@ -1,3 +1,4 @@
+import { CategoriasPesquisaComponent } from './categorias-pesquisa/categorias-pesquisa.component';
 import { AtivosRoutingModule } from './ativos-routing.module';
 import { FormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
@@ -16,6 +17,9 @@ import { RadioButtonModule } from 'primeng/components/radiobutton/radiobutton';
 import { AtivosPesquisaComponent } from './ativos-pesquisa/ativos-pesquisa.component';
 import { AtivosCadastroComponent } from './ativos-cadastro/ativos-cadastro.component';
 import { SharedModule } from '../shared/shared.module';
+import { ManutencoesRoutingModule } from './manutencoes-routing.module';
+import { ManutencoesCadastroComponent } from './manutencoes-cadastro/manutencoes-cadastro.component';
+import { ManutencoesPesquisaComponent } from './manutencoes-pesquisa/manutencoes-pesquisa.component';
 
 @NgModule({
   imports: [
@@ -31,12 +35,16 @@ import { SharedModule } from '../shared/shared.module';
     SharedModule,
     FieldsetModule,
     RadioButtonModule,
-    AtivosRoutingModule
+
+    AtivosRoutingModule,
+    ManutencoesRoutingModule
   ],
   declarations: [
     AtivosPesquisaComponent,
-    AtivosCadastroComponent
-
+    AtivosCadastroComponent,
+    CategoriasPesquisaComponent,
+    ManutencoesCadastroComponent,
+    ManutencoesPesquisaComponent
   ],
   exports: []
 })

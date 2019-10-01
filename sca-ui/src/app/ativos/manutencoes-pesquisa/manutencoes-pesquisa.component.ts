@@ -5,7 +5,7 @@ import { LazyLoadEvent, ConfirmationService } from 'primeng/components/common/ap
 import { Table } from 'primeng/components/table/table';
 
 import { ManutencoesService, ManutencaoFiltro } from '../manutencoes.service';
-import { ErrorHandlerService } from './../../core/error-handler.service';
+import { ErrorHandlerService } from '../../core/error-handler.service';
 import { Title } from '@angular/platform-browser';
 import { AuthService } from 'src/app/seguranca/auth.service';
 
