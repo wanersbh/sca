@@ -2,10 +2,19 @@ package com.sca.barragem.enumerator;
 
 public enum StatusEnum {
 	
-	ALTO,
-	MEDIO,
-	NORMAL,
-	BAIXO,
-	MUITO_BAIXO;
+	DESATIVADO("Desativado"),
+	ESTAVEL("Estável"),
+	ALERTA("Alerta"),
+	CRITICO("Crítico");
+	
+	private String descricao;
+
+	private StatusEnum(String descricao) {
+		this.descricao = descricao;
+	}
+	
+	public String getDescricao() {
+		return descricao;
+	}
 	
 }

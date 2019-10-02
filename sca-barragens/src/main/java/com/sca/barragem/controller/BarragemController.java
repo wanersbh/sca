@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.sca.barragem.dto.MonitoramentoDTO;
 import com.sca.barragem.event.RecursoCriadoEvent;
 import com.sca.barragem.filter.BarragemFilter;
 import com.sca.barragem.model.Barragem;
@@ -29,6 +30,7 @@ import com.sca.barragem.model.Sensor;
 import com.sca.barragem.repository.BarragemRepository;
 import com.sca.barragem.repository.MonitoramentoRepository;
 import com.sca.barragem.repository.SensorRepository;
+import com.sca.barragem.service.BarragemService;
 
 @RestController
 @RequestMapping("/barragens")
@@ -36,6 +38,9 @@ public class BarragemController {
 
 	@Autowired
 	private BarragemRepository barragemRepository;
+	
+	@Autowired
+	private BarragemService barragemService;
 	
 	@Autowired
 	private SensorRepository sensorRepository;
@@ -66,8 +71,8 @@ public class BarragemController {
 	}
 	
 	@GetMapping("/monitoramentos")
-	public List<Monitoramento> buscaTodosMonitoramentos() {
-		return monitoramentoRepository.buscaTodos();
+	public List<MonitoramentoDTO> buscaTodosMonitoramentos() {
+		return barragemService.retornaMonitoramentos();
 	}
 	
 
@@ -88,6 +93,12 @@ public class BarragemController {
 		barragemRepository.save(barragemBase);
 
 		return ResponseEntity.ok(barragemBase);
+	}
+	
+	@PutMapping("/alerta/barragem/{codigo}")
+	public void alertaRompimentoBarragem(@PathVariable Long codigo) {
+		barragemService.alertaDeRompimentoBarragem(codigo);
+		ResponseEntity.noContent();
 	}
 	
 	@PutMapping("/sensores/{codigo}")

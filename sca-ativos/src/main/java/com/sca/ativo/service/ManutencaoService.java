@@ -14,7 +14,7 @@ import org.springframework.stereotype.Service;
 import com.sca.ativo.mail.Mailer;
 import com.sca.ativo.model.Manutencao;
 import com.sca.ativo.model.Usuario;
-import com.sca.ativo.queue.ScaQueueSender;
+import com.sca.ativo.queue.ScaAtivosQueueSender;
 import com.sca.ativo.repository.ManutencaoRepository;
 import com.sca.ativo.repository.UsuarioRepository;
 
@@ -35,7 +35,7 @@ public class ManutencaoService {
 	private Mailer mailer;
 	
 	@Autowired
-	private ScaQueueSender scaQueueSender;
+	private ScaAtivosQueueSender scaQueueSender;
 
 //	@Scheduled(cron = "0 10 10 * * *")
 	@Scheduled(fixedDelay = 1000 * 60 * 30)

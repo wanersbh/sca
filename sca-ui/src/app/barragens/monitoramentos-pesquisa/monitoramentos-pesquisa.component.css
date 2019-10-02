@@ -1,0 +1,15 @@
+.estavel {
+  background-color: rgb(207, 235, 225) !important;
+  color: #000000 !important;
+}
+
+.alerta {
+  background-color: rgb(226, 225, 141) !important;
+  color: #000000 !important;
+}
+
+.critico {
+  background-color: rgb(211, 95, 95) !important;
+  color: #000000 !important;
+  font: bold;
+}

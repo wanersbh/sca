@@ -7,9 +7,9 @@ import org.springframework.stereotype.Component;
 @Component
 public class ScaConsumer {
 	
-	@RabbitListener(queues = {"${queue.sca.name}"})
-    public void receive(@Payload String fileBody) {
-		System.out.println("Consumindo: "+ fileBody);
-    }
+//	@RabbitListener(queues = {"${queue.sca.name}"})
+//    public void receive(@Payload String fileBody) {
+//		System.out.println("Consumindo: "+ fileBody);
+//    }
 
 }

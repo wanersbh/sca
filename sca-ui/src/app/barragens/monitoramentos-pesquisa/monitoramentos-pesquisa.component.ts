@@ -5,11 +5,13 @@ import { Table } from 'primeng/components/table/table';
 
 import { MonitoramentosService } from '../monitoramentos.service';
 import { AuthService } from 'src/app/seguranca/auth.service';
+import { MessageService } from 'primeng/components/common/api';
 
 @Component({
   selector: 'app-monitoramentos-pesquisa',
   templateUrl: './monitoramentos-pesquisa.component.html',
-  styleUrls: ['./monitoramentos-pesquisa.component.css']
+  styleUrls: ['./monitoramentos-pesquisa.component.css'],
+  providers: [MessageService]
 })
 export class MonitoramentosPesquisaComponent implements OnInit {
 
@@ -22,6 +24,7 @@ export class MonitoramentosPesquisaComponent implements OnInit {
   constructor(
     private monitoramentosService: MonitoramentosService,
     private title: Title,
+    private messageService: MessageService,
     public auth: AuthService
   ) { }
 
@@ -29,10 +32,10 @@ export class MonitoramentosPesquisaComponent implements OnInit {
     this.cols = [
       { field: 'codigo', header: 'Código' },
       { field: 'barragem', header: 'Barragem' },
-      { field: 'monitoramento.sensor.nome', header: 'Sensor' },
+      { field: 'sensor', header: 'Sensor' },
       { field: 'status', header: 'Status' },
       { field: 'data', header: 'Data' }
-  ];
+    ];
     this.pesquisar();
     this.title.setTitle('Pesquisa monitoramento');
 
@@ -45,5 +48,50 @@ export class MonitoramentosPesquisaComponent implements OnInit {
       this.monitoramentos = resultado;
     });
   }
+
+  retornarClasse(monitoramento: any) {
+    if (monitoramento.status === 'Estável') {
+      return 'estavel';
+    }
+
+    if (monitoramento.status === 'Alerta') {
+      return 'alerta';
+    }
+
+    if (this.ehCritico(monitoramento)) {
+      return 'critico';
+    }
+  }
+
+  ehCritico(monitoramento: any) {
+    return monitoramento.status === 'Crítico';
+  }
+
+  onReject() {
+    this.messageService.clear('c');
+  }
+
+  onConfirm() {
+    this.messageService.clear('c');
+    this.alertaSonoro();
+  }
+
+  showConfirm(monitoramento: any) {
+    this.messageService.clear();
+    this.messageService.add({ key: 'c', sticky: true, severity: 'warn', summary: 'Aviso de evacuação!',
+    detail: `Existe risco da ${monitoramento.barragem} se romper, deseja emitir o alerta para todos?`});
+  }
+
+  // https://www.treinaweb.com.br/blog/gerando-sons-com-a-web-audio-api-do-javascript/
+  alertaSonoro() {
+    const context = new AudioContext();
+    const oscillator = context.createOscillator();
+
+    oscillator.type = 'square';
+    oscillator.connect(context.destination);
+    oscillator.start();
+  }
+
+
 
 }

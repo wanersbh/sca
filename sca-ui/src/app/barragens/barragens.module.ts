@@ -14,8 +14,9 @@ import { DropdownModule } from 'primeng/components/dropdown/dropdown';
 import { SharedModule } from 'primeng/components/common/shared';
 import { FieldsetModule } from 'primeng/components/fieldset/fieldset';
 import { RadioButtonModule } from 'primeng/components/radiobutton/radiobutton';
-import { BarragensRoutingModule } from './barragens-routing.module';
+import {ToastModule} from 'primeng/toast';
 
+import { BarragensRoutingModule } from './barragens-routing.module';
 import { BarragensCadastroComponent } from './barragens-cadastro/barragens-cadastro.component';
 import { BarragensPesquisaComponent } from './barragens-pesquisa/barragens-pesquisa.component';
 import { SensoresPesquisaComponent } from './sensores-pesquisa/sensores-pesquisa.component';
@@ -51,6 +52,7 @@ import { InspecoesPesquisaComponent } from './inspecoes-pesquisa/inspecoes-pesqu
     SharedModule,
     FieldsetModule,
     RadioButtonModule,
+    ToastModule,
 
     BarragensRoutingModule,
     InspecoesRoutingModule,
