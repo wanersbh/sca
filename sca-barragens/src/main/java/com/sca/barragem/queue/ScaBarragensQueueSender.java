@@ -16,8 +16,8 @@ public class ScaBarragensQueueSender {
     @Autowired
     private Queue queue;
  
-    public void send(Barragem barragem) {
-        rabbitTemplate.convertAndSend(this.queue.getName(), "teste");
+    public void send(String barragemJson) {
+        rabbitTemplate.convertAndSend(this.queue.getName(), barragemJson);
     }
 
 }

@@ -10,6 +10,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.sca.barragem.dto.MonitoramentoDTO;
 import com.sca.barragem.model.Barragem;
 import com.sca.barragem.model.Monitoramento;
@@ -36,13 +38,17 @@ public class BarragemService {
 		
 		Barragem barragem = barragemRepository.findById(codigoBarragem).orElse(null);
 		
+		Gson gson = new GsonBuilder().setPrettyPrinting().create();
 		
+		String barragemJson = gson.toJson(barragem);
+		
+		System.out.println(barragemJson);
 
 		if (logger.isDebugEnabled()) {
 			logger.debug("Preparando para alertar sobre o rompimento de barragem.");
 		}
 
-		scaBarragensQueueSender.send(barragem);
+		scaBarragensQueueSender.send(barragemJson);
 		
 		logger.info("Alerta enviado para o módulo de segurança e comunicação");
 

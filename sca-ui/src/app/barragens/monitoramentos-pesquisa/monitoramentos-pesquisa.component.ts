@@ -73,7 +73,7 @@ export class MonitoramentosPesquisaComponent implements OnInit {
 
   onConfirm() {
     this.messageService.clear('c');
-    this.alertaSonoro();
+    // this.alertaSonoro();
   }
 
   showConfirm(monitoramento: any) {
