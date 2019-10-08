@@ -11,7 +11,7 @@ import org.springframework.context.annotation.Bean;
 @EnableRabbit
 public class ScaBarragensApplication {
 	
-	@Value("${queue.sca.name}")
+	@Value("${sca.barragem.queue.name}")
     private String scaQueue;
 
 	public static void main(String[] args) {
