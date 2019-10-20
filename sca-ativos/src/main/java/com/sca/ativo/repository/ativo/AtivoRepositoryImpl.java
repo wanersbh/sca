@@ -18,7 +18,6 @@ import org.springframework.data.domain.Pageable;
 
 import com.sca.ativo.controller.repository.filter.AtivoFilter;
 import com.sca.ativo.model.Ativo;
-import com.sca.ativo.model.Ativo_;
 
 
 
@@ -36,7 +35,7 @@ public class AtivoRepositoryImpl implements AtivoRepositoryQuery {
 		// criar as restrições
 		Predicate[] predicates = criarRestricoes(ativoFilter, builder, root);
 		criteria.where(predicates);
-		criteria.orderBy(builder.asc(root.get(Ativo_.descricao)));
+		criteria.orderBy(builder.asc(root.get("descricao")));
 
 		TypedQuery<Ativo> query = manager.createQuery(criteria);
 		adicionarRestricoesDepaginacao(query, pageable);
@@ -79,17 +78,17 @@ public class AtivoRepositoryImpl implements AtivoRepositoryQuery {
 
 		if (StringUtils.isNotEmpty(ativoFilter.getDescricao())) {
 			predicates.add(builder.like(
-					builder.lower(root.get(Ativo_.descricao)), "%"+ ativoFilter.getDescricao().toLowerCase() +"%"  ) );
+					builder.lower(root.get("descricao")), "%"+ ativoFilter.getDescricao().toLowerCase() +"%"  ) );
 		}
 
 		if (ativoFilter.getDataAquisicaoDe() != null) {
 			predicates.add(
-					builder.greaterThanOrEqualTo(root.get(Ativo_.dataAquisicao), ativoFilter.getDataAquisicaoDe()));
+					builder.greaterThanOrEqualTo(root.get("dataAquisicao"), ativoFilter.getDataAquisicaoDe()));
 		}
 
 		if (ativoFilter.getDataAquisicaoAte() != null) {
 			predicates.add(
-					builder.lessThanOrEqualTo(root.get(Ativo_.dataAquisicao), ativoFilter.getDataAquisicaoAte()));
+					builder.lessThanOrEqualTo(root.get("dataAquisicao"), ativoFilter.getDataAquisicaoAte()));
 		}
 
 		return predicates.toArray(new Predicate[predicates.size()]);

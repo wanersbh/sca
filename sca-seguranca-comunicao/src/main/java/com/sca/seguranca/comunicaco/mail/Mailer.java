@@ -29,8 +29,8 @@ public class Mailer {
 
 	public void avisarSobreRompimento(BarragemDTO barragem, List<String> destinatarios) {
 		
-		enviarEmail("projects.was@gmail.com", destinatarios, "teste", "teste");
-		/*
+//		enviarEmail("projects.was@gmail.com", destinatarios, "teste", "teste");
+		
 		String template = "mail/aviso-risco-rompimento-barragem";
 		
 		Map<String, Object> variaveis = new HashMap<>();
@@ -38,7 +38,7 @@ public class Mailer {
 
 		this.enviarEmail("projects.was@gmail.com", destinatarios, "[SCA-ALERTA] RISCO DE ROMPIMENTO DA BARRAGEM - " + barragem.getNome(),
 				template, variaveis);
-		*/
+	
 	}
 
 

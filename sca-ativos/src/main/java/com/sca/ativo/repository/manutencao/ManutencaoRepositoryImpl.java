@@ -17,7 +17,6 @@ import org.springframework.data.domain.Pageable;
 
 import com.sca.ativo.controller.repository.filter.ManutencaoFilter;
 import com.sca.ativo.model.Manutencao;
-import com.sca.ativo.model.Manutencao_;
 
 public class ManutencaoRepositoryImpl implements ManutencaoRepositoryQuery  {
 
@@ -33,7 +32,7 @@ public class ManutencaoRepositoryImpl implements ManutencaoRepositoryQuery  {
 		// criar as restrições
 		Predicate[] predicates = criarRestricoes(manutencaoFilter, builder, root);
 		criteria.where(predicates);
-		criteria.orderBy(builder.asc(root.get(Manutencao_.dataAgendada)));
+		criteria.orderBy(builder.asc(root.get("dataAgendada")));
 
 		TypedQuery<Manutencao> query = manager.createQuery(criteria);
 		adicionarRestricoesDepaginacao(query, pageable);
@@ -73,17 +72,17 @@ public class ManutencaoRepositoryImpl implements ManutencaoRepositoryQuery  {
 		
 
 		if (manutencaoFilter.getTipo() != null) {
-			predicates.add(builder.equal(root.get(Manutencao_.tipo),  manutencaoFilter.getTipo()));
+			predicates.add(builder.equal(root.get("tipo"),  manutencaoFilter.getTipo()));
 		}
 
 		if (manutencaoFilter.getDataAgendadaDe() != null) {
 			predicates.add(
-					builder.greaterThanOrEqualTo(root.get(Manutencao_.dataAgendada), manutencaoFilter.getDataAgendadaDe()));
+					builder.greaterThanOrEqualTo(root.get("dataAgendada"), manutencaoFilter.getDataAgendadaDe()));
 		}
 
 		if (manutencaoFilter.getDataAgendadaAte() != null) {
 			predicates.add(
-					builder.lessThanOrEqualTo(root.get(Manutencao_.dataAgendada), manutencaoFilter.getDataAgendadaAte()));
+					builder.lessThanOrEqualTo(root.get("dataAgendada"), manutencaoFilter.getDataAgendadaAte()));
 		}
 
 		return predicates.toArray(new Predicate[predicates.size()]);

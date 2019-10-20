@@ -1,6 +1,5 @@
 package com.sca.ativo.service;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Calendar;
 import java.util.List;

@@ -1,3 +1,4 @@
-.fundo {
-  background-image: url("/src/assets/fundo.jpg");
+ .tamanho{
+    max-width: 347px;
+    margin: auto;
  }

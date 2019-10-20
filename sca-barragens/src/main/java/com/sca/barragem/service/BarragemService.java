@@ -73,6 +73,7 @@ public class BarragemService {
 		if (monitoramento == null) return monitoramentoDTO;
 		
 		monitoramentoDTO.setCodigo(monitoramento.getCodigo());
+		monitoramentoDTO.setCodigoBarragem(monitoramento.getSensor().getBarragem().getCodigo());
 		monitoramentoDTO.setBarragem(monitoramento.getSensor().getBarragem().getNome());
 		monitoramentoDTO.setSensor(monitoramento.getSensor().getNome());
 		monitoramentoDTO.setStatus(monitoramento.getStatus().getDescricao());

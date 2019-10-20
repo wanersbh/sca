@@ -28,6 +28,7 @@ public class ScaConsumer {
 			
 			BarragemDTO barragemDTO = gson.fromJson(barragemJson, BarragemDTO.class);
 			
+			//TODO: BUSCA NA TABELA A LISTA DE E-MAIL PARA ENVIAR.
 			List<String> destinatarios = Arrays.asList("wanersbh@gmail.com");
 			
 			mailer.avisarSobreRompimento(barragemDTO, destinatarios);

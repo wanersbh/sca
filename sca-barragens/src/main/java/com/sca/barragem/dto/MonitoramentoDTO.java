@@ -4,6 +4,8 @@ public class MonitoramentoDTO {
 	
 	private Long codigo;
 	
+	private Long codigoBarragem;
+	
 	private String barragem;
 	
 	private String sensor;
@@ -18,6 +20,14 @@ public class MonitoramentoDTO {
 
 	public void setCodigo(Long codigo) {
 		this.codigo = codigo;
+	}
+	
+	public Long getCodigoBarragem() {
+		return codigoBarragem;
+	}
+
+	public void setCodigoBarragem(Long codigoBarragem) {
+		this.codigoBarragem = codigoBarragem;
 	}
 
 	public String getBarragem() {
