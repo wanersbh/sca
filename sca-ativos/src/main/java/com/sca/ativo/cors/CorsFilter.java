@@ -7,6 +7,7 @@ import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.core.Ordered;
@@ -21,14 +22,21 @@ public class CorsFilter implements Filter {
 	public void doFilter(ServletRequest req, ServletResponse resp, FilterChain chain)
 			throws IOException, ServletException {
 		
+		HttpServletRequest request = (HttpServletRequest) req;
 		HttpServletResponse response = (HttpServletResponse) resp;
 		
-		response.setHeader("Access-Control-Allow-Origin", "*");
+		response.setHeader("Access-Control-Allow-Origin", "http://localhost:4200");
         response.setHeader("Access-Control-Allow-Credentials", "true");
-        response.setHeader("Access-Control-Allow-Methods", "POST, GET, DELETE, PUT, OPTIONS");
-        response.setHeader("Access-Control-Allow-Headers", "Authorization, Content-Type, Accept");
-        response.setHeader("Access-Control-Max-Age", "3600");
-        response.setStatus(HttpServletResponse.SC_OK);
+		
+		if ("OPTIONS".equals(request.getMethod()) && "http://localhost:4200".equals(request.getHeader("Origin"))) {
+			response.setHeader("Access-Control-Allow-Methods", "POST, GET, DELETE, PUT, OPTIONS");
+        	response.setHeader("Access-Control-Allow-Headers", "Authorization, Content-Type, Accept");
+        	response.setHeader("Access-Control-Max-Age", "3600");
+			
+			response.setStatus(HttpServletResponse.SC_OK);
+		} else {
+			chain.doFilter(req, resp);
+		}
 		
 	}
 	

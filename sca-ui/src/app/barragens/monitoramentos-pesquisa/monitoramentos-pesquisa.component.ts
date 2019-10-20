@@ -46,9 +46,11 @@ export class MonitoramentosPesquisaComponent implements OnInit {
       { field: 'data', header: 'Data' }
     ];
 
+     this.pesquisar();
+
     this.interval = setInterval(() => {
       this.pesquisar();
-    }, 10000);
+    }, 100000);
 
     this.title.setTitle('Pesquisa monitoramento');
 
