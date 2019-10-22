@@ -14,9 +14,9 @@ import org.springframework.core.Ordered;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
-@Component
-@Order(Ordered.HIGHEST_PRECEDENCE)
-public class CorsFilter implements Filter {
+//@Component
+//@Order(Ordered.HIGHEST_PRECEDENCE)
+public class CorsFilter { //implements Filter {
 	
 	
 
@@ -26,28 +26,27 @@ public class CorsFilter implements Filter {
 //	private String originPermitida = scaAtivosProperty.getOriginDefault();
 	
 	
-	@Override
-	public void doFilter(ServletRequest req, ServletResponse resp, FilterChain chain)
-			throws IOException, ServletException {
-		
-		HttpServletRequest request = (HttpServletRequest) req;
-		HttpServletResponse response = (HttpServletResponse) resp;
-		
-		response.setHeader("Access-Control-Allow-Origin", "http://localhost:4200");
-        response.setHeader("Access-Control-Allow-Credentials", "true");
-		
-		if ("OPTIONS".equals(request.getMethod()) && "http://localhost:4200".equals(request.getHeader("Origin"))) {
-			response.setHeader("Access-Control-Allow-Methods", "POST, GET, DELETE, PUT, OPTIONS");
-        	response.setHeader("Access-Control-Allow-Headers", "Authorization, Content-Type, Accept");
-        	response.setHeader("Access-Control-Max-Age", "3600");
-			
-			response.setStatus(HttpServletResponse.SC_OK);
-		} else {
-			chain.doFilter(req, resp);
-		}
-		
-	}
-
+//	@Override
+//	public void doFilter(ServletRequest req, ServletResponse resp, FilterChain chain)
+//			throws IOException, ServletException {
+//		
+//		HttpServletRequest request = (HttpServletRequest) req;
+//		HttpServletResponse response = (HttpServletResponse) resp;
+//		
+//		response.setHeader("Access-Control-Allow-Origin", "http://localhost:4200");
+//        response.setHeader("Access-Control-Allow-Credentials", "true");
+//		
+//		if ("OPTIONS".equals(request.getMethod()) && "http://localhost:4200".equals(request.getHeader("Origin"))) {
+//			response.setHeader("Access-Control-Allow-Methods", "POST, GET, DELETE, PUT, OPTIONS");
+//        	response.setHeader("Access-Control-Allow-Headers", "Authorization, Content-Type, Accept");
+//        	response.setHeader("Access-Control-Max-Age", "3600");
+//			
+//			response.setStatus(HttpServletResponse.SC_OK);
+//		} else {
+//			chain.doFilter(req, resp);
+//		}
+//		
+//	}
 	
 
 }

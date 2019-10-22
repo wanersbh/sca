@@ -38,17 +38,17 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
 	/**
 	 * Configuração do Cors
 	 */
-	@Autowired
-	private CorsFilter corsFilter;
+//	@Autowired
+//	private CorsFilter corsFilter;
 	
 	/**
 	 * Configuração do Cors
 	 */
-	@Override
-	public void configure(AuthorizationServerSecurityConfigurer security) throws Exception {
-		security.passwordEncoder(new BCryptPasswordEncoder());
-		security.addTokenEndpointAuthenticationFilter(this.corsFilter);
-	}
+//	@Override
+//	public void configure(AuthorizationServerSecurityConfigurer security) throws Exception {
+//		security.passwordEncoder(new BCryptPasswordEncoder());
+//		security.addTokenEndpointAuthenticationFilter(this.corsFilter);
+//	}
 	
 	@Override
 	public void configure(ClientDetailsServiceConfigurer clients) throws Exception {

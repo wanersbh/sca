@@ -46,19 +46,19 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
 	 * 
 	 * @return
 	 */
-	@Bean
-	public CorsFilter corsFilter() {
-		CorsConfiguration config = new CorsConfiguration();
-		config.setAllowCredentials(true);
-		config.addAllowedHeader("*");
-		config.addAllowedMethod("*");
-		config.setMaxAge(3600L);
-		config.setAllowedOrigins(Arrays.asList("http://localhost:4200", "http://localhost:4100"));
-		UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-		source.registerCorsConfiguration("/**", config);
-		return new CorsFilter(source);
-
-	}
+//	@Bean
+//	public CorsFilter corsFilter() {
+//		CorsConfiguration config = new CorsConfiguration();
+//		config.setAllowCredentials(true);
+//		config.addAllowedHeader("*");
+//		config.addAllowedMethod("*");
+//		config.setMaxAge(3600L);
+//		config.setAllowedOrigins(Arrays.asList("http://localhost:4200", "http://localhost:4100"));
+//		UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+//		source.registerCorsConfiguration("/**", config);
+//		return new CorsFilter(source);
+//
+//	}
 
 	/**
 	 * Para fazer a segurança nos métodos do controller
