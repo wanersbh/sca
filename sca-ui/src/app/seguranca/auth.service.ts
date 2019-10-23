@@ -69,7 +69,6 @@ export class AuthService {
       console.log('Novo access token criado');
     })
     .catch( error => {
-      console.error('Erro ao renovar token.', error);
       return Promise.resolve(null);
     });
   }
