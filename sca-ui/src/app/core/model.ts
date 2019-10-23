@@ -41,3 +41,13 @@ export class Inspecao {
   barragem = new Barragem();
 }
 
+export class Aviso {
+  codigo: number;
+  uf: string;
+  codigoBarragem: number;
+  nome: string;
+  cpf: string;
+  email: string;
+  telefone: string;
+}
+

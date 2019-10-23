@@ -2,3 +2,8 @@
   width: 120px;
   text-align: center;
 }
+
+body {
+   height: 100%;
+   background-image: url('https://defatoonline.com.br/wp-content/uploads/2018/04/itabiru%C3%A7u.png');
+}

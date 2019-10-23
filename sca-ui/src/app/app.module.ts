@@ -1,3 +1,4 @@
+import { ComunicacaoModule } from './comunicacao/comunicacao.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule, LOCALE_ID } from '@angular/core';
@@ -33,7 +34,8 @@ registerLocaleData(ptBr);
     AtivosModule,
     BarragensModule,
     SegurancaModule,
-    AppRoutingModule
+    AppRoutingModule,
+    ComunicacaoModule
   ],
   providers: [
     { provide: LOCALE_ID, useValue: 'pt' },

@@ -1,3 +1,5 @@
+import { InformacaoComponent } from './comunicacao/informacao/informacao.component';
+import { AvisoComponent } from './comunicacao/aviso/aviso.component';
 import { SegurancaRoutingModule } from './seguranca/seguranca-routing.module';
 import { LoginFormComponent } from './seguranca/login-form/login-form.component';
 import { NgModule } from '@angular/core';
@@ -10,6 +12,10 @@ import { NaoAutorizadoComponent } from './core/nao-autorizado.component';
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: 'categorias', component: CategoriasPesquisaComponent },
+
+  { path: 'aviso', component: AvisoComponent },
+
+  { path: 'informacao', component: InformacaoComponent },
 
   { path: 'nao-autorizado', component: NaoAutorizadoComponent },
   { path: 'pagina-nao-encontrada', component: PaginaNaoEncontradaComponent },
