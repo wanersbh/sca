@@ -4,13 +4,12 @@
       <div class="ui-g ui-fluid" >
 
         <div class="ui-g-12" >
-          SISAR
-            <!-- <img src="assets/login-1.jpg" alt="Imagem" style="width:100%"> -->
+             <img src="assets/login-1.jpg" alt="Imagem" style="width:100%">
         </div>
 
         <div class="ui-g-12">
-          <input pInputText type="email" name="usuario" placeholder="E-mail"
-            ngModel required #usuario>
+          <input pInputText type="cpfCnpj" name="cpfCnpj"  placeholder="CPF ou CNPJ"
+            [(ngModel)]="cpfCnpj" required (blur)="formatar()" >
         </div>
 
         <div class="ui-g-12">
@@ -20,7 +19,7 @@
 
         <div class="ui-g-12">
           <button pButton type="submit" label="Login" [disabled]="!f.valid"
-            (click)="login(usuario.value, senha.value); senha.value = '';" ></button>
+            (click)="login(senha.value); senha.value = '';" ></button>
         </div>
 
       </div>

@@ -2,6 +2,7 @@ package com.sca.ativo.model;
 
 import java.util.List;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
@@ -18,6 +19,10 @@ public class Usuario {
 	private Long codigo;
 
 	private String nome;
+	
+	@Column(name = "cpf_cnpj")
+	private String cpfCnpj;
+	
 	private String email;
 	private String senha;
 
@@ -40,6 +45,14 @@ public class Usuario {
 
 	public void setNome(String nome) {
 		this.nome = nome;
+	}
+	
+	public String getCpfCnpj() {
+		return cpfCnpj;
+	}
+
+	public void setCpfCnpj(String cpfCnpj) {
+		this.cpfCnpj = cpfCnpj;
 	}
 
 	public String getEmail() {
