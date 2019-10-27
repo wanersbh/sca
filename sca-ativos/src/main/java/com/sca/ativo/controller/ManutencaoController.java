@@ -38,7 +38,7 @@ public class ManutencaoController {
 	private ApplicationEventPublisher publisher;
 	
 	@GetMapping
-	@PreAuthorize("hasAuthority('ROLE_PESQUISAR_MANUTENCAO') and #oauth2.hasScope('read')")
+	@PreAuthorize("hasAuthority('ROLE_MANUTENCAO') and #oauth2.hasScope('read')")
 	public Page<Manutencao> pesquisar(ManutencaoFilter manutencaoFilter, Pageable pageable) {
 		return manutencaoRepository.filtrar(manutencaoFilter, pageable);
 	}
@@ -50,7 +50,7 @@ public class ManutencaoController {
 //	}
 
 	@PostMapping
-	@PreAuthorize("hasAuthority('ROLE_CADASTRAR_MANUTENCAO') and #oauth2.hasScope('write')")
+	@PreAuthorize("hasAuthority('ROLE_MANUTENCAO') and #oauth2.hasScope('write')")
 	public ResponseEntity<Manutencao> criar(@Valid @RequestBody Manutencao manutencao, HttpServletResponse response) {
 		Manutencao manutencaoSalva = manutencaoRepository.save(manutencao);
 		publisher.publishEvent(new RecursoCriadoEvent(this, response, manutencaoSalva.getCodigo()));
@@ -60,7 +60,7 @@ public class ManutencaoController {
 	}
 
 	@GetMapping("/{codigo}")
-	@PreAuthorize("hasAuthority('ROLE_PESQUISAR_MANUTENCAO') and #oauth2.hasScope('read')")
+	@PreAuthorize("hasAuthority('ROLE_MANUTENCAO') and #oauth2.hasScope('read')")
 	public ResponseEntity<Manutencao> buscaPorCodigo(@PathVariable Long codigo) {
 		Manutencao manutencaoRetornada = manutencaoRepository.findById(codigo).orElse(null);
 
@@ -68,7 +68,7 @@ public class ManutencaoController {
 	}
 
 	@PutMapping("/{codigo}")
-	@PreAuthorize("hasAuthority('ROLE_CADASTRAR_MANUTENCAO') and #oauth2.hasScope('write')")
+	@PreAuthorize("hasAuthority('ROLE_MANUTENCAO') and #oauth2.hasScope('write')")
 	public ResponseEntity<Manutencao> atualizar(@PathVariable Long codigo,
 			@Valid @RequestBody Manutencao manutencaoAlterada) {
 
@@ -83,7 +83,7 @@ public class ManutencaoController {
 
 	@DeleteMapping("/{codigo}")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
-	@PreAuthorize("hasAuthority('ROLE_REMOVER_MANUTENCAO') and #oauth2.hasScope('write')")
+	@PreAuthorize("hasAuthority('ROLE_MANUTENCAO') and #oauth2.hasScope('write')")
 	public void remover(@PathVariable Long codigo) {
 		this.manutencaoRepository.deleteById(codigo);
 	}

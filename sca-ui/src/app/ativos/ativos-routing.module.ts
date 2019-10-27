@@ -10,19 +10,19 @@ const routes: Routes = [
     path: 'ativos',
     component: AtivosPesquisaComponent,
     canActivate: [AuthGuard],
-    data: { roles: ['ROLE_PESQUISAR_ATIVO'] }
+    data: { roles: ['ROLE_OPERADOR'] }
   },
   {
     path: 'ativos/novo',
     component: AtivosCadastroComponent,
     canActivate: [AuthGuard],
-    data: { roles: ['ROLE_CADASTRAR_ATIVO'] }
+    data: { roles: ['ROLE_OPERADOR'] }
   },
   {
     path: 'ativos/:codigo',
     component: AtivosCadastroComponent,
     canActivate: [AuthGuard],
-    data: { roles: ['ROLE_PESQUISAR_ATIVO'] }
+    data: { roles: ['ROLE_OPERADOR'] }
   },
 
 ];

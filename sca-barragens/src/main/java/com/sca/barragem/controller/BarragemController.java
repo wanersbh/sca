@@ -62,7 +62,6 @@ public class BarragemController {
             @ApiResponse(code = 401, message = "Requisição não autorizada."), @ApiResponse(code = 404, message = "Alguma exceção do SICC"),
             @ApiResponse(code = 422, message = "Campos obrigatorios"), @ApiResponse(code = 500, message = "Erro interno no servidor")})
 	@GetMapping
-//	@PreAuthorize("hasAuthority('ROLE_PESQUISAR_ATIVO') and #oauth2.hasScope('read')")
 	public List<Barragem> pesquisar(BarragemFilter barragemFilter) {
 		return barragemRepository.filtrar(barragemFilter);
 	}

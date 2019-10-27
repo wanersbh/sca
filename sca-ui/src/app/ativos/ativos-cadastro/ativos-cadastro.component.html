@@ -6,8 +6,16 @@
         <h1>{{ editando ? 'Editar' : 'Novo' }} Ativo</h1>
       </div>
 
-      <div class="ui-g-12  ui-fluid">
-        <label>Descrição</label>
+      <div class="ui-g-6 ui-md-6 ui-fluid">
+          <label>Categoria</label>
+          <p-dropdown [options]="categorias" placeholder="Selecione" [filter]="true" ngModel name="categoria"
+            #categoria=ngModel required [(ngModel)]="ativo.categoria.codigo"></p-dropdown>
+
+          <app-message [control]="categoria" error="required" text="Informe uma categoria"></app-message>
+        </div>
+
+      <div class="ui-g-6  ui-fluid">
+        <label>Modelo</label>
         <input pInputText type="text" name="descricao" ngModel #descricao="ngModel" [(ngModel)]="ativo.descricao"
           required minlength="3">
 
@@ -19,13 +27,13 @@
 
       </div>
 
-      <div class="ui-g-12 ui-md-6 ui-fluid">
-        <label>Categoria</label>
-        <p-dropdown [options]="categorias" placeholder="Selecione" [filter]="true" ngModel name="categoria"
-          #categoria=ngModel required [(ngModel)]="ativo.categoria.codigo"></p-dropdown>
+      <div class="ui-g-16 ui-md-6 ui-fluid">
+          <label>Fabricantes</label>
+          <p-dropdown [options]="categorias" placeholder="Selecione" [filter]="true" ngModel name="categoria"
+            #categoria=ngModel required [(ngModel)]="ativo.categoria.codigo"></p-dropdown>
 
-        <app-message [control]="categoria" error="required" text="Informe uma categoria"></app-message>
-      </div>
+          <app-message [control]="categoria" error="required" text="Informe uma categoria"></app-message>
+        </div>
 
       <div class="ui-g-6 ui-md-3 ui-fluid">
         <label>Data Aquisição</label>

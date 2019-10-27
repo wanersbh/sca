@@ -20,7 +20,7 @@ import com.sca.ativo.repository.UsuarioRepository;
 @Service
 public class ManutencaoService {
 
-	private static final String DESTINATARIOS = "ROLE_PESQUISAR_MANUTENCAO";
+	private static final String DESTINATARIOS = "ROLE_MANUTENCAO";
 
 	private static final Logger logger = LoggerFactory.getLogger(ManutencaoService.class);
 

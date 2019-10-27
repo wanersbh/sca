@@ -28,7 +28,7 @@ export class LoginFormComponent {
 
     this.authService.login(cpfCnpjSemMascara, senha)
       .then(() => {
-        this.router.navigate(['/monitoramentos']);
+        this.router.navigate(['/dashboard']);
       })
       .catch(error => {
         this.errorHandlerService.handle(error);

@@ -45,8 +45,9 @@
         (onLazyLoad)="aoMudarPagina($event)" [lazy]="true" [responsive]="true" #tabela>
         <ng-template pTemplate="header">
           <tr>
-            <th>Descrição</th>
             <th>Categoria</th>
+            <th>Modelo</th>
+            <th>Fabricante</th>
             <th>Ano Fabricação</th>
             <th>Data Aquisição</th>
             <th style="width: 100px" ></th>
@@ -54,8 +55,9 @@
         </ng-template>
         <ng-template pTemplate="body" let-ativo>
           <tr>
-            <td>{{ativo.descricao}}</td>
             <td>{{ativo.categoria.nome}}</td>
+            <td>{{ativo.descricao}}</td>
+            <td>{{ativo.fabricante.nome}}</td>
             <td>{{ativo.anoFabricacao}}</td>
             <td>{{ativo.dataAquisicao | date:"dd/MM/yyyy"}}</td>
             <td>

@@ -43,6 +43,11 @@ public class Ativo {
 	@ManyToOne
 	@JoinColumn(name = "codigo_categoria")
 	private Categoria categoria;
+	
+	@NotNull
+	@ManyToOne
+	@JoinColumn(name = "codigo_fabricante")
+	private Fabricante fabricante;
 
 	public Long getCodigo() {
 		return codigo;
@@ -98,6 +103,14 @@ public class Ativo {
 
 	public void setCategoria(Categoria categoria) {
 		this.categoria = categoria;
+	}
+	
+	public Fabricante getFabricante() {
+		return fabricante;
+	}
+
+	public void setFabricante(Fabricante fabricante) {
+		this.fabricante = fabricante;
 	}
 
 	@Override

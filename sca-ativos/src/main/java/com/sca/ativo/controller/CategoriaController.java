@@ -37,13 +37,13 @@ public class CategoriaController {
 	private ApplicationEventPublisher publisher;
 
 	@GetMapping
-	@PreAuthorize("hasAuthority('ROLE_PESQUISAR_CATEGORIA') and #oauth2.hasScope('read')")
+	@PreAuthorize("hasAuthority('ROLE_OPERADOR') and #oauth2.hasScope('read')")
 	public List<Categoria> listar() {
-		return categoriaRepository.findAll();
+		return categoriaRepository.buscarTodasCategoriasOrdenadas();
 	}
 
 	@PostMapping
-	@PreAuthorize("hasAuthority('ROLE_CADASTRAR_CATEGORIA') and #oauth2.hasScope('write')")
+	@PreAuthorize("hasAuthority('ROLE_OPERADOR') and #oauth2.hasScope('write')")
 	public ResponseEntity<Categoria> criar(@Valid @RequestBody Categoria categoria, HttpServletResponse response) {
 		Categoria categoriaSalva = categoriaRepository.save(categoria);
 		publisher.publishEvent(new RecursoCriadoEvent(this, response, categoriaSalva.getCodigo()));
@@ -53,7 +53,7 @@ public class CategoriaController {
 	}
 
 	@GetMapping("/{codigo}")
-	@PreAuthorize("hasAuthority('ROLE_PESQUISAR_CATEGORIA') and #oauth2.hasScope('read')")
+	@PreAuthorize("hasAuthority('ROLE_OPERADOR') and #oauth2.hasScope('read')")
 	public ResponseEntity<Categoria> buscaPorCodigo(@PathVariable Long codigo) {
 		Categoria categoriaRetornada = categoriaRepository.findById(codigo).orElse(null);
 
@@ -61,7 +61,7 @@ public class CategoriaController {
 	}
 
 	@PutMapping("/{codigo}")
-	@PreAuthorize("hasAuthority('ROLE_CADASTRAR_CATEGORIA') and #oauth2.hasScope('write')")
+	@PreAuthorize("hasAuthority('ROLE_OPERADOR') and #oauth2.hasScope('write')")
 	public ResponseEntity<Categoria> atualizar(@PathVariable Long codigo,
 			@Valid @RequestBody Categoria categoriaAlterada) {
 

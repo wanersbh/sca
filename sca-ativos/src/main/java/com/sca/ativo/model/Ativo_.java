@@ -14,6 +14,7 @@ public abstract class Ativo_ {
 	public static volatile SingularAttribute<Ativo, LocalDate> dataExclusao;
 	public static volatile SingularAttribute<Ativo, Categoria> categoria;
 	public static volatile SingularAttribute<Ativo, Integer> anoFabricacao;
+	public static volatile SingularAttribute<Ativo, Fabricante> fabricante;
 	public static volatile SingularAttribute<Ativo, LocalDate> dataAquisicao;
 	public static volatile SingularAttribute<Ativo, String> descricao;
 
@@ -22,6 +23,7 @@ public abstract class Ativo_ {
 	public static final String DATA_EXCLUSAO = "dataExclusao";
 	public static final String CATEGORIA = "categoria";
 	public static final String ANO_FABRICACAO = "anoFabricacao";
+	public static final String FABRICANTE = "fabricante";
 	public static final String DATA_AQUISICAO = "dataAquisicao";
 	public static final String DESCRICAO = "descricao";
 

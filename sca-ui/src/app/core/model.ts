@@ -3,6 +3,11 @@ export class Categoria {
  nome: string;
 }
 
+export class Fabricante {
+  codigo: number;
+  nome: string;
+ }
+
 export class Ativo {
   codigo: number;
   descricao: string;
@@ -11,6 +16,7 @@ export class Ativo {
   observacao: string;
   dataExclusao: Date;
   categoria = new Categoria();
+  fabricante = new Fabricante();
 }
 
 export class Manutencao {

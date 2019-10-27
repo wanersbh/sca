@@ -10,19 +10,19 @@ const routes: Routes = [
     path: 'manutencoes',
     component: ManutencoesPesquisaComponent,
     canActivate: [AuthGuard],
-    data: { roles: ['ROLE_PESQUISAR_MANUTENCAO'] }
+    data: { roles: ['ROLE_MANUTENCAO'] }
    },
   {
     path: 'manutencoes/novo',
     component: ManutencoesCadastroComponent,
     canActivate: [AuthGuard],
-    data: { roles: ['ROLE_CADASTRAR_MANUTENCAO'] }
+    data: { roles: ['ROLE_MANUTENCAO'] }
   },
   {
     path: 'manutencoes/:codigo',
     component: ManutencoesCadastroComponent,
     canActivate: [AuthGuard],
-    data: { roles: ['ROLE_PESQUISAR_MANUTENCAO'] }
+    data: { roles: ['ROLE_MANUTENCAO'] }
   }
 ];
 

@@ -11,27 +11,31 @@
 
   <ul class="navbar-menu" [hidden]="!exibindoMenu">
     <li class="navbar-usuario">{{authService.jwtPayload?.nome}}</li>
-    <li class="navbar-menuitem" routerLinkActive="selecionado" *ngIf="authService.temPermissao('ROLE_PESQUISAR_ATIVO')">
+    <li class="navbar-menuitem" routerLinkActive="selecionado" *ngIf="authService.temPermissao('ROLE_OPERADOR')">
       <a routerLink="/ativos">Ativos</a>
     </li>
     <li class="navbar-menuitem" routerLinkActive="selecionado"
-      *ngIf="authService.temPermissao('ROLE_PESQUISAR_MANUTENCAO')">
+      *ngIf="authService.temPermissao('ROLE_MANUTENCAO')">
       <a routerLink="/manutencoes">Manutenções</a>
     </li>
-    <li class="navbar-menuitem" routerLinkActive="selecionado">
+    <li class="navbar-menuitem" routerLinkActive="selecionado"
+    *ngIf="authService.temPermissao('ROLE_ENGENHARIA')">
       <a routerLink="/barragens">Barragens</a>
     </li>
-    <li class="navbar-menuitem" routerLinkActive="selecionado">
+    <li class="navbar-menuitem" routerLinkActive="selecionado"
+    *ngIf="authService.temPermissao('ROLE_ENGENHARIA')">
         <a routerLink="/monitoramentos">Monitoramentos</a>
       </li>
-    <li class="navbar-menuitem" routerLinkActive="selecionado">
+    <li class="navbar-menuitem" routerLinkActive="selecionado"
+    *ngIf="authService.temPermissao('ROLE_CONSULTOR')">
+
         <a routerLink="/inspecoes">Inspeções</a>
       </li>
     <li class="navbar-menuitem" routerLinkActive="selecionado"
-      *ngIf="authService.temPermissao('ROLE_PESQUISAR_CATEGORIA')">
+      *ngIf="authService.temPermissao('ROLE_OPERADOR')">
       <a routerLink="/categorias">Categorias</a>
     </li>
-    <li class="navbar-menuitem"><a href="javascript:;" (click)="logout()">Logout</a>
+    <li class="navbar-menuitem"><a href="javascript:;" (click)="logout()">Sair</a>
     </li>
   </ul>
 

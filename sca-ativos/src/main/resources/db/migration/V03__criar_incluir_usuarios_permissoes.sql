@@ -24,13 +24,16 @@ CREATE TABLE usuario_permissao (
 INSERT INTO usuario (codigo, nome, cpf_cnpj, telefone, email, senha) values (1, 'Administrador', '80425426386644', '3133395523', 'projects.was@gmail.com', '$2a$10$X607ZPhQ4EgGNaYKt3n4SONjIv9zc.VMWdEuhCuba7oLAL5IvcL5.');
 
 -- USUARIO ENGENHEIRO
-INSERT INTO usuario (codigo, nome, cpf_cnpj, telefone, email, senha) values (2, 'Waner Andrade', '63817449445', '31988880603', 'projects.was@gmail.com', '$2a$10$OJCdZSJGRItmhMwpBS2GveCBB8Lh1NmybCf62CjeNIRXQhLHMQeRy');
+INSERT INTO usuario (codigo, nome, cpf_cnpj, telefone, email, senha) values (2, 'Ligeiro Engenheiro', '63817449445', '31988880603', 'projects.was@gmail.com', '$2a$10$OJCdZSJGRItmhMwpBS2GveCBB8Lh1NmybCf62CjeNIRXQhLHMQeRy');
 
 -- USUARIO DA MANUTENCAO
-INSERT INTO usuario (codigo, nome, cpf_cnpj, telefone, email, senha) values (3, 'João Manutenção', '48041809316', '31987770502', 'projects.was@gmail.com', '$2a$10$OJCdZSJGRItmhMwpBS2GveCBB8Lh1NmybCf62CjeNIRXQhLHMQeRy');
+INSERT INTO usuario (codigo, nome, cpf_cnpj, telefone, email, senha) values (3, 'João da Manutenção', '48041809316', '31987770502', 'projects.was@gmail.com', '$2a$10$OJCdZSJGRItmhMwpBS2GveCBB8Lh1NmybCf62CjeNIRXQhLHMQeRy');
 
 -- USUARIO DA OPERADOR
-INSERT INTO usuario (codigo, nome, cpf_cnpj, telefone, email, senha) values (4, 'Antenor Operador', '28368434033', '31987630000', 'projects.was@gmail.com', '$2a$10$OJCdZSJGRItmhMwpBS2GveCBB8Lh1NmybCf62CjeNIRXQhLHMQeRy');
+INSERT INTO usuario (codigo, nome, cpf_cnpj, telefone, email, senha) values (4, 'Antenor o Operador', '28368434033', '31987630000', 'projects.was@gmail.com', '$2a$10$OJCdZSJGRItmhMwpBS2GveCBB8Lh1NmybCf62CjeNIRXQhLHMQeRy');
+
+-- USUARIO DA CONSULTOR
+INSERT INTO usuario (codigo, nome, cpf_cnpj, telefone, email, senha) values (5, 'Heitor o Consultor', '96765842586', '31987630000', 'projects.was@gmail.com', '$2a$10$OJCdZSJGRItmhMwpBS2GveCBB8Lh1NmybCf62CjeNIRXQhLHMQeRy');
 
 INSERT INTO permissao (codigo, descricao) values (1, 'ROLE_OPERADOR');
 INSERT INTO permissao (codigo, descricao) values (2, 'ROLE_MANUTENCAO');
@@ -38,6 +41,7 @@ INSERT INTO permissao (codigo, descricao) values (3, 'ROLE_ENGENHARIA');
 INSERT INTO permissao (codigo, descricao) values (4, 'ROLE_PROCESSO');
 INSERT INTO permissao (codigo, descricao) values (5, 'ROLE_BI');
 INSERT INTO permissao (codigo, descricao) values (6, 'ROLE_GOVERNANCA');
+INSERT INTO permissao (codigo, descricao) values (7, 'ROLE_CONSULTOR');
 
 
 -- ADMINISTRADOR
@@ -47,15 +51,20 @@ INSERT INTO usuario_permissao (codigo_usuario, codigo_permissao) values (1, 3);
 INSERT INTO usuario_permissao (codigo_usuario, codigo_permissao) values (1, 4);
 INSERT INTO usuario_permissao (codigo_usuario, codigo_permissao) values (1, 5);
 INSERT INTO usuario_permissao (codigo_usuario, codigo_permissao) values (1, 6);
+INSERT INTO usuario_permissao (codigo_usuario, codigo_permissao) values (1, 7);
 
 -- ENGENHEIRO
 INSERT INTO usuario_permissao (codigo_usuario, codigo_permissao) values (2, 1);
 INSERT INTO usuario_permissao (codigo_usuario, codigo_permissao) values (2, 2);
 INSERT INTO usuario_permissao (codigo_usuario, codigo_permissao) values (2, 3);
+INSERT INTO usuario_permissao (codigo_usuario, codigo_permissao) values (2, 7);
 
 -- MANUTENCAO
 INSERT INTO usuario_permissao (codigo_usuario, codigo_permissao) values (3, 2);
 
 -- OPERADOR
 INSERT INTO usuario_permissao (codigo_usuario, codigo_permissao) values (4, 1);
+
+-- CONSULTOR
+INSERT INTO usuario_permissao (codigo_usuario, codigo_permissao) values (5, 7);
 

@@ -59,7 +59,7 @@ public class AtivoController {
 	private MessageSource messageSource;
 	
 	@PostMapping("/anexo")
-	@PreAuthorize("hasAuthority('ROLE_CADASTRAR_ATIVO') and #oauth2.hasScope('write')")
+	@PreAuthorize("hasAuthority('ROLE_OPERADOR') and #oauth2.hasScope('write')")
 	public String uploadAnexo(@RequestParam MultipartFile anexo) {
 		OutputStream out;
 		try {
@@ -75,13 +75,13 @@ public class AtivoController {
 	}
 
 	@GetMapping
-	@PreAuthorize("hasAuthority('ROLE_PESQUISAR_ATIVO') and #oauth2.hasScope('read')")
+	@PreAuthorize("hasAuthority('ROLE_OPERADOR') and #oauth2.hasScope('read')")
 	public Page<Ativo> pesquisar(AtivoFilter ativoFilter, Pageable pageable) {
 		return ativoRepository.filtrar(ativoFilter, pageable);
 	}
 
 	@GetMapping("/{codigo}")
-	@PreAuthorize("hasAuthority('ROLE_PESQUISAR_ATIVO') and #oauth2.hasScope('read')")
+	@PreAuthorize("hasAuthority('ROLE_OPERADOR') and #oauth2.hasScope('read')")
 	public ResponseEntity<Ativo> buscarPorCodigo(@PathVariable Long codigo) {
 		Ativo ativoRetornado = ativoRepository.findById(codigo).orElse(null);
 
@@ -89,7 +89,7 @@ public class AtivoController {
 	}
 
 	@PutMapping("/{codigo}")
-	@PreAuthorize("hasAuthority('ROLE_CADASTRAR_ATIVO') and #oauth2.hasScope('write')")
+	@PreAuthorize("hasAuthority('ROLE_OPERADOR') and #oauth2.hasScope('write')")
 	public ResponseEntity<Ativo> atualizar(@PathVariable Long codigo, @Valid @RequestBody Ativo ativoAlterado) {
 
 		Ativo ativoBase = ativoRepository.findById(codigo).orElseThrow(() -> new EmptyResultDataAccessException(1));
@@ -101,7 +101,7 @@ public class AtivoController {
 	}
 
 	@PostMapping
-	@PreAuthorize("hasAuthority('ROLE_CADASTRAR_ATIVO') and #oauth2.hasScope('write')")
+	@PreAuthorize("hasAuthority('ROLE_OPERADOR') and #oauth2.hasScope('write')")
 	public ResponseEntity<Ativo> criar(@Valid @RequestBody Ativo ativo, HttpServletResponse response) {
 		Ativo ativoSalvo = ativoService.salvar(ativo);
 		publisher.publishEvent(new RecursoCriadoEvent(this, response, ativoSalvo.getCodigo()));
@@ -110,7 +110,7 @@ public class AtivoController {
 	
 	@DeleteMapping("/{codigo}")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
-	@PreAuthorize("hasAuthority('ROLE_REMOVER_ATIVO') and #oauth2.hasScope('write')")
+	@PreAuthorize("hasAuthority('ROLE_OPERADOR') and #oauth2.hasScope('write')")
 	public void remover(@PathVariable Long codigo) {
 		ativoRepository.deleteById(codigo);
 	}

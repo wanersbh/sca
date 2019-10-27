@@ -49,7 +49,7 @@ import { InspecoesPesquisaComponent } from './inspecoes-pesquisa/inspecoes-pesqu
     InputTextareaModule,
     CalendarModule,
     DropdownModule,
-    SharedModule,
+    // SharedModule,
     FieldsetModule,
     RadioButtonModule,
     ToastModule,
