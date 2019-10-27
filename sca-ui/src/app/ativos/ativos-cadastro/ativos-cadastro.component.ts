@@ -28,6 +28,7 @@ export class AtivosCadastroComponent implements OnInit {
 
   br: any;
   categorias: any;
+  fabricantes: any;
   listaAnoFabricacao: any;
   ativo = new Ativo();
 
@@ -35,6 +36,7 @@ export class AtivosCadastroComponent implements OnInit {
   ngOnInit() {
 
     this.carregarCategorias();
+    this.carregarFabricantes();
     const codigo = 'codigo';
     const codigoAtivo = this.activatedRoute.snapshot.params[codigo];
 
@@ -115,6 +117,12 @@ export class AtivosCadastroComponent implements OnInit {
   carregarCategorias() {
     this.categoriaService.pesquisar().then(categorias => {
       this.categorias = categorias.map((c: { nome: string; codigo: number; }) => ({ label: c.nome, value: c.codigo }));
+    }).catch(erro => this.errorHandlerService.handle(erro));
+  }
+
+  carregarFabricantes() {
+    this.ativoService.obterTodosFabricantes().then(fabricantes => {
+      this.fabricantes = fabricantes.map((c: { nome: string; codigo: number; }) => ({ label: c.nome, value: c.codigo }));
     }).catch(erro => this.errorHandlerService.handle(erro));
   }
 

@@ -38,7 +38,9 @@ import com.sca.ativo.controller.repository.filter.AtivoFilter;
 import com.sca.ativo.event.RecursoCriadoEvent;
 import com.sca.ativo.exceptionhandler.ScaExceptionHandler.Erro;
 import com.sca.ativo.model.Ativo;
+import com.sca.ativo.model.Fabricante;
 import com.sca.ativo.repository.AtivoRepository;
+import com.sca.ativo.repository.FabricanteRepository;
 import com.sca.ativo.service.AtivoService;
 import com.sca.ativo.service.CategoriaInexistenteOuInativaException;
 
@@ -50,29 +52,16 @@ public class AtivoController {
 	private AtivoRepository ativoRepository;
 	
 	@Autowired
+	private FabricanteRepository fabricanteRepository;
+
+	@Autowired
 	private AtivoService ativoService;
 
 	@Autowired
 	private ApplicationEventPublisher publisher;
-	
+
 	@Autowired
 	private MessageSource messageSource;
-	
-	@PostMapping("/anexo")
-	@PreAuthorize("hasAuthority('ROLE_OPERADOR') and #oauth2.hasScope('write')")
-	public String uploadAnexo(@RequestParam MultipartFile anexo) {
-		OutputStream out;
-		try {
-			out = new FileOutputStream("/home/was/upload/manual--"+anexo.getOriginalFilename());
-			out.write(anexo.getBytes());
-			out.close();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		return "ok";
-	}
 
 	@GetMapping
 	@PreAuthorize("hasAuthority('ROLE_OPERADOR') and #oauth2.hasScope('read')")
@@ -97,7 +86,7 @@ public class AtivoController {
 		ativoRepository.save(ativoBase);
 
 		return ResponseEntity.ok(ativoBase);
-		
+
 	}
 
 	@PostMapping
@@ -107,25 +96,46 @@ public class AtivoController {
 		publisher.publishEvent(new RecursoCriadoEvent(this, response, ativoSalvo.getCodigo()));
 		return ResponseEntity.status(HttpStatus.CREATED).body(ativoSalvo);
 	}
-	
+
 	@DeleteMapping("/{codigo}")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	@PreAuthorize("hasAuthority('ROLE_OPERADOR') and #oauth2.hasScope('write')")
 	public void remover(@PathVariable Long codigo) {
 		ativoRepository.deleteById(codigo);
 	}
-	
-	
+
+	@GetMapping("/fabricantes")
+	public List<Fabricante> obterTodosFabricantes() {
+		return fabricanteRepository.retornarTodosFabricantesOrdenados();
+	}
+
+	@PostMapping("/anexo")
+	@PreAuthorize("hasAuthority('ROLE_OPERADOR') and #oauth2.hasScope('write')")
+	public String uploadAnexo(@RequestParam MultipartFile anexo) {
+		OutputStream out;
+		try {
+			out = new FileOutputStream("/home/was/upload/manual--" + anexo.getOriginalFilename());
+			out.write(anexo.getBytes());
+			out.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		return "ok";
+	}
+
 	@ExceptionHandler
-	public ResponseEntity<Object> handleCategoriaInexistenteOuInativaException(CategoriaInexistenteOuInativaException ex){
-		
-		String mensagemUsuario = this.messageSource.getMessage("categoria.inexistente-ou-inativa", null, LocaleContextHolder.getLocale());
+	public ResponseEntity<Object> handleCategoriaInexistenteOuInativaException(
+			CategoriaInexistenteOuInativaException ex) {
+
+		String mensagemUsuario = this.messageSource.getMessage("categoria.inexistente-ou-inativa", null,
+				LocaleContextHolder.getLocale());
 		String mensagemDesenvolvedor = Optional.ofNullable(ex.getCause()).orElse(ex).toString();
-		
+
 		List<Erro> erros = Arrays.asList(new Erro(mensagemUsuario, mensagemDesenvolvedor));
-		
+
 		return ResponseEntity.badRequest().body(erros);
 	}
-	
 
 }

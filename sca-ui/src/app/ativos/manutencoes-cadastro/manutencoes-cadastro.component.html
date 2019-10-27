@@ -3,64 +3,59 @@
 
     <div class="ui-g">
       <div class="ui-g-12">
-          <h1>{{ editando ? 'Editar' : 'Nova' }} Manutenção</h1>
+        <h1>{{ editando ? 'Editar' : 'Nova' }} Manutenção</h1>
       </div>
 
-      <div class="ui-g-12  ui-fluid">
-        <label>Ativo</label>
-
-        <p-dropdown [options]="ativos" placeholder="Selecione" [filter]="true"  ngModel name="ativo"
-         #ativo=ngModel required [(ngModel)]="manutencao.ativo.codigo"></p-dropdown>
+      <div class="ui-g-4 ui-md-6 ui-lg-1 ui-fluid">
+        <label>Cód. Ativo</label>
+        <input pInputText type="text" name="Categoria" [ngModel]="manutencao.ativo.codigo" disabled="true">
 
       </div>
 
-      <div class="ui-g-12 ui-md-6 ui-fluid">
+      <div class="ui-g-8 ui-md-6 ui-lg-3  ui-fluid">
+        <label>Modelo Ativo</label>
+
+        <p-dropdown [options]="ativos" placeholder="Selecione" [filter]="true" ngModel name="ativo" #ativo=ngModel
+          required [(ngModel)]="manutencao.ativo.codigo"></p-dropdown>
+
+      </div>
+
+      <div class="ui-g-12 ui-md-12 ui-lg-2 ui-fluid">
         <label>Tipo</label>
 
-        <p-dropdown [options]="tipos" placeholder="Selecione"  ngModel name="tipo"
-         #tipo=ngModel required [(ngModel)]="manutencao.tipo"></p-dropdown>
+        <p-dropdown [options]="tipos" placeholder="Selecione" ngModel name="tipo" #tipo=ngModel required
+          [(ngModel)]="manutencao.tipo"></p-dropdown>
 
-         <app-message [control]="tipo" error="required"
-         text="Informe um tipo"></app-message>
+        <app-message [control]="tipo" error="required" text="Informe um tipo"></app-message>
       </div>
 
-      <div class="ui-g-12 ui-md-6 ui-lg-4 ui-fluid">
+      <div class="ui-g-12 ui-md-6 ui-lg-3  ui-fluid">
         <label>Data Agendada</label>
-        <p-calendar dateFormat="dd/mm/yy"
-        [inline]="false"
-        [readonlyInput]="true"
-        [showTime]="true"
-        [showIcon]="false" [locale]="br" name="dataAgendada" ngModel #dataAgendada="ngModel" required
-        [(ngModel)]="manutencao.dataAgendada"></p-calendar>
+        <p-calendar dateFormat="dd/mm/yy" [inline]="false" [readonlyInput]="true" [showTime]="true" [showIcon]="false"
+          [locale]="br" name="dataAgendada" ngModel #dataAgendada="ngModel" required
+          [(ngModel)]="manutencao.dataAgendada"></p-calendar>
 
-        <app-message [control]="dataAgendada" error="required"
-        text="Informe a data agendada"></app-message>
+        <app-message [control]="dataAgendada" error="required" text="Informe a data agendada"></app-message>
       </div>
 
-      <div class="ui-g-12 ui-md-6 ui-lg-4 ui-fluid">
+      <div class="ui-g-12 ui-md-6 ui-lg-3  ui-fluid">
         <label>Data Realizada</label>
-        <p-calendar dateFormat="dd/mm/yy"
-        [inline]="false"
-        [readonlyInput]="true"
-        [showTime]="true"
-        [showIcon]="false" [locale]="br" name="dataRealizada"
-        [(ngModel)]="manutencao.dataRealizada"></p-calendar>
+        <p-calendar dateFormat="dd/mm/yy" [inline]="false" [readonlyInput]="true" [showTime]="true" [showIcon]="false"
+          [locale]="br" name="dataRealizada" [(ngModel)]="manutencao.dataRealizada"></p-calendar>
       </div>
 
       <div class="ui-g-12 ui-fluid">
         <label style="display: block">Observação</label>
-        <textarea pInputTextarea [rows]="6" name="observacao" [(ngModel)]="manutencao.observacao" ></textarea>
+        <textarea pInputTextarea [rows]="6" name="observacao" [(ngModel)]="manutencao.observacao"></textarea>
       </div>
 
       <div class="ui-g-12">
         <button pButton type="submit" label="Salvar" [disabled]="f.invalid" style="margin: 2px"></button>
         <button pButton type="button" label="Novo" class="ui-button-info" style="margin: 2px"
-        (click)="novo(f)"></button>
+          (click)="novo(f)"></button>
         <a routerLink="/manutencoes">Voltar para a pesquisa</a>
       </div>
     </div>
 
   </form>
 </div>
-
-

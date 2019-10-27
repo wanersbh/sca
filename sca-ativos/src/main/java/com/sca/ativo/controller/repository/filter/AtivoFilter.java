@@ -6,6 +6,8 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 public class AtivoFilter {
 
+	private Long codigo;
+	
 	private String descricao;
 
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
@@ -14,6 +16,12 @@ public class AtivoFilter {
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private LocalDate dataAquisicaoAte;
 	
+	public Long getCodigo() {
+		return codigo;
+	}
+	public void setCodigo(Long codigo) {
+		this.codigo = codigo;
+	}
 	public String getDescricao() {
 		return descricao;
 	}

@@ -10,21 +10,26 @@
 
         <p-fieldset legend="Filtro">
 
-          <div class="ui-g-12 ui-md-12 ui-lg-4 ui-fluid">
-            <label>Descrição</label>
+          <div class="ui-g-12 ui-md-6 ui-lg-1  ui-fluid">
+            <label>Código</label>
+            <input pInputText type="text" name="codigo" [(ngModel)]="filtro.codigo">
+          </div>
+
+          <div class="ui-g-12 ui-md-6 ui-lg-4  ui-fluid">
+            <label>Modelo</label>
             <input pInputText type="text" name="descricao" [(ngModel)]="filtro.descricao">
           </div>
 
-          <div class="ui-g-12 ui-md-6 ui-lg-4 ui-fluid" >
-              <label>Período de:</label>
-            <p-calendar dateFormat="dd/mm/yy"  name="aquisicaoInicio"
-              [(ngModel)]="filtro.dataAquisicaoInicio" [locale]="br"></p-calendar>
+          <div class="ui-g-12 ui-md-6 ui-lg-3  ui-fluid">
+            <label>Período de:</label>
+            <p-calendar dateFormat="dd/mm/yy" name="aquisicaoInicio" [(ngModel)]="filtro.dataAquisicaoInicio"
+              [locale]="br"></p-calendar>
           </div>
 
-          <div class="ui-g-12 ui-md-6 ui-lg-4 ui-fluid">
+          <div class="ui-g-12 ui-md-6 ui-lg-3 ui-fluid">
             <label>Até:</label>
-            <p-calendar dateFormat="dd/mm/yy"  name="aquisicaoFim"
-              [(ngModel)]="filtro.dataAquisicaoFim" [locale]="br"></p-calendar>
+            <p-calendar dateFormat="dd/mm/yy" name="aquisicaoFim" [(ngModel)]="filtro.dataAquisicaoFim" [locale]="br">
+            </p-calendar>
           </div>
 
           <div class="ui-g-12">
@@ -45,16 +50,18 @@
         (onLazyLoad)="aoMudarPagina($event)" [lazy]="true" [responsive]="true" #tabela>
         <ng-template pTemplate="header">
           <tr>
+            <th>Código</th>
             <th>Categoria</th>
             <th>Modelo</th>
             <th>Fabricante</th>
             <th>Ano Fabricação</th>
             <th>Data Aquisição</th>
-            <th style="width: 100px" ></th>
+            <th style="width: 100px"></th>
           </tr>
         </ng-template>
         <ng-template pTemplate="body" let-ativo>
           <tr>
+            <td>{{ativo.codigo}}</td>
             <td>{{ativo.categoria.nome}}</td>
             <td>{{ativo.descricao}}</td>
             <td>{{ativo.fabricante.nome}}</td>

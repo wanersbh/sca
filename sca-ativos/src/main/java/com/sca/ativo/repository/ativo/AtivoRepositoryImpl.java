@@ -75,6 +75,10 @@ public class AtivoRepositoryImpl implements AtivoRepositoryQuery {
 		
 		List<Predicate> predicates = new ArrayList<>();
 		
+		if (ativoFilter.getCodigo()!= null) {
+			predicates.add(
+					builder.equal(root.get("codigo"), ativoFilter.getCodigo()));
+		}
 
 		if (StringUtils.isNotEmpty(ativoFilter.getDescricao())) {
 			predicates.add(builder.like(

@@ -29,10 +29,10 @@
 
       <div class="ui-g-16 ui-md-6 ui-fluid">
           <label>Fabricantes</label>
-          <p-dropdown [options]="categorias" placeholder="Selecione" [filter]="true" ngModel name="categoria"
-            #categoria=ngModel required [(ngModel)]="ativo.categoria.codigo"></p-dropdown>
+          <p-dropdown [options]="fabricantes" placeholder="Selecione" [filter]="true" ngModel name="fabricantes"
+            #fabricante=ngModel required [(ngModel)]="ativo.fabricante.codigo"></p-dropdown>
 
-          <app-message [control]="categoria" error="required" text="Informe uma categoria"></app-message>
+          <app-message [control]="fabricante" error="required" text="Informe um fabricante"></app-message>
         </div>
 
       <div class="ui-g-6 ui-md-3 ui-fluid">

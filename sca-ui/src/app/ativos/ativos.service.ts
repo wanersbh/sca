@@ -7,6 +7,7 @@ import { environment } from 'src/environments/environment';
 
 
 export class AtivoFiltro {
+  codigo: number;
   descricao: string;
   dataAquisicaoInicio: Date;
   dataAquisicaoFim: Date;
@@ -32,6 +33,10 @@ export class AtivosService {
 
     params = params.set('page', filtro.pagina.toString());
     params = params.set('size', filtro.itensPorPagina.toString());
+
+    if (filtro.codigo) {
+      params = params.set('codigo', filtro.codigo.toString());
+    }
 
     if (filtro.descricao) {
       params = params.set('descricao', filtro.descricao);
@@ -68,6 +73,15 @@ export class AtivosService {
           total: response['totalElements']
         };
         return resultado;
+      });
+  }
+
+  obterTodosFabricantes(): Promise<any> {
+    const headers = new HttpHeaders().append('Authorization', 'Basic d2FuZXJzYmhAZ21haWwuY29tOmFkbWlu');
+    return this.http.get(`${this.ativosUrl}/fabricantes`, { headers })
+      .toPromise()
+      .then(response => {
+        return response;
       });
   }
 

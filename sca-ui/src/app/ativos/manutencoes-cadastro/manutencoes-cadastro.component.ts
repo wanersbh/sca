@@ -97,6 +97,7 @@ export class ManutencoesCadastroComponent implements OnInit {
 
   carregarAtivos() {
     this.ativosService.obterTodos().then(resultado => {
+
       this.ativos = resultado.ativos.map((a: { descricao: string; codigo: number; }) => ({ label: a.descricao, value: a.codigo }));
     }).catch(erro => this.errorHandlerService.handle(erro));
   }
