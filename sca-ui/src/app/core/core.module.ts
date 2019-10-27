@@ -14,6 +14,7 @@ import { ManutencoesService } from '../ativos/manutencoes.service';
 import { PaginaNaoEncontradaComponent } from './pagina-nao-encontrada.component';
 import { NaoAutorizadoComponent } from './nao-autorizado.component';
 import { BarragensService } from '../barragens/barragens.service';
+import { TooltipModule } from 'primeng/components/tooltip/tooltip';
 
 
 @NgModule({
@@ -24,7 +25,8 @@ import { BarragensService } from '../barragens/barragens.service';
     // https://www.npmjs.com/package/ngx-toastr
     ToastrModule.forRoot(),
     ConfirmDialogModule,
-    RouterModule
+    RouterModule,
+    TooltipModule
   ],
   declarations: [
     NavbarComponent,

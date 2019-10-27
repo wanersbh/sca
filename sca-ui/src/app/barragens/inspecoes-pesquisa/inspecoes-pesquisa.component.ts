@@ -44,11 +44,13 @@ export class InspecoesPesquisaComponent implements OnInit {
       { label: 'Alto',  value: 3 }
     ];
 
+
     this.mapNiveis = new Map([
       [1, 'Baixo'],
       [2, 'Médio'],
       [3, 'Alto'],
     ]);
+
 
   }
 
@@ -91,7 +93,7 @@ export class InspecoesPesquisaComponent implements OnInit {
     this.pesquisar();
   }
 
-  descricaoNiveis() {
-
+  descricaoNiveis(codigo: number) {
+    return this.mapNiveis.get(codigo);
   }
 }

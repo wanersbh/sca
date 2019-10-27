@@ -3,8 +3,16 @@
   background-color: #1eccd2;
 }
 
-.navbar-toggle {
+.navbar-icon {
   color: #fff;
+}
+
+.position-right {
+  text-align: end;
+}
+
+.position-center {
+  text-align: center;
 }
 
 .navbar-menu {

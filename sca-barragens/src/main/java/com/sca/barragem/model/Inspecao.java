@@ -20,6 +20,8 @@ public class Inspecao {
 	
 	private Double altura;
 	
+	private Double volume;
+	
 	private LocalDate data;
 	
 	private Integer risco;
@@ -27,6 +29,8 @@ public class Inspecao {
 	private Integer potencial;
 	
 	private String observacao;
+	
+	private String responsavel;
 	
 	@ManyToOne
 	@JoinColumn(name = "codigo_barragem")
@@ -46,6 +50,14 @@ public class Inspecao {
 
 	public void setAltura(Double altura) {
 		this.altura = altura;
+	}
+	
+	public Double getVolume() {
+		return volume;
+	}
+
+	public void setVolume(Double volume) {
+		this.volume = volume;
 	}
 
 	public LocalDate getData() {
@@ -86,6 +98,14 @@ public class Inspecao {
 
 	public void setBarragem(Barragem barragem) {
 		this.barragem = barragem;
+	}
+	
+	public String getResponsavel() {
+		return responsavel;
+	}
+
+	public void setResponsavel(String responsavel) {
+		this.responsavel = responsavel;
 	}
 
 	@Override

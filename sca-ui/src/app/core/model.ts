@@ -32,6 +32,8 @@ export class Barragem {
   codigo: number;
   nome: string;
   metodo: number;
+  altura: number;
+  volume: number;
   uf: string;
   latitude: number;
   longitude: number;
@@ -40,11 +42,13 @@ export class Barragem {
 export class Inspecao {
   codigo: number;
   altura: number;
+  volume: number;
   data: Date;
   risco: number;
   potencial: number;
   observacao: string;
   barragem = new Barragem();
+  responsavel: string;
 }
 
 export class Aviso {

@@ -1,3 +1,5 @@
+import { AuthGuard } from './../../seguranca/auth.guard';
+import { AuthService } from './../../seguranca/auth.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Title } from '@angular/platform-browser';
@@ -30,7 +32,8 @@ export class InspecoesCadastroComponent implements OnInit {
     private errorHandlerService: ErrorHandlerService,
     private activatedRoute: ActivatedRoute,
     private router: Router,
-    private title: Title
+    private title: Title,
+    private auth: AuthService
   ) { }
 
   ngOnInit() {
@@ -46,6 +49,7 @@ export class InspecoesCadastroComponent implements OnInit {
     }
 
     this.carregarBarragens();
+    this.carregarResponsavel();
 
     this.br = {
       firstDayOfWeek: 0,
@@ -71,9 +75,16 @@ export class InspecoesCadastroComponent implements OnInit {
   carregarInspecao(codigo: number) {
     this.inspecoesService.buscarPorCodigo(codigo)
       .then(inspecao => {
+
         this.inspecao = inspecao;
       })
       .catch(erro => this.errorHandlerService.handle(erro));
+  }
+
+  carregarResponsavel() {
+    if (!this.inspecao.responsavel && this.auth.jwtPayload) {
+      this.inspecao.responsavel = this.auth.jwtPayload.nome;
+    }
   }
 
   salvar(form: NgForm) {
@@ -107,7 +118,7 @@ export class InspecoesCadastroComponent implements OnInit {
   novo(form: NgForm) {
     form.reset();
 
-    setTimeout(function () {
+    setTimeout(function() {
       this.inspecao = new Inspecao();
     }.bind(this), 1);
 

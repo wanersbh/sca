@@ -31,6 +31,10 @@ public class Barragem implements Serializable {
 	@Column(name = "lng", nullable = false)
 	private Double longitude;
 	
+	private Double volume;
+	
+	private Double altura;
+	
 	public Barragem() {
 		super();
 	}
@@ -86,6 +90,23 @@ public class Barragem implements Serializable {
 
 	public void setLongitude(Double longitude) {
 		this.longitude = longitude;
+	}
+	
+
+	public Double getVolume() {
+		return volume;
+	}
+
+	public void setVolume(Double volume) {
+		this.volume = volume;
+	}
+
+	public Double getAltura() {
+		return altura;
+	}
+
+	public void setAltura(Double altura) {
+		this.altura = altura;
 	}
 
 	@Override

@@ -43,23 +43,28 @@
         #tabela>
         <ng-template pTemplate="header">
           <tr>
+            <th>Código</th>
             <th>Nome</th>
             <th>Método</th>
+            <th>Altura (m)</th>
+            <th>Volume (m3)</th>
             <th>UF</th>
             <th style="width: 100px"></th>
           </tr>
         </ng-template>
         <ng-template pTemplate="body" let-barragem>
           <tr>
+            <td>{{barragem.codigo}}</td>
             <td>{{barragem.nome}}</td>
             <td>{{descricaoMetodo(barragem.metodo)}}</td>
+            <td>{{barragem.altura}}</td>
+            <td>{{barragem.volume}}</td>
             <td>{{barragem.uf}}</td>
             <td>
               <a pButton icon="pi pi-pencil" pTooltip="Editar" tooltipPosition="top" style="margin: 2px"
                 [routerLink]="['/barragens', barragem.codigo]"></a>
               <button pButton icon="pi pi-trash" pTooltip="Excluir" tooltipPosition="top"
                 (click)="confirmarExclusao(barragem)" style="margin: 2px"></button>
-              <!--[disabled]="!auth.temPermissao('ROLE_REMOVER_BARRAGEM')"-->
             </td>
           </tr>
         </ng-template>

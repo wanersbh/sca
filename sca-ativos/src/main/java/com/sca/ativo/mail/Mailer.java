@@ -47,7 +47,7 @@ public class Mailer {
 
 		List<String> emails = destinatarios.stream().map(u -> u.getEmail()).collect(Collectors.toList());
 
-		this.enviarEmail("projects.was@gmail.com", emails, "[SCA] Manutenções vencidas", template, variaveis);
+		this.enviarEmail("projects.was@gmail.com", emails, "[SCA-ATIVOS] Manutenções vencidas", template, variaveis);
 	}
 
 //	@EventListener

@@ -1,12 +1,23 @@
 <nav class="navbar">
 
-  <div class="container">
-    <div class="ui-g">
-      <div class="ui-g-12">
-        <a href="javascript:;" class="navbar-toggle" (click)="exibindoMenu = !exibindoMenu"><i class="pi pi-bars">
-          </i></a>
-      </div>
+  <div class="ui-g">
+    <div class="ui-g-1 position-right">
+      <a routerLink="/dashboard" class="navbar-icon"><i class="pi pi-home" pTooltip="Home"></i></a>
+
     </div>
+    <div class="ui-g-1">
+      <a href="javascript:;" class="navbar-icon" (click)="exibindoMenu = !exibindoMenu" pTooltip="Menu"><i
+          class="pi pi-bars">
+        </i></a>
+    </div>
+    <div class="ui-g-8 position-center navbar-icon">
+      <i class="pi pi-user">{{authService.jwtPayload?.nome}}</i>
+    </div>
+    <div class="ui-g-2 position-right">
+      <a href="javascript:;" (click)="logout()" class="navbar-icon" pTooltip="Sair" tooltipPosition="left"><i
+          class="pi pi-sign-out"></i></a>
+    </div>
+
   </div>
 
   <ul class="navbar-menu" [hidden]="!exibindoMenu">
@@ -14,25 +25,20 @@
     <li class="navbar-menuitem" routerLinkActive="selecionado" *ngIf="authService.temPermissao('ROLE_OPERADOR')">
       <a routerLink="/ativos">Ativos</a>
     </li>
-    <li class="navbar-menuitem" routerLinkActive="selecionado"
-      *ngIf="authService.temPermissao('ROLE_MANUTENCAO')">
+    <li class="navbar-menuitem" routerLinkActive="selecionado" *ngIf="authService.temPermissao('ROLE_MANUTENCAO')">
       <a routerLink="/manutencoes">Manutenções</a>
     </li>
-    <li class="navbar-menuitem" routerLinkActive="selecionado"
-    *ngIf="authService.temPermissao('ROLE_ENGENHARIA')">
+    <li class="navbar-menuitem" routerLinkActive="selecionado" *ngIf="authService.temPermissao('ROLE_ENGENHARIA')">
       <a routerLink="/barragens">Barragens</a>
     </li>
-    <li class="navbar-menuitem" routerLinkActive="selecionado"
-    *ngIf="authService.temPermissao('ROLE_ENGENHARIA')">
-        <a routerLink="/monitoramentos">Monitoramentos</a>
-      </li>
-    <li class="navbar-menuitem" routerLinkActive="selecionado"
-    *ngIf="authService.temPermissao('ROLE_CONSULTOR')">
+    <li class="navbar-menuitem" routerLinkActive="selecionado" *ngIf="authService.temPermissao('ROLE_ENGENHARIA')">
+      <a routerLink="/monitoramentos">Monitoramentos</a>
+    </li>
+    <li class="navbar-menuitem" routerLinkActive="selecionado" *ngIf="authService.temPermissao('ROLE_CONSULTOR')">
 
-        <a routerLink="/inspecoes">Inspeções</a>
-      </li>
-    <li class="navbar-menuitem" routerLinkActive="selecionado"
-      *ngIf="authService.temPermissao('ROLE_OPERADOR')">
+      <a routerLink="/inspecoes">Inspeções</a>
+    </li>
+    <li class="navbar-menuitem" routerLinkActive="selecionado" *ngIf="authService.temPermissao('ROLE_OPERADOR')">
       <a routerLink="/categorias">Categorias</a>
     </li>
     <li class="navbar-menuitem"><a href="javascript:;" (click)="logout()">Sair</a>

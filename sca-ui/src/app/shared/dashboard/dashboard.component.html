@@ -3,7 +3,7 @@
         Documentação.
       -->
 
-<agm-map [zoom]="5" [latitude]="lat" [longitude]="lng">
+<agm-map [zoom]="6" [latitude]="lat" [longitude]="lng">
   <div *ngFor="let bar of barragens">
     <agm-marker [latitude]="bar.latitude" [longitude]="bar.longitude">
       <agm-info-window>{{bar.nome}}</agm-info-window>

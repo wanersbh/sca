@@ -36,8 +36,8 @@ public class ManutencaoService {
 	@Autowired
 	private ScaAtivosQueueSender scaQueueSender;
 
-//	@Scheduled(cron = "0 10 10 * * *")
-	@Scheduled(fixedDelay = 1000 * 60 * 30)
+//	@Scheduled(cron = "0 58 19 * * *")
+	@Scheduled(fixedDelay = 1000 * 60 * 30 )
 	public void avisarManutencaoVencida() {
 
 		if (logger.isDebugEnabled()) {
@@ -66,11 +66,6 @@ public class ManutencaoService {
 		
 		logger.info("E-mail de aviso de manutenções vencidas foi enviado com sucesso.");
 
-	}
-	
-	@Scheduled(fixedDelay = 1000 * 60 * 30)
-	public void enviarMensagemParaFila() {
-		scaQueueSender.send("Data e hora: "+ Calendar.getInstance().getTime());
 	}
 
 }
