@@ -14,7 +14,7 @@ export class MonitoramentosService {
 
   constructor(private http: HttpClient) {
     this.monitoramentosUrl =  `${this.barragensUrl}/monitoramentos`;
-    this.alertarUrl = `${this.barragensUrl}/alerta/barragem/`;
+    this.alertarUrl = `${this.barragensUrl}/alerta/barragem`;
    }
 
    obterTodos(): Promise<any> {

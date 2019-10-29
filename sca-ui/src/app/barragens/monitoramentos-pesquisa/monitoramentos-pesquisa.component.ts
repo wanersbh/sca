@@ -22,10 +22,10 @@ export class MonitoramentosPesquisaComponent implements OnInit {
   monitoramentos = [];
   totalRegistros = 0;
   cols = [];
-  codigoBarragemSelecionado: 0;
   private subscription: Subscription = new Subscription();
   interval: any;
-
+  isCritico = false;
+  criticoMap = new Map();
 
   constructor(
     private monitoramentosService: MonitoramentosService,
@@ -46,22 +46,33 @@ export class MonitoramentosPesquisaComponent implements OnInit {
       { field: 'data', header: 'Data' }
     ];
 
-     this.pesquisar();
+    this.pesquisar();
 
     this.interval = setInterval(() => {
       this.pesquisar();
-    }, 100000);
+    }, 125000);
 
     this.title.setTitle('Pesquisa monitoramento');
 
-    this.codigoBarragemSelecionado = 0;
-
+    this.isCritico = false;
   }
 
   pesquisar() {
     // filtro
     this.monitoramentosService.obterTodos().then(resultado => {
       this.monitoramentos = resultado;
+      this.verificarSituacaoBarragem(this.monitoramentos);
+
+    });
+  }
+
+  verificarSituacaoBarragem(monitoramentos: any) {
+    monitoramentos.forEach(monitoramento => {
+      if (this.ehCritico(monitoramento)) {
+        this.isCritico = true;
+        this.criticoMap.set(monitoramento.codigoBarragem, monitoramento.codigoBarragem.toString());
+        return;
+      }
     });
   }
 
@@ -85,27 +96,32 @@ export class MonitoramentosPesquisaComponent implements OnInit {
 
   onReject() {
     this.messageService.clear('c');
-    this.codigoBarragemSelecionado = 0;
   }
 
-  onConfirm(codigo: any) {
-    if (this.codigoBarragemSelecionado) {
-      this.monitoramentosService.alerta(this.codigoBarragemSelecionado)
-      .then( response => {
-        this.toastr.success('Alerta encaminhado com sucesso!');
-      }).catch(error => {
-        this.errorHandlerService.handle(error);
-      });
-      this.messageService.clear('c');
+  onConfirm() {
+    for (const codigoBarragem of this.criticoMap.keys()) {
+      this.monitoramentosService.alerta(codigoBarragem)
+        .then(response => {
+          this.toastr.success('Alerta encaminhado com sucesso!');
+        }).catch(error => {
+          this.errorHandlerService.handle(error);
+        });
       // this.alertaSonoro();
     }
+    this.messageService.clear('c');
   }
 
-  showConfirm(monitoramento: any) {
-    this.codigoBarragemSelecionado = monitoramento.codigoBarragem;
+  showConfirm() {
     this.messageService.clear();
-    this.messageService.add({ key: 'c', sticky: true, severity: 'warn', summary: 'Aviso de evacuação!',
-    detail: `Existe risco da ${monitoramento.barragem} se romper, deseja emitir o alerta para todos?`});
+
+    this.messageService.add({
+      key: 'c', sticky: true, severity: 'error', summary: 'Procedimento de Evacuação',
+      detail: `Tem certeza que deseja acionar o procedimento de evacuação?
+        *Toda a comunidade próxima da barragem receberá o comunicado, juntamente com a Defesa Civil e
+        todas as autoridades responsáveis.
+        `
+    });
+
   }
 
   // https://www.treinaweb.com.br/blog/gerando-sons-com-a-web-audio-api-do-javascript/

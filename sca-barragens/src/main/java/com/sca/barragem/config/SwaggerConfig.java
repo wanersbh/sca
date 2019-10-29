@@ -22,8 +22,10 @@ public class SwaggerConfig {
 
 	// http://localhost:8280/sca-barragens/swagger-ui.html
     ApiInfo apiInfo() {
-        return new ApiInfoBuilder().title("API de ativos minerários")
-        		.description("Essa API disponibiliza serviços relacionados com os ativos minerários. Cadastro, alteração, remoção de ativos e agendamento da manutenções")
+        return new ApiInfoBuilder().title("API Módul Monitoramento de Barragens")
+        		.description("Essa API disponibiliza serviços relacionados as barragens da mineradora. "
+        				+ "Com a API é possível manter um cadastro de uma barragem, incluir os sensores de monitoramento e exibir os resultados dos sinais desses sensores."
+        				+ "Além disso, os consultores externos e os próprios engenheiros podem realizar inspeções da barragens periodicamente.")
             .termsOfServiceUrl("suporte").version("1.0.0").contact(new Contact("", "", "wanersbh@gmail.com")).build();
     }
 

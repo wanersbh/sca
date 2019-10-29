@@ -8,13 +8,16 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.sca.barragem.dto.MonitoramentoDTO;
+import com.sca.barragem.enumerator.StatusEnum;
 import com.sca.barragem.model.Barragem;
 import com.sca.barragem.model.Monitoramento;
+import com.sca.barragem.model.Sensor;
 import com.sca.barragem.queue.ScaBarragensQueueSender;
 import com.sca.barragem.repository.BarragemRepository;
 import com.sca.barragem.repository.MonitoramentoRepository;
@@ -86,6 +89,31 @@ public class BarragemService {
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
 
         return dataHora.format(formatter);
+	}
+	
+	/**
+	 * A cada 2 minutos é enviado um sinal do sensor para simular os sinais.
+	 * 
+	 */
+	@Scheduled(fixedDelay = 1000 * 60 * 10  )
+	public void mockSensor() {
+		
+		logger.info("Envio de sinal do sensor 1 da barragem do feijão em brumadinho.");
+		
+		monitoramentoRepository.save(retornarMonitoramentoCriticoMock());
+	}
+	
+	private Monitoramento retornarMonitoramentoCriticoMock() {
+		Sensor sensor = new Sensor();
+		sensor.setCodigo(1L);
+		
+		Monitoramento monitoramento = new Monitoramento();
+		monitoramento.setSensor(sensor);
+		monitoramento.setData(LocalDateTime.now());
+		monitoramento.setStatus(StatusEnum.CRITICO);
+		
+		
+		return monitoramento;
 	}
 	
 	

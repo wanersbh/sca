@@ -32,11 +32,6 @@ import com.sca.barragem.repository.MonitoramentoRepository;
 import com.sca.barragem.repository.SensorRepository;
 import com.sca.barragem.service.BarragemService;
 
-import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.ApiResponse;
-import io.swagger.annotations.ApiResponses;
-import io.swagger.annotations.Authorization;
-
 @RestController
 @RequestMapping("/barragens")
 public class BarragemController {
@@ -56,11 +51,7 @@ public class BarragemController {
 	@Autowired
 	private ApplicationEventPublisher publisher;
 
-    @ApiOperation(value = "Consulta uma guia previa paga.", nickname = "consultaGuiaPreviaPaga", notes = "Consulta uma guia previa paga pelo número de processo CNJ.",
-            authorizations = {@Authorization(value = "basicAuth")}, tags = {"Consulta guia prévia paga",})
-        @ApiResponses(value = {@ApiResponse(code = 200, message = "OK"), @ApiResponse(code = 400, message = "Requisição inválida"),
-            @ApiResponse(code = 401, message = "Requisição não autorizada."), @ApiResponse(code = 404, message = "Alguma exceção do SICC"),
-            @ApiResponse(code = 422, message = "Campos obrigatorios"), @ApiResponse(code = 500, message = "Erro interno no servidor")})
+    
 	@GetMapping
 	public List<Barragem> pesquisar(BarragemFilter barragemFilter) {
 		return barragemRepository.filtrar(barragemFilter);

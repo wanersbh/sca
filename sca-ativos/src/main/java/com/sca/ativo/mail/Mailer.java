@@ -39,15 +39,13 @@ public class Mailer {
 //		System.out.println(">>>>>>>>>>>>>>>>>>>>E-MAIL ENVIADO<<<<<<<<<<<<<<<<<<<<<<<<");
 //	}
 
-	public void avisarSobreManutencoesVencidas(List<Manutencao> vencidas, List<Usuario> destinatarios) {
-		String template = "mail/aviso-manutencoes-vencidas";
-		
+	public void avisarSobreManutencoes(List<Manutencao> vencidas, List<Usuario> destinatarios, String template, String assunto) {
 		Map<String, Object> variaveis = new HashMap<>();
 		variaveis.put("manutencoes", vencidas);
 
 		List<String> emails = destinatarios.stream().map(u -> u.getEmail()).collect(Collectors.toList());
 
-		this.enviarEmail("projects.was@gmail.com", emails, "[SCA-ATIVOS] Manutenções vencidas", template, variaveis);
+		this.enviarEmail("projects.was@gmail.com", emails, assunto, template, variaveis);
 	}
 
 //	@EventListener

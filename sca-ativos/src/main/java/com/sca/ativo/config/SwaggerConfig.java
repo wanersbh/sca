@@ -20,9 +20,11 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @EnableSwagger2
 public class SwaggerConfig {
 
-    ApiInfo apiInfo() {
-        return new ApiInfoBuilder().title("API de ativos minerários")
-        		.description("Essa API disponibiliza serviços relacionados com os ativos minerários. Cadastro, alteração, remoção de ativos e agendamento da manutenções")
+	// http://localhost:8180/sca-ativos/swagger-ui.html
+	ApiInfo apiInfo() {
+        return new ApiInfoBuilder().title("API Módulo de Ativos Minerários")
+        		.description("Essa API disponibiliza serviços relacionados com os ativos minerários. "
+        				+ "É disponibilizado serviços que permite manter um cadastro de um ativo e além disso realizar agendamento de manutenção do mesmo.")
             .termsOfServiceUrl("http://localhost:8180/sca-ativos/suporte").version("1.0.0").contact(new Contact("", "", "wanersbh@gmail.com")).build();
     }
 

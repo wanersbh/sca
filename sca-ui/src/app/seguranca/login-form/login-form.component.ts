@@ -6,22 +6,28 @@ import { Router } from '@angular/router';
 import { validateBr } from 'js-brasil';
 import { maskBr } from 'js-brasil';
 import { ToastrService } from 'ngx-toastr';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-login-form',
   templateUrl: './login-form.component.html',
   styleUrls: ['./login-form.component.css']
 })
-export class LoginFormComponent {
+export class LoginFormComponent implements OnInit {
+
+  cpfCnpj: string;
 
   constructor(
     private authService: AuthService,
     private errorHandlerService: ErrorHandlerService,
     private router: Router,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private title: Title
   ) { }
 
-  cpfCnpj: string;
+  ngOnInit(): void {
+    this.title.setTitle('Login');
+  }
 
   login(senha: string) {
     const cpfCnpjSemMascara = this.cpfCnpj.replace(/[^0-9]+/g, '');

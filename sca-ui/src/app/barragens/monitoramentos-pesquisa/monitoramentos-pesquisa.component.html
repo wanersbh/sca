@@ -11,8 +11,12 @@
   </div>
 
   <div class="ui-g">
-    <div class="ui-g-12">
 
+      <div class="ui-g-12">
+          <button pButton type="button" label="Evacuar" *ngIf="isCritico" class="ui-button-danger" icon="pi pi-volume-up" (click)="showConfirm()" pTooltip="Aviso para evacuar." tooltipPosition="top"></button>
+      </div>
+
+    <div class="ui-g-12">
 
       <p-table #dt [columns]="cols" [value]="monitoramentos" [paginator]="true" [rows]="5" [responsive]="true">
         <ng-template pTemplate="caption">
@@ -27,9 +31,6 @@
             <th *ngFor="let col of columns">
               {{col.header}}
             </th>
-            <th style="width: 80px;">
-
-            </th>
           </tr>
         </ng-template>
         <ng-template pTemplate="body" let-rowData let-columns="columns">
@@ -37,14 +38,14 @@
             <td *ngFor="let col of columns">
               {{rowData[col.field]}}
             </td>
-            <td>
-              <button pButton icon="pi pi-volume-up" (click)="showConfirm(rowData)" pTooltip="Aviso para evacuar" tooltipPosition="top" [disabled]="!ehCritico(rowData)"></button>
-            </td>
           </tr>
         </ng-template>
       </p-table>
 
     </div>
+
+
+
 
   </div>
 </div>

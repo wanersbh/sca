@@ -1,5 +1,6 @@
 package com.sca.ativo.service;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Calendar;
 import java.util.List;
@@ -62,10 +63,48 @@ public class ManutencaoService {
 			return;
 		}
 
-		mailer.avisarSobreManutencoesVencidas(vencidas, destinatarios);
+		mailer.avisarSobreManutencoes(vencidas, destinatarios, "mail/aviso-manutencoes-vencidas", "[SCA-ATIVOS] Relatório diário das manutenções vencidas");
 		
 		logger.info("E-mail de aviso de manutenções vencidas foi enviado com sucesso.");
+	}
+	
+	@Scheduled(fixedDelay = 1000 * 60 * 30 )
+	public void avisarManutencaoDoDia() {
+		
+		LocalDateTime dataDe = LocalDateTime.now();
+		LocalDateTime dataAte = dataDe.plusDays(1);
+		
+		// Retirando o time
+		dataDe = dataDe.minusHours(  dataDe.getHour());
+		dataDe = dataDe.minusMinutes(dataDe.getMinute());
+		dataDe = dataDe.minusSeconds(dataDe.getSecond());
 
+		// Retirando o time
+		dataAte = dataAte.minusHours(  dataAte.getHour());
+		dataAte = dataAte.minusMinutes(dataAte.getMinute());
+		dataAte = dataAte.minusSeconds(dataAte.getSecond());
+		
+		List<Manutencao> manutencoesDoDia = manutencaoRepository
+				.retornarManutencoesDoDia(dataDe, dataAte);
+
+		if (manutencoesDoDia.isEmpty()) {
+			logger.info("Não existe manutenções para hoje.");
+
+			return;
+		}
+
+		logger.info("Existem {} manutenções para hoje.", manutencoesDoDia.size());
+
+		List<Usuario> destinatarios = usuarioRepository.findByPermissoesDescricao(DESTINATARIOS);
+
+		if (destinatarios.isEmpty()) {
+			logger.warn("Existem manutenções para hoje, mas o sistema não encontrou nenhum destinatário.");
+			return;
+		}
+
+		mailer.avisarSobreManutencoes(manutencoesDoDia, destinatarios, "mail/aviso-manutencoes-diarias", "[SCA-ATIVOS] Relatório diário das manutenções de hoje");
+		
+		logger.info("E-mail de aviso de manutenções vencidas foi enviado com sucesso.");
 	}
 
 }

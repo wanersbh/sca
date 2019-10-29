@@ -14,3 +14,7 @@ INSERT INTO manutencao(codigo_ativo, tipo, data_agendada, data_realizada, observ
 INSERT INTO manutencao(codigo_ativo, tipo, data_agendada, data_realizada, observacao) VALUES(4, 'PREVENTIVA', '2019-04-06 16:44:56', NULL, 'Verificar pneus');
 INSERT INTO manutencao(codigo_ativo, tipo, data_agendada, data_realizada, observacao) VALUES(5, 'CORRETIVA', '2019-05-07 16:44:56', '2019-05-06 16:44:56', 'Verificar motor');
 INSERT INTO manutencao(codigo_ativo, tipo, data_agendada, data_realizada, observacao) VALUES(6, 'PREVENTIVA', '2019-06-08 16:44:56', NULL, 'Verificar pneus');
+
+INSERT INTO manutencao(codigo_ativo, tipo, data_agendada, data_realizada, observacao) VALUES(1, 'PREVENTIVA', SYSDATE(), NULL, 'Verificar biboca da parafuzeta');
+INSERT INTO manutencao(codigo_ativo, tipo, data_agendada, data_realizada, observacao) VALUES(3, 'CORRETIVA', SYSDATE(),  NULL, 'Pneu furou');
+INSERT INTO manutencao(codigo_ativo, tipo, data_agendada, data_realizada, observacao) VALUES(5, 'PREVENTIVA', SYSDATE(), NULL, 'Trocar o oleo');
