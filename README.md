@@ -23,4 +23,4 @@ E para integração entre os microsserviços existe uma camada que é uma API de
   - O Sistema de Normas Ambientais;
   - Consultorias e Assessorias;
   - Sistema de Defesa Civil Municipais e Estaduais;
-  - Amazon AWS.
+  - Amazon QuickSight.
