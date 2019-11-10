@@ -71,8 +71,7 @@
               <a pButton icon="pi pi-pencil" pTooltip="Editar" tooltipPosition="top" style="margin: 2px"
                 [routerLink]="['/ativos', ativo.codigo]"></a>
               <button pButton icon="pi pi-trash" pTooltip="Excluir" tooltipPosition="top"
-                (click)="confirmarExclusao(ativo)" style="margin: 2px"
-                [disabled]="!auth.temPermissao('ROLE_REMOVER_MANUTENCAO')"></button>
+                (click)="confirmarExclusao(ativo)" style="margin: 2px"></button>
             </td>
           </tr>
         </ng-template>
