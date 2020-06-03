@@ -68,7 +68,8 @@ export class InspecoesCadastroComponent implements OnInit {
     this.niveis = [
       { label: 'Baixo', value: 1 },
       { label: 'Médio', value: 2 },
-      { label: 'Alto', value: 3 }
+      { label: 'Alto', value: 3 },
+      { label: 'Hotfix', value: 4 }
     ];
   }
 
