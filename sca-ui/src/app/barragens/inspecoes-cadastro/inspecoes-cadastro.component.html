@@ -9,13 +9,13 @@
       </div>
 
       <div class="ui-g-12 ui-md-4 ui-lg-2 ui-fluid">
-        <label>Data Inspeção</label>
+        <label>Data Inspeção Hotfix</label>
         <p-calendar dateFormat="yy-mm-dd" [inline]="false" [showIcon]="false" [locale]="br" [(ngModel)]="inspecao.data"
           name="dataInspecao" required></p-calendar>
       </div>
 
       <div class="ui-g-12 ui-md-8 ui-lg-6 ui-fluid">
-        <label>Barragem</label>
+        <label>Barragem Hotfix</label>
         <p-dropdown [options]="barragens" placeholder="Selecione" ngModel name="barragem" #barragem=ngModel required
           [(ngModel)]="inspecao.barragem.codigo" [filter]="true"></p-dropdown>
       </div>
