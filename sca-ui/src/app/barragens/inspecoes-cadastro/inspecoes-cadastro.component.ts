@@ -69,7 +69,7 @@ export class InspecoesCadastroComponent implements OnInit {
       { label: 'Baixo', value: 1 },
       { label: 'Médio', value: 2 },
       { label: 'Alto', value: 3 },
-      { label: 'Hotfix', value: 4 }
+      { label: 'Hotfix-atual', value: 5 }
     ];
   }
 
