@@ -3,7 +3,7 @@
 Trabalho de Conclusão de Curso de Especialização em Arquitetura de Software Distribuído como requisito parcial à obtenção do título de especialista.
 
 **Orientador(a):** Prof. Dr. Pedro Alves de Oliveira
-<p><b>Aluno:</b> Waner Andrade Silva</p>
+<p><b>Aluno:</b> Waner </p>
 
 [Apresentação da POC no Youtube.](https://youtu.be/V8-YCnx_CuM)
 
